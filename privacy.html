@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Catchr</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #2C2C2A;
+      background: #FDFAF6;
+      max-width: 680px;
+      margin: 60px auto;
+      padding: 0 24px 80px;
+      line-height: 1.7;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #2C5F4A;
+      margin-bottom: 6px;
+    }
+    .meta {
+      font-size: 13px;
+      color: #8C7E6E;
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2C2C2A;
+      margin-top: 36px;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 14px;
+      color: #3C3C3A;
+      margin-bottom: 12px;
+    }
+    ul {
+      font-size: 14px;
+      color: #3C3C3A;
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    a {
+      color: #2C5F4A;
+    }
+    .footer {
+      margin-top: 60px;
+      font-size: 13px;
+      color: #B0A090;
+    }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Catchr Chrome Extension &nbsp;·&nbsp; Last updated: April 2026</p>
+
+  <p>Catchr is a Chrome extension that helps job seekers track applications and tailor resumes using AI. This policy explains what data Catchr accesses, how it is used, and what is never collected.</p>
+
+  <h2>Data We Never Collect</h2>
+  <p>Catchr has no backend server. We do not collect, store, transmit, or have any access to your personal data. No analytics, no tracking, no accounts.</p>
+
+  <h2>Data Stored Locally on Your Device</h2>
+  <p>The following is stored in your browser's local storage (<code>chrome.storage.local</code>) and never leaves your device:</p>
+  <ul>
+    <li>Your Gemini API key</li>
+    <li>Your Google Doc resume ID(s)</li>
+    <li>Your Google Sheet ID (for job tracking)</li>
+  </ul>
+
+  <h2>Data Sent to Third-Party Services</h2>
+  <p>Catchr connects to the following Google services on your behalf using your own credentials:</p>
+  <ul>
+    <li><strong>Google Sheets API</strong> — to log job applications to your personal Google Sheet</li>
+    <li><strong>Google Docs API</strong> — to read your resume and create tailored copies in your Google Drive</li>
+    <li><strong>Google Drive API</strong> — to organize tailored resume copies into a folder in your Drive</li>
+    <li><strong>Google Gemini API</strong> — your resume content and the job description are sent to Gemini using your own API key to generate tailored edits and fit scores</li>
+  </ul>
+  <p>All Google API access is authorized through Google OAuth and governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>. Your Gemini API key is used directly from your browser — it is not routed through any Catchr server.</p>
+
+  <h2>Job Page Data</h2>
+  <p>When you use Catchr on a job listing page, the extension reads the page content (job title, company name, location, and job description) to pre-fill fields and power AI features. This data is processed locally or sent directly to Google's Gemini API. It is not stored or transmitted anywhere else.</p>
+
+  <h2>Permissions</h2>
+  <p>Catchr requests the following Chrome permissions:</p>
+  <ul>
+    <li><strong>identity</strong> — to authenticate with your Google account via OAuth</li>
+    <li><strong>storage</strong> — to save your settings locally in your browser</li>
+    <li><strong>activeTab / scripting</strong> — to read job listing pages when you open the extension</li>
+    <li><strong>tabs</strong> — to open tailored resume documents in new tabs</li>
+    <li><strong>notifications</strong> — to notify you when a resume has finished tailoring</li>
+  </ul>
+
+  <h2>Children's Privacy</h2>
+  <p>Catchr is not directed at children under 13 and does not knowingly collect any information from children.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>If this policy changes materially, we will update the "Last updated" date above. Continued use of the extension after any changes constitutes acceptance of the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>Questions? Reach out at <a href="mailto:kevinjustinh@gmail.com">kevinjustinh@gmail.com</a>.</p>
+
+  <p class="footer">Catchr is an independent project and is not affiliated with Google, LinkedIn, or any job board.</p>
+</body>
+</html>
