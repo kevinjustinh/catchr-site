@@ -58,7 +58,7 @@
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p class="meta">Catchr Chrome Extension &nbsp;·&nbsp; Last updated: April 2026</p>
+  <p class="meta">Catchr Chrome Extension &nbsp;·&nbsp; Last updated: May 2026</p>
 
   <p>Catchr is a Chrome extension that helps job seekers track applications and tailor resumes using AI. This policy explains what data Catchr accesses, how it is used, and what is never collected.</p>
 
@@ -69,18 +69,19 @@
   <p>The following is stored in your browser's local storage (<code>chrome.storage.local</code>) and never leaves your device:</p>
   <ul>
     <li>Your Gemini API key</li>
-    <li>Your Google Doc resume ID(s)</li>
-    <li>Your Google Sheet ID (for job tracking)</li>
+    <li>Your connected resume file(s) (name and ID, selected via Google file picker)</li>
+    <li>Your connected job tracking sheet (name and ID, selected via Google file picker)</li>
   </ul>
 
   <h2>Data Sent to Third-Party Services</h2>
   <p>Catchr connects to the following Google services on your behalf using your own credentials:</p>
   <ul>
     <li><strong>Google Sheets API</strong> — to log job applications to your personal Google Sheet</li>
-    <li><strong>Google Docs API</strong> — to read your resume and create tailored copies in your Google Drive</li>
-    <li><strong>Google Drive API</strong> — to organize tailored resume copies into a folder in your Drive</li>
+    <li><strong>Google Docs API</strong> — to read your resume and create tailored copies and interview prep documents in your Google Drive</li>
+    <li><strong>Google Drive API</strong> — to organize tailored resume copies into a folder in your Drive. Catchr uses the <code>drive.file</code> scope, which limits access to only the specific files you connect or that Catchr creates on your behalf — not your entire Drive</li>
     <li><strong>Google Gemini API</strong> — your resume content and the job description are sent to Gemini using your own API key to generate tailored edits and fit scores</li>
   </ul>
+  <p>When you connect a resume or job tracking sheet, Catchr uses Google's built-in file picker. Only the specific files you select become accessible to the extension.</p>
   <p>All Google API access is authorized through Google OAuth and governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>. Your Gemini API key is used directly from your browser — it is not routed through any Catchr server.</p>
 
   <h2>Job Page Data</h2>
