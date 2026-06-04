@@ -1,33 +1,683 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catchr</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #FDFAF6;
-      color: #2C2C2A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Catchr: Your AI copilot for the job hunt</title>
+<meta name="description" content="Catchr is a Chrome extension and AI copilot for job seekers. Know your fit, tailor your resume, and walk into every interview ready. It all starts with one click." />
+<link rel="icon" type="image/webp" href="assets/net-forest.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --forest:#2C5F4A;
+    --forest-deep:#245040;
+    --cream:#FDFAF6;
+    --cream-warm:#EDE8E2;
+    --ink:#2C2C2A;
+    --stone:#8C7E6E;
+    --stone-light:#B0A090;
+    --mint:#7DD4A8;
+    --mint-soft:#B8E0CC;
+    --mint-wash:#EAF7F1;
+    --sage:#7A8C5A;
+    --mauve:#8C5E72;
+    --slate:#4A6580;
+    --sage-wash:#e5edda;
+    --mauve-wash:#ede0e7;
+    --slate-wash:#dce6ee;
+    --display:"Bricolage Grotesque", serif;
+    --body:"Work Sans", sans-serif;
+    --maxw:1160px;
+    --pad:clamp(20px,5vw,48px);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--body);
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    line-height:1.6;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{margin:0;font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.04;}
+  p{margin:0;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);width:100%;}
+
+  .eyebrow{
+    font-family:var(--body);
+    font-weight:600;
+    font-size:0.8125rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--stone);
+    margin:0;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:0.55em;
+    font-family:var(--body);font-weight:600;font-size:1rem;
+    line-height:1;cursor:pointer;border:none;
+    border-radius:11px;padding:15px 24px;
+    transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+    white-space:nowrap;
+  }
+  .btn-chrome{
+    background:var(--forest);color:var(--cream);
+    box-shadow:0 1px 0 rgba(0,0,0,.18), 0 8px 22px -12px rgba(44,95,74,.7);
+  }
+  .btn-chrome:hover{background:var(--forest-deep);transform:translateY(-1px);}
+  .btn-chrome .net{width:22px;height:auto;}
+  .btn-cream{
+    background:var(--cream);color:var(--forest);
+    box-shadow:0 1px 0 rgba(0,0,0,.12), 0 8px 22px -12px rgba(0,0,0,.25);
+  }
+  .btn-cream:hover{background:#f0ece5;transform:translateY(-1px);}
+  .btn-cream .net{width:22px;height:auto;}
+  .btn-ghost-cream{
+    background:transparent;color:var(--cream);
+    border:1px solid rgba(253,250,246,.35);
+  }
+  .btn-ghost-cream:hover{background:rgba(253,250,246,.08);}
+  .btn-lg{padding:18px 30px;font-size:1.0625rem;}
+
+  .link-quiet{
+    font-weight:500;color:var(--cream);opacity:.82;
+    display:inline-flex;align-items:center;gap:.4em;
+    border-bottom:1px solid transparent;transition:opacity .18s, border-color .18s;
+  }
+  .link-quiet:hover{opacity:1;border-color:rgba(253,250,246,.45);}
+
+  /* ---------- Nav (floating frosted pill) ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:14px var(--pad) 0;
+    background:transparent;
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:62px;max-width:var(--maxw);margin:0 auto;
+    padding:0 14px 0 24px;
+    background:rgba(253,250,246,.70);
+    backdrop-filter:saturate(160%) blur(16px);
+    -webkit-backdrop-filter:saturate(160%) blur(16px);
+    border:1px solid rgba(255,255,255,.55);
+    border-radius:999px;
+    box-shadow:0 10px 30px -14px rgba(36,80,64,.38), inset 0 1px 0 rgba(255,255,255,.45);
+  }
+  .brand{display:flex;align-items:center;gap:11px;}
+  .brand .net{width:28px;height:28px;object-fit:contain;}
+  .brand .word{font-family:var(--display);font-weight:700;font-size:1.4rem;color:var(--forest);letter-spacing:-0.02em;}
+  .nav-links{display:flex;align-items:center;gap:34px;}
+  .nav-links a{font-weight:500;color:var(--ink);font-size:0.95rem;opacity:.78;transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{display:flex;align-items:center;gap:20px;}
+  .nav-cta .btn{border-radius:999px;}
+  .nav-kofi{
+    display:inline-flex;align-items:center;gap:6px;
+    font-weight:500;font-size:0.95rem;color:var(--ink);opacity:.78;
+    transition:opacity .15s;white-space:nowrap;
+  }
+  .nav-kofi:hover{opacity:1;}
+  .nav-kofi .cup{font-size:1rem;}
+  @media(max-width:860px){
+    .nav-links{display:none;}
+  }
+  @media(max-width:520px){
+    .nav-cta .btn{padding:12px 16px;font-size:0.9rem;}
+    .brand .word{font-size:1.25rem;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      linear-gradient(to right, rgba(36,80,64,.90) 0%, rgba(36,80,64,.62) 32%, rgba(36,80,64,.18) 58%, rgba(36,80,64,0) 100%),
+      url('assets/hero-bg.webp') center center/cover no-repeat,
+      var(--forest);
+    color:var(--cream);overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(32px,5vw,72px);
+    align-items:center;
+    padding-top:clamp(104px,9vw,128px);padding-bottom:clamp(56px,8vw,104px);
+  }
+  .hero-copy{max-width:560px;}
+  .hero .eyebrow{color:var(--mint-soft);}
+  .hero h1{
+    color:var(--cream);
+    font-size:clamp(2.7rem,6.2vw,4.6rem);
+    font-weight:800;
+    margin:18px 0 0;
+    letter-spacing:-0.028em;
+  }
+  .hero .sub{
+    font-size:clamp(1.075rem,1.7vw,1.3rem);
+    color:rgba(253,250,246,.82);
+    margin-top:22px;max-width:30em;
+    line-height:1.55;
+  }
+  .hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:36px;}
+  .hero-note{
+    display:flex;align-items:center;gap:9px;margin-top:24px;
+    font-size:0.9rem;color:rgba(253,250,246,.66);font-weight:500;
+  }
+  .dot-mint{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(125,212,168,.18);}
+
+  .hero-shot{position:relative;display:flex;justify-content:center;min-width:0;}
+  .hero-shot img{
+    width:100%;max-width:392px;height:auto;
+    border-radius:20px;
+    box-shadow:0 4px 8px rgba(0,0,0,.16), 0 36px 70px -28px rgba(0,0,0,.55);
+  }
+  @media(max-width:840px){
+    /* Single-column: copy spans full width, so the desktop left->right scrim
+       leaves the right edge over the bright watercolor. Re-scrim without
+       flattening the watercolor: horizontal layer no longer fades to 0, plus a
+       gentle vertical floor that anchors the headline and seats the note line. */
+    .hero{
+      background:
+        linear-gradient(180deg, rgba(36,80,64,.55) 0%, rgba(36,80,64,.20) 46%, rgba(36,80,64,.62) 100%),
+        linear-gradient(to right, rgba(36,80,64,.86) 0%, rgba(36,80,64,.74) 55%, rgba(36,80,64,.55) 100%),
+        url('assets/hero-bg.webp') center center/cover no-repeat,
+        var(--forest);
     }
-    .center {
-      text-align: center;
-    }
-    h1 { color: #2C5F4A; font-size: 28px; margin-bottom: 8px; }
-    p { color: #8C7E6E; font-size: 15px; }
-    a { color: #2C5F4A; }
-  </style>
+    .hero-grid{grid-template-columns:1fr;gap:8px;padding-top:96px;padding-bottom:56px;}
+    .hero-shot{margin-top:20px;}
+    .hero-shot img{max-width:340px;}
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section{padding-top:clamp(72px,10vw,128px);padding-bottom:clamp(72px,10vw,128px);}
+  .section-head{max-width:680px;margin:0 auto;text-align:center;}
+  .section-head h2{
+    font-size:clamp(2.1rem,4.4vw,3.3rem);color:var(--ink);margin-top:16px;
+  }
+  .section-head p{margin-top:20px;color:var(--stone);font-size:1.125rem;max-width:38em;margin-left:auto;margin-right:auto;}
+
+  /* ---------- Feature rows ---------- */
+  .feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,84px);align-items:center;}
+  .feature + .feature{margin-top:clamp(72px,9vw,116px);}
+  .feature .copy{max-width:480px;}
+  .feature.flip .copy{order:2;}
+  .feature.flip .plate{order:1;}
+
+  /* In-site section: light chips + screenshot placeholder */
+  .chip-light{
+    font-size:0.875rem;font-weight:500;color:var(--forest-deep);
+    background:var(--mint-wash);border:1px solid var(--mint-soft);
+    padding:8px 15px;border-radius:999px;
+  }
+  .shot{
+    border-radius:20px;overflow:hidden;min-width:0;
+    box-shadow:0 2px 4px rgba(44,44,42,.05), 0 30px 64px -30px rgba(44,44,42,.5);
+    border:1px solid var(--cream-warm);
+  }
+  .shot img{width:100%;height:auto;display:block;}
+  .shot-placeholder{
+    aspect-ratio:16/10;display:grid;place-items:center;text-align:center;
+    background:repeating-linear-gradient(135deg,#F4F2EC 0 14px,#FBF8F3 14px 28px);
+    color:var(--stone);font-size:0.9rem;font-weight:500;padding:24px;
+  }
+  @media(max-width:840px){
+    .shot{max-width:560px;margin:0 auto;}
+  }
+
+  .ftag{display:inline-flex;align-items:center;gap:9px;}
+  .ftag .swatch{width:11px;height:11px;border-radius:3px;}
+  .ftag .label{font-family:var(--body);font-weight:600;font-size:0.8125rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--stone);}
+  .feature h3{font-size:clamp(1.7rem,3vw,2.5rem);color:var(--ink);margin-top:18px;}
+  .feature .desc{margin-top:18px;color:#4c4a45;font-size:1.0625rem;line-height:1.62;max-width:30em;}
+  .blist{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-direction:column;gap:13px;}
+  .blist li{display:flex;align-items:flex-start;gap:12px;font-size:1rem;color:var(--ink);}
+  .blist .tick{flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;display:grid;place-items:center;}
+  .blist .tick svg{width:11px;height:11px;}
+
+  /* Floating product popup inside the feature card */
+  .plate{min-width:0;display:flex;justify-content:center;align-items:center;}
+  .plate img{
+    width:100%;max-width:384px;height:auto;display:block;
+    border-radius:20px;
+    box-shadow:0 2px 4px rgba(44,44,42,.05), 0 26px 60px -22px rgba(44,44,42,.5);
+  }
+
+  /* Feature cards — entire section (text + image) in one colored card */
+  .feature-card{border-radius:28px;padding:clamp(36px,4vw,56px);}
+  .feature-card + .feature-card{margin-top:clamp(20px,2.5vw,32px);}
+  .feature-card-sage  {background:var(--sage-wash);}
+  .feature-card-mauve {background:var(--mauve-wash);}
+  .feature-card-slate {background:var(--slate-wash);}
+
+  /* Check Fit — the lead, larger */
+  .feature-lead{grid-template-columns:1fr 1.08fr;gap:clamp(40px,6vw,96px);}
+  .feature-lead h3{font-size:clamp(2rem,3.6vw,3rem);}
+  .feature-lead .desc{font-size:1.15rem;}
+
+  @media(max-width:840px){
+    .feature, .feature-lead{grid-template-columns:1fr;gap:34px;}
+    .feature.flip .copy{order:0;}
+    .feature.flip .plate{order:0;}
+    .plate, .feature-lead .plate{max-width:420px;margin-left:auto;margin-right:auto;}
+    .feature .copy{max-width:none;}
+  }
+
+  /* ---------- On-ramp ---------- */
+  .onramp{background:var(--forest);color:var(--cream);}
+  .onramp-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:clamp(36px,6vw,80px);align-items:center;}
+  .onramp .eyebrow{color:var(--mint-soft);}
+  .onramp h2{color:var(--cream);font-size:clamp(2rem,4vw,3rem);margin-top:16px;}
+  .onramp .desc{margin-top:20px;color:rgba(253,250,246,.82);font-size:1.0875rem;max-width:30em;line-height:1.6;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .chip{
+    font-size:0.875rem;font-weight:500;color:var(--cream);
+    background:rgba(253,250,246,.09);border:1px solid rgba(253,250,246,.18);
+    padding:8px 15px;border-radius:999px;
+  }
+
+  /* faux Google Sheet */
+  .sheet{
+    background:var(--cream);border-radius:16px;overflow:hidden;color:var(--ink);
+    box-shadow:0 30px 64px -30px rgba(0,0,0,.5);
+    border:1px solid rgba(0,0,0,.05);
+  }
+  .sheet-bar{display:flex;align-items:center;gap:8px;padding:14px 18px;background:#fff;border-bottom:1px solid var(--cream-warm);}
+  .sheet-bar .tab{width:18px;height:18px;border-radius:5px;background:#1E7B47;display:grid;place-items:center;}
+  .sheet-bar .tab svg{width:10px;height:10px;}
+  .sheet-bar .name{font-weight:600;font-size:0.92rem;color:var(--ink);}
+  .sheet-bar .sub{font-size:0.78rem;color:var(--stone-light);margin-left:auto;}
+  table.sheet-tbl{width:100%;border-collapse:collapse;font-size:0.86rem;}
+  table.sheet-tbl th{
+    text-align:left;font-weight:600;color:var(--stone);font-size:0.7rem;letter-spacing:0.07em;text-transform:uppercase;
+    padding:11px 16px;background:#F6F3ED;border-bottom:1px solid var(--cream-warm);
+  }
+  table.sheet-tbl td{padding:13px 16px;border-bottom:1px solid #F0ECE5;color:var(--ink);}
+  table.sheet-tbl tr:last-child td{border-bottom:none;}
+  table.sheet-tbl .co{font-weight:600;}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:0.74rem;font-weight:600;padding:4px 10px;border-radius:999px;}
+  .pill .d{width:6px;height:6px;border-radius:50%;background:var(--mint);}
+  .pill.offer{background:var(--mint-wash);color:#2E7D58;}
+  .pill.offer .d{background:var(--mint);}
+  .pill.applied{background:var(--slate-wash);color:#35506a;}
+  .pill.applied .d{background:var(--slate);}
+  .pill.interview{background:var(--mauve-wash);color:#7c4f63;}
+  .pill.interview .d{background:var(--mauve);}
+  .pill.rejected{background:#ece8e3;color:#8a8178;}
+  .pill.rejected .d{background:#b7ada1;}
+  .sheet-foot{padding:10px 16px;background:#fff;border-top:1px solid var(--cream-warm);font-size:0.78rem;color:var(--stone-light);}
+
+  /* Google Sheets-style bottom tab bar (shared by both tabs) */
+  .sheet-tabs{display:flex;align-items:flex-end;gap:4px;padding:7px 12px 0;background:#fff;border-top:1px solid var(--cream-warm);}
+  .sheet-tab{display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--stone-light);padding:8px 14px;border-radius:7px 7px 0 0;}
+  .sheet-tab.active{color:var(--forest-deep);background:var(--mint-wash);box-shadow:inset 0 -2px 0 #1E7B47;}
+
+  /* Auto-built analytics dashboard (the second tab, same file) */
+  .dash-wrap{margin-top:clamp(28px,3.5vw,44px);}
+  .dash-caption{font-size:0.9rem;color:rgba(253,250,246,.72);margin-bottom:16px;}
+  .dash-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:20px;}
+  .dash-tile{background:#FAF7F2;border:1px solid var(--cream-warm);border-radius:12px;padding:16px;}
+  .dash-tile .k{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone);}
+  .dash-tile .v{font-family:var(--display);font-weight:700;font-size:1.9rem;color:var(--forest-deep);line-height:1.1;margin-top:9px;}
+  .dash-tile .t{font-size:0.73rem;font-weight:600;color:#2E7D58;margin-top:5px;}
+  .dash-insight{display:flex;align-items:center;gap:11px;margin:0 20px 20px;padding:13px 16px;background:var(--mint-wash);border:1px solid var(--mint-soft);border-radius:12px;font-size:0.92rem;color:var(--forest-deep);}
+  .dash-insight .ico{font-size:1.1rem;flex:none;}
+  @media(max-width:760px){.dash-tiles{grid-template-columns:1fr 1fr;}}
+  @media(max-width:840px){
+    .onramp-grid{grid-template-columns:1fr;gap:34px;}
+    table.sheet-tbl .hide-sm{display:none;}
+    table.sheet-tbl th, table.sheet-tbl td{padding-left:12px;padding-right:12px;}
+  }
+
+  /* ---------- How it works ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,5vw,64px);margin-top:64px;}
+  .step .num{font-family:var(--display);font-weight:700;font-size:3.4rem;color:var(--mint-soft);line-height:1;
+    -webkit-text-stroke:0;}
+  .step .num b{color:var(--sage);}
+  .step h3{font-size:1.4rem;margin-top:18px;color:var(--ink);}
+  .step p{margin-top:12px;color:var(--stone);font-size:1.0125rem;max-width:24em;}
+  .step .rule{display:none;}
+  @media(max-width:760px){.steps{grid-template-columns:1fr;gap:40px;margin-top:48px;}}
+
+  /* ---------- Privacy ---------- */
+  .privacy{background:var(--mint-wash);}
+  .privacy-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:clamp(36px,6vw,80px);align-items:start;}
+  .privacy h2{font-size:clamp(1.9rem,3.6vw,2.75rem);color:var(--forest-deep);}
+  .privacy .lead{margin-top:20px;color:#3c5a4d;font-size:1.0875rem;line-height:1.6;max-width:32em;}
+  .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px 36px;align-items:start;}
+  .pitem .h{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--forest-deep);}
+  .pitem .h .mk{width:22px;height:22px;border-radius:50%;background:var(--mint);display:grid;place-items:center;flex:none;}
+  .pitem .h .mk svg{width:12px;height:12px;}
+  .pitem p{margin-top:9px;color:#456056;font-size:0.97rem;line-height:1.55;}
+  @media(max-width:760px){
+    .privacy-grid{grid-template-columns:1fr;gap:32px;}
+    .pgrid{grid-template-columns:1fr;gap:24px;}
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final{background:var(--forest);color:var(--cream);text-align:center;}
+  .final h2{color:var(--cream);font-size:clamp(2.2rem,5vw,3.6rem);max-width:14em;margin:0 auto;font-weight:800;}
+  .final p{color:rgba(253,250,246,.78);margin-top:20px;font-size:1.125rem;}
+  .final .btn{margin-top:38px;}
+  .final .note{margin-top:18px;font-size:0.9rem;color:rgba(253,250,246,.6);}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--forest-deep);color:var(--cream);padding:56px 0 44px;}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap;}
+  .foot-brand{display:flex;align-items:center;gap:11px;}
+  .foot-brand .net{width:30px;height:30px;}
+  .foot-brand .word{font-family:var(--display);font-weight:700;font-size:1.3rem;}
+  .foot-tag{color:rgba(253,250,246,.6);font-size:0.92rem;margin-top:14px;max-width:24em;}
+  .foot-links{display:flex;gap:30px;flex-wrap:wrap;}
+  .foot-links a{color:rgba(253,250,246,.8);font-size:0.92rem;font-weight:500;}
+  .foot-links a:hover{color:var(--cream);}
+  .foot-bottom{margin-top:40px;padding-top:22px;border-top:1px solid rgba(253,250,246,.13);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:0.85rem;color:rgba(253,250,246,.5);}
+</style>
 </head>
 <body>
-  <div class="center">
-    <h1>Catchr</h1>
-    <p>Track jobs and tailor your resume with AI.</p>
-    <p style="margin-top: 24px;"><a href="privacy.html">Privacy Policy</a></p>
-  </div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Catchr home">
+        <img class="net" src="assets/net-forest.webp" alt="" />
+        <span class="word">Catchr</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="privacy.html">Privacy</a>
+        <a class="nav-kofi" href="https://ko-fi.com/kevinjustin" target="_blank" rel="noopener" aria-label="Support Catchr on Ko-fi"><span class="cup" aria-hidden="true">☕</span>Support</a>
+      </div>
+      <div class="nav-cta">
+        <button class="btn btn-chrome" type="button">Add to Chrome</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Catchr for Chrome</p>
+        <h1>The free job tracker with AI built in.</h1>
+        <p class="sub">Catchr tracks every job you're watching, then puts AI to work on each one: scoring your fit, tailoring your resume to the role, and getting your interview answers ready, all from your browser for free.</p>
+        <div class="hero-actions">
+          <button class="btn btn-chrome btn-lg" type="button">
+            <img class="net" src="assets/net-cream.webp" alt="" />
+            Add to Chrome
+          </button>
+          <a class="link-quiet" href="#features">See how it works →</a>
+        </div>
+        <div class="hero-note">
+          Free forever. The AI runs on your own Google Gemini key, which is free to create.
+        </div>
+      </div>
+      <div class="hero-shot">
+        <img src="assets/card-catch.webp" alt="The Catchr browser popup auto-filling a job's company, position, location and link, with a Catch It button and the three AI tools below." />
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== AI FEATURES ===================== -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The AI copilot</p>
+        <h2>Three tools, all working to get you hired.</h2>
+        <p>One click catches a listing and logs it to your tracker. Then three tools take over: telling you whether to apply, how to tailor your resume for the role, and what to say when you walk in the room, all on your own free Gemini key, which is why Catchr costs nothing.</p>
+      </div>
+
+      <!-- Check Fit -->
+      <div class="feature-card feature-card-sage" style="margin-top:clamp(56px,7vw,92px);">
+        <div class="feature feature-lead">
+          <div class="copy">
+            <span class="ftag"><span class="swatch" style="background:var(--sage);"></span><span class="label">Check Fit</span></span>
+            <h3>Know where you stand before you apply.</h3>
+            <p class="desc">Every application goes better when you know where you stand. Catchr scores your background against the job description across skills, experience, and soft skills, so you can apply with clarity instead of hope.</p>
+            <ul class="blist">
+              <li><span class="tick" style="background:var(--sage);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Skills, experience &amp; soft skills scored</li>
+              <li><span class="tick" style="background:var(--sage);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Pinpoints your gaps clearly</li>
+              <li><span class="tick" style="background:var(--sage);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Realistic scores you can act on</li>
+            </ul>
+          </div>
+          <div class="plate">
+            <img src="assets/card-checkfit.webp" alt="Catchr's Fit Score card showing 81 out of 100, a Strong Match tag, sub-scores for Skills 85, Experience 78 and Soft Skills 84, and a written rationale with a Gap note." />
+          </div>
+        </div>
+      </div>
+
+      <!-- Tailor Resume -->
+      <div class="feature-card feature-card-mauve">
+        <div class="feature flip">
+          <div class="copy">
+            <span class="ftag"><span class="swatch" style="background:var(--mauve);"></span><span class="label">Tailor Resume</span></span>
+            <h3>Your resume, rewritten for the role.</h3>
+            <p class="desc">Catchr copies your Google Doc resume, rewrites the bullets to match the job description, and highlights every change in yellow so you decide what stays.</p>
+            <ul class="blist">
+              <li><span class="tick" style="background:var(--mauve);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Copies your Google Doc resume</li>
+              <li><span class="tick" style="background:var(--mauve);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Rewrites bullets to match the JD</li>
+              <li><span class="tick" style="background:var(--mauve);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Highlights every change</li>
+            </ul>
+            <p style="margin-top:14px;font-size:0.85rem;color:var(--stone);">AI can make mistakes. Always review your tailored resume before sending.</p>
+          </div>
+          <div class="plate">
+            <img src="assets/card-tailor.webp" alt="Catchr applying edits to a resume: a progress bar and a checklist showing it copied the resume to a new Google Doc, rewrote 9 bullets to match the job description, and is highlighting changes in yellow." />
+          </div>
+        </div>
+      </div>
+
+      <!-- Interview Prep -->
+      <div class="feature-card feature-card-slate">
+        <div class="feature">
+          <div class="copy">
+            <span class="ftag"><span class="swatch" style="background:var(--slate);"></span><span class="label">Interview Prep</span></span>
+            <h3>Walk in with a head start on what they might ask.</h3>
+            <p class="desc">Catchr builds a full interview prep doc from your resume and the job description: a company overview, your strongest talking points, STAR stories to prep, and sharp questions to ask, all saved to your Google Drive.</p>
+            <ul class="blist">
+              <li><span class="tick" style="background:var(--slate);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Role-specific questions</li>
+              <li><span class="tick" style="background:var(--slate);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Talking points from your resume</li>
+              <li><span class="tick" style="background:var(--slate);"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Saved to your Google Drive</li>
+            </ul>
+          </div>
+          <div class="plate">
+            <img src="assets/card-prep.webp" alt="Catchr's Prep Doc Ready card with likely interview questions and talking points pulled from the user's resume, plus an Open Prep Doc button." />
+          </div>
+        </div>
+      </div><!-- /feature-card-slate -->
+
+    </div>
+  </section>
+
+  <!-- ===================== IN-SITE TOOLS ===================== -->
+  <section id="in-site">
+    <div class="wrap">
+      <div class="feature">
+        <div class="copy">
+          <p class="eyebrow">On the page, not in the way</p>
+          <h2 style="font-size:clamp(2rem,3.8vw,3rem);color:var(--ink);margin-top:14px;">Your AI tools, right on the job posting.</h2>
+          <p class="desc">Catchr also puts Check Fit, Tailor Resume, and Interview Prep directly on the listing you're reading, so you can run any tool without opening the popup or leaving the page.</p>
+          <div class="chips" style="margin-top:28px;" aria-label="Works on these job boards">
+            <span class="chip-light">LinkedIn</span>
+            <span class="chip-light">Greenhouse</span>
+            <span class="chip-light">Lever</span>
+            <span class="chip-light">Wellfound</span>
+            <span class="chip-light">Ashby</span>
+            <span class="chip-light">Indeed</span>
+          </div>
+        </div>
+        <div class="shot">
+          <img src="assets/in-site.webp" alt="A LinkedIn job posting for an Applied AI role at Anthropic, with Catchr's forest-green 'Catch It' button and an 'AI' tools dropdown sitting right next to LinkedIn's own Apply and Save buttons." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ON-RAMP ===================== -->
+  <section class="onramp">
+    <div class="wrap onramp-grid">
+      <div>
+        <p class="eyebrow">Track every application</p>
+        <h2>One sheet, built and run by Catchr.</h2>
+        <p class="desc">Catchr creates a single Google Sheet for your search and fills it in every time you hit Catch It, tracking each role you apply to, with space to update the status as you move through the process. Flip to the Dashboard tab and Catchr has already done the math: total applications, response and interview rates, weekly momentum, and insights like your best day to apply, all kept up to date automatically.</p>
+      </div>
+      <div class="sheet" role="img" aria-label="The Jobs tab of a Google Sheet titled Job Hunt, listing tracked applications with company, role, location, and status: interviewing, offer, applied, and rejected.">
+        <div class="sheet-bar">
+          <span class="tab"><svg viewBox="0 0 12 12" fill="none"><path d="M2 1.5h5L10 4.5V10.5H2z" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+          <span class="name">Job Hunt</span>
+          <span class="sub">Google Sheets · created by Catchr</span>
+        </div>
+        <table class="sheet-tbl">
+          <thead>
+            <tr><th>Company</th><th>Role</th><th class="hide-sm">Location</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="co">Linear</td><td>Sr. Community Manager</td><td class="hide-sm">San Francisco, CA</td><td><span class="pill interview"><span class="d"></span>Interviewing</span></td></tr>
+            <tr><td class="co">Notion</td><td>Product Marketing Lead</td><td class="hide-sm">Remote, US</td><td><span class="pill offer"><span class="d"></span>Offer</span></td></tr>
+            <tr><td class="co">Figma</td><td>Developer Advocate</td><td class="hide-sm">New York, NY</td><td><span class="pill applied"><span class="d"></span>Applied</span></td></tr>
+            <tr><td class="co">Ramp</td><td>Lifecycle Marketing</td><td class="hide-sm">Remote</td><td><span class="pill rejected"><span class="d"></span>Rejected</span></td></tr>
+          </tbody>
+        </table>
+        <div class="sheet-foot">Tracking 47 applications · auto-synced to your Drive</div>
+        <div class="sheet-tabs" aria-hidden="true">
+          <span class="sheet-tab active">Jobs</span>
+          <span class="sheet-tab">📊 Dashboard</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap dash-wrap">
+      <p class="dash-caption">Flip to the <strong>Dashboard</strong> tab and Catchr has already done the math:</p>
+      <div class="sheet" role="img" aria-label="The Dashboard tab of the same Google Sheet, showing total applications 47, response rate 38 percent, interviews 9, and offers 2.">
+        <div class="sheet-bar">
+          <span class="tab"><svg viewBox="0 0 12 12" fill="none"><path d="M2 1.5h5L10 4.5V10.5H2z" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+          <span class="name">Job Hunt</span>
+          <span class="sub">📊 Dashboard · built &amp; updated by Catchr</span>
+        </div>
+        <div class="dash-tiles">
+          <div class="dash-tile"><div class="k">Total Applications</div><div class="v">47</div><div class="t">+6 this week</div></div>
+          <div class="dash-tile"><div class="k">Response Rate</div><div class="v">38%</div><div class="t">9 responses</div></div>
+          <div class="dash-tile"><div class="k">Interviews</div><div class="v">9</div><div class="t">3 in progress</div></div>
+          <div class="dash-tile"><div class="k">Offers</div><div class="v">2</div><div class="t">🎣 nice work</div></div>
+        </div>
+        <div class="dash-insight"><span class="ico" aria-hidden="true">📅</span><span>Best day to apply: <strong>Mondays</strong>, drawn from your own application history.</span></div>
+        <div class="sheet-tabs" aria-hidden="true">
+          <span class="sheet-tab">Jobs</span>
+          <span class="sheet-tab active">📊 Dashboard</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Set up once and use it on every job you find.</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num"><b>01</b></div>
+          <h3>Add to Chrome</h3>
+          <p>Install Catchr, connect your Google account, and paste in a free Gemini API key from Google. You only need to do this once.</p>
+          <div class="rule"></div>
+        </div>
+        <div class="step">
+          <div class="num"><b>02</b></div>
+          <h3>Catch the listing</h3>
+          <p>See a role on LinkedIn, Greenhouse, Lever, or anywhere else. Click Catchr and the job lands in your tracker instantly, without leaving the page.</p>
+          <div class="rule"></div>
+        </div>
+        <div class="step">
+          <div class="num"><b>03</b></div>
+          <h3>Run the AI tools</h3>
+          <p>Check your fit score, tailor your resume to the role, or generate a full interview prep doc. Each tool runs in seconds and saves to Drive.</p>
+          <div class="rule"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRIVACY ===================== -->
+  <section class="privacy" id="privacy">
+    <div class="wrap privacy-grid">
+      <div>
+        <p class="eyebrow" style="color:var(--sage);">Your data, your drive</p>
+        <h2>Everything Catchr creates lives in your Google account, not ours.</h2>
+        <p class="lead">Everything Catchr creates, from caught jobs to tailored resumes and prep docs, lives in <em>your</em> Google Sheet and Google Drive. The AI runs on your own Gemini API key, so requests go straight from your browser to Google and nothing is stored anywhere outside your own account. Your resume, the jobs you're eyeing, and everything Catchr generates stay between you and your own Google account.</p>
+      </div>
+      <div class="pgrid">
+        <div class="pitem">
+          <div class="h"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Stored in your Drive</div>
+          <p>Caught jobs, tailored resumes and prep docs are written straight to your own Google account.</p>
+        </div>
+        <div class="pitem">
+          <div class="h"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Nothing hoarded</div>
+          <p>Catchr doesn't keep a copy of your resume or your history. No shadow database.</p>
+        </div>
+        <div class="pitem">
+          <div class="h"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No reselling</div>
+          <p>Your data is never sold, shared, or used to train models. Full stop.</p>
+        </div>
+        <div class="pitem">
+          <div class="h"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Yours to delete</div>
+          <p>It's all in files you own, so revoke access or clear it whenever you like.</p>
+        </div>
+        <div class="pitem">
+          <div class="h"><span class="mk"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Your Gemini key, your calls</div>
+          <p>AI requests go directly from your browser to Google using your own API key, so your resume and results are never stored outside your own Google account.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="final">
+    <div class="wrap">
+      <h2>The next role you apply to could be the one.</h2>
+      <p>Go in knowing your fit, with a resume that speaks to the job, and your answers ready before they ask.</p>
+      <button class="btn btn-cream btn-lg" type="button">
+        <img class="net" src="assets/net-forest.webp" alt="" />
+        Add to Chrome
+      </button>
+      <p class="note">Free forever · Bring your own Gemini API key · Works on every major job board</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <img class="net" src="assets/net-cream.webp" alt="" />
+            <span class="word">Catchr</span>
+          </div>
+          <p class="foot-tag">Know your fit, tailor your resume, and walk into every interview ready, all for free with your own API key.</p>
+        </div>
+        <div class="foot-links">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a class="nav-kofi" href="https://ko-fi.com/kevinjustin" target="_blank" rel="noopener" aria-label="Support Catchr on Ko-fi"><span class="cup" aria-hidden="true">☕</span>Support</a>
+          <a href="#top">Add to Chrome</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Catchr. Free forever.</span>
+        <span>Made for job seekers who'd rather not do this twice.</span>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
