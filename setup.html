@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Catchr — Setup Guide</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Get Catchr up and running in a few minutes. Step-by-step guide to your Gemini API key, resume, and Google account setup." />
+<link rel="icon" type="image/webp" href="assets/net-forest.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --forest:#2C5F4A;
+    --forest-deep:#245040;
+    --cream:#FDFAF6;
+    --cream-warm:#EDE8E2;
+    --ink:#2C2C2A;
+    --stone:#8C7E6E;
+    --stone-light:#B0A090;
+    --mint:#7DD4A8;
+    --mint-soft:#B8E0CC;
+    --mint-wash:#EAF7F1;
+    --display:"Bricolage Grotesque", serif;
+    --body:"Work Sans", sans-serif;
+    --maxw:860px;
+    --pad:clamp(20px,5vw,48px);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--body);
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    line-height:1.6;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{margin:0;font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.04;}
+  p{margin:0;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);width:100%;}
+  .wrap-wide{max-width:1160px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);width:100%;}
+
+  .eyebrow{
+    font-family:var(--body);
+    font-weight:600;
+    font-size:0.8125rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--stone);
+    margin:0;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:0.55em;
+    font-family:var(--body);font-weight:600;font-size:1rem;
+    line-height:1;cursor:pointer;border:none;
+    border-radius:11px;padding:15px 24px;
+    transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+    white-space:nowrap;
+  }
+  .btn-chrome{
+    background:var(--forest);color:var(--cream);
+    box-shadow:0 1px 0 rgba(0,0,0,.18), 0 8px 22px -12px rgba(44,95,74,.7);
+  }
+  .btn-chrome:hover{background:var(--forest-deep);transform:translateY(-1px);}
+  .btn-chrome .net{width:22px;height:auto;}
+  .btn-cream{
+    background:var(--cream);color:var(--forest);
+    box-shadow:0 1px 0 rgba(0,0,0,.12), 0 8px 22px -12px rgba(0,0,0,.25);
+  }
+  .btn-cream:hover{background:#f0ece5;transform:translateY(-1px);}
+  .btn-cream .net{width:22px;height:auto;}
+  .btn-lg{padding:18px 30px;font-size:1.0625rem;}
+
+  /* ---------- Nav (floating frosted pill — matches index.html) ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:14px var(--pad) 0;
+    background:transparent;
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:62px;max-width:1160px;margin:0 auto;
+    padding:0 14px 0 24px;
+    background:rgba(253,250,246,.70);
+    backdrop-filter:saturate(160%) blur(16px);
+    -webkit-backdrop-filter:saturate(160%) blur(16px);
+    border:1px solid rgba(255,255,255,.55);
+    border-radius:999px;
+    box-shadow:0 10px 30px -14px rgba(36,80,64,.38), inset 0 1px 0 rgba(255,255,255,.45);
+  }
+  .brand{display:flex;align-items:center;gap:11px;}
+  .brand .net{width:28px;height:28px;object-fit:contain;}
+  .brand .word{font-family:var(--display);font-weight:700;font-size:1.4rem;color:var(--forest);letter-spacing:-0.02em;}
+  .nav-links{display:flex;align-items:center;gap:34px;}
+  .nav-links a{font-weight:500;color:var(--ink);font-size:0.95rem;opacity:.78;transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-links a.active{opacity:1;color:var(--forest);font-weight:600;}
+  .nav-cta{display:flex;align-items:center;gap:20px;}
+  .nav-cta .btn{border-radius:999px;}
+  .nav-kofi{
+    display:inline-flex;align-items:center;gap:6px;
+    font-weight:500;font-size:0.95rem;color:var(--ink);opacity:.78;
+    transition:opacity .15s;white-space:nowrap;
+  }
+  .nav-kofi:hover{opacity:1;}
+  .nav-kofi .cup{font-size:1rem;}
+  @media(max-width:860px){.nav-links{display:none;}}
+  @media(max-width:520px){
+    .nav-cta .btn{padding:12px 16px;font-size:0.9rem;}
+    .brand .word{font-size:1.25rem;}
+  }
+
+  /* ---------- Page header (forest band) ---------- */
+  .page-header{
+    background:var(--forest);
+    color:var(--cream);
+    padding-top:clamp(104px,9vw,128px);
+    padding-bottom:clamp(48px,6vw,72px);
+  }
+  .page-header .eyebrow{color:var(--mint-soft);}
+  .page-header h1{
+    color:var(--cream);
+    font-size:clamp(2.2rem,5vw,3.4rem);
+    font-weight:800;
+    margin-top:16px;
+    letter-spacing:-0.028em;
+  }
+  .page-header .sub{
+    font-size:clamp(1rem,1.7vw,1.2rem);
+    color:rgba(253,250,246,.78);
+    margin-top:18px;
+    max-width:34em;
+    line-height:1.6;
+  }
+  .time-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:28px;
+    background:rgba(125,212,168,.15);
+    border:1px solid rgba(125,212,168,.3);
+    border-radius:999px;
+    padding:8px 16px;
+    font-size:0.875rem;
+    font-weight:500;
+    color:var(--mint-soft);
+  }
+  .dot-mint{width:7px;height:7px;border-radius:50%;background:var(--mint);}
+
+  /* ---------- Guide body ---------- */
+  .guide{
+    padding-top:clamp(64px,8vw,96px);
+    padding-bottom:clamp(72px,10vw,120px);
+  }
+
+  /* Step block */
+  .step-block{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:0 clamp(24px,4vw,48px);
+    padding-bottom:clamp(56px,7vw,80px);
+    border-bottom:1px solid var(--cream-warm);
+    margin-bottom:clamp(56px,7vw,80px);
+  }
+  .step-block:last-child{
+    border-bottom:none;
+    margin-bottom:0;
+    padding-bottom:0;
+  }
+
+  /* Number column */
+  .step-num{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:3.2rem;
+    color:var(--mint-soft);
+    line-height:1;
+    padding-top:4px;
+    letter-spacing:-0.04em;
+  }
+
+  /* Content column */
+  .step-content{}
+  .step-content .step-eyebrow{
+    font-family:var(--body);
+    font-weight:600;
+    font-size:0.75rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--stone);
+  }
+  .step-content h2{
+    font-size:clamp(1.5rem,2.8vw,2.1rem);
+    color:var(--ink);
+    margin-top:10px;
+    font-weight:700;
+  }
+  .step-content .step-lead{
+    margin-top:14px;
+    color:var(--stone);
+    font-size:1.0125rem;
+    line-height:1.62;
+    max-width:36em;
+  }
+
+  /* Sub-steps */
+  .substeps{
+    list-style:none;
+    padding:0;
+    margin:28px 0 0;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .substeps li{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    padding:14px 0;
+    border-top:1px solid var(--cream-warm);
+    font-size:1rem;
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .substeps li:first-child{border-top:none;padding-top:0;}
+  .sub-marker{
+    flex:none;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:var(--cream-warm);
+    display:grid;
+    place-items:center;
+    margin-top:2px;
+    font-family:var(--display);
+    font-weight:700;
+    font-size:0.7rem;
+    color:var(--stone);
+    letter-spacing:0;
+  }
+  .substeps li strong{color:var(--ink);font-weight:600;}
+  .substeps a{color:var(--forest);font-weight:600;border-bottom:1px solid rgba(44,95,74,.25);transition:border-color .15s;}
+  .substeps a:hover{border-color:var(--forest);}
+
+  /* Note callout */
+  .step-note{
+    display:flex;
+    gap:14px;
+    margin-top:24px;
+    background:var(--mint-wash);
+    border:1px solid rgba(125,212,168,.35);
+    border-radius:14px;
+    padding:16px 20px;
+    font-size:0.9625rem;
+    color:#2a5c41;
+    line-height:1.6;
+  }
+  .note-icon{
+    flex:none;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:var(--mint);
+    display:grid;
+    place-items:center;
+    margin-top:1px;
+  }
+  .note-icon svg{width:11px;height:11px;}
+
+  @media(max-width:600px){
+    .step-block{
+      grid-template-columns:1fr;
+      gap:8px;
+    }
+    .step-num{font-size:2.2rem;}
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:var(--forest);
+    color:var(--cream);
+    text-align:center;
+    padding:clamp(56px,8vw,96px) 0;
+  }
+  .cta-band h2{
+    color:var(--cream);
+    font-size:clamp(1.9rem,4vw,2.9rem);
+    font-weight:800;
+    max-width:18em;
+    margin:0 auto;
+    letter-spacing:-0.025em;
+  }
+  .cta-band p{
+    color:rgba(253,250,246,.72);
+    margin-top:16px;
+    font-size:1.0625rem;
+  }
+  .cta-band .btn{margin-top:34px;}
+  .cta-band .note{
+    margin-top:16px;
+    font-size:0.875rem;
+    color:rgba(253,250,246,.55);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--forest-deep);color:var(--cream);padding:56px 0 44px;}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap;}
+  .foot-brand{display:flex;align-items:center;gap:11px;}
+  .foot-brand .net{width:30px;height:30px;}
+  .foot-brand .word{font-family:var(--display);font-weight:700;font-size:1.3rem;}
+  .foot-tag{color:rgba(253,250,246,.6);font-size:0.92rem;margin-top:14px;max-width:24em;}
+  .foot-links{display:flex;gap:30px;flex-wrap:wrap;}
+  .foot-links a{color:rgba(253,250,246,.8);font-size:0.92rem;font-weight:500;}
+  .foot-links a:hover{color:var(--cream);}
+  .foot-bottom{
+    margin-top:40px;padding-top:22px;border-top:1px solid rgba(253,250,246,.13);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:0.85rem;color:rgba(253,250,246,.5);
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="Catchr home">
+        <img class="net" src="assets/net-forest.webp" alt="" />
+        <span class="word">Catchr</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how">How it works</a>
+        <a href="privacy.html">Privacy</a>
+        <a class="active" href="setup.html">Setup guide</a>
+        <a class="nav-kofi" href="https://ko-fi.com/kevinjustin" target="_blank" rel="noopener" aria-label="Support Catchr on Ko-fi"><span class="cup" aria-hidden="true">☕</span>Support</a>
+      </div>
+      <div class="nav-cta">
+        <button class="btn btn-chrome" type="button">Add to Chrome</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== PAGE HEADER ===================== -->
+  <header class="page-header">
+    <div class="wrap">
+      <p class="eyebrow">Setup guide</p>
+      <h1>Up and running in minutes.</h1>
+      <p class="sub">Catchr needs three things to work: a free Gemini API key, your resume in Google Docs, and a Google account connection. Here's exactly how to do each one.</p>
+      <div class="time-badge">
+        <span class="dot-mint"></span>
+        About 5 minutes total
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== GUIDE ===================== -->
+  <main class="guide">
+    <div class="wrap">
+
+      <!-- Step 1 -->
+      <div class="step-block">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <p class="step-eyebrow">Required</p>
+          <h2>Get a free Gemini API key</h2>
+          <p class="step-lead">Catchr's AI runs on Google's Gemini model using your own key. The free tier is more than enough for a job search — you won't be charged unless you explicitly opt into a paid plan.</p>
+          <ol class="substeps">
+            <li>
+              <span class="sub-marker">a</span>
+              <span>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> and sign in with your Google account.</span>
+            </li>
+            <li>
+              <span class="sub-marker">b</span>
+              <span>Click <strong>Get API key</strong> in the left sidebar.</span>
+            </li>
+            <li>
+              <span class="sub-marker">c</span>
+              <span>Click <strong>Create API key</strong> and select or create a Google Cloud project when prompted. (If you don't have a project yet, just click "Create new project" — it takes one second.)</span>
+            </li>
+            <li>
+              <span class="sub-marker">d</span>
+              <span>Copy the key that appears. Then paste it into the <strong>Gemini API Key</strong> field in the Catchr extension and hit Save.</span>
+            </li>
+          </ol>
+          <div class="step-note">
+            <span class="note-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>The free Gemini tier resets monthly and covers hundreds of AI requests — far more than you'll need. Catchr's key stays on your device and is never sent to our servers.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-block">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <p class="step-eyebrow">Required for AI features</p>
+          <h2>Add your resume</h2>
+          <p class="step-lead">Catchr reads your resume directly from Google Docs using your own account. It only accesses the specific file you choose — nothing else in your Drive is ever touched.</p>
+          <ol class="substeps">
+            <li>
+              <span class="sub-marker">a</span>
+              <span>Make sure your resume is in <strong>Google Docs</strong>. If it's currently a Word file or PDF, upload it to Google Drive and open it with Google Docs first.</span>
+            </li>
+            <li>
+              <span class="sub-marker">b</span>
+              <span>Open the Catchr extension and go to <strong>⚙ Settings</strong>. In the Resumes section, click <strong>+ Add resume from Drive</strong>.</span>
+            </li>
+            <li>
+              <span class="sub-marker">c</span>
+              <span>A Google file picker will open. Find and select your resume. Catchr only gets access to the file you pick.</span>
+            </li>
+            <li>
+              <span class="sub-marker">d</span>
+              <span>Give it a short label — for example, <strong>Product Manager</strong> or <strong>Software Engineer</strong> — then click Save.</span>
+            </li>
+            <li>
+              <span class="sub-marker">e</span>
+              <span>You can add <strong>multiple resumes</strong> if you're targeting different types of roles. Catchr will ask which one to use whenever it tailors.</span>
+            </li>
+          </ol>
+          <div class="step-note">
+            <span class="note-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Your resume is never stored on any server. Catchr reads it directly from your Google Docs at request time, and only the file you select is ever accessed.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-block">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <p class="step-eyebrow">Required for logging &amp; saving</p>
+          <h2>Connect your Google account</h2>
+          <p class="step-lead">Catchr needs Google account access to read your resume, log jobs to your Sheet, and save generated documents back to your Drive. You only do this once.</p>
+          <ol class="substeps">
+            <li>
+              <span class="sub-marker">a</span>
+              <span>The first time you use a Catchr feature that requires Drive or Sheets access, a Google sign-in prompt will appear automatically.</span>
+            </li>
+            <li>
+              <span class="sub-marker">b</span>
+              <span>Sign in and grant the requested permissions. Catchr uses these only to read the resume file you picked, write rows to your job tracker Sheet, and save tailored resumes and prep docs to your Drive.</span>
+            </li>
+            <li>
+              <span class="sub-marker">c</span>
+              <span>You can also trigger this manually: open <strong>⚙ Settings</strong> in the extension and click <strong>Connect Google Account</strong>.</span>
+            </li>
+          </ol>
+          <div class="step-note">
+            <span class="note-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Catchr only accesses the specific files it creates or that you explicitly point it to. Nothing else in your Google account is read or modified.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-block">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <p class="step-eyebrow">Optional</p>
+          <h2>Bring your own job tracker sheet</h2>
+          <p class="step-lead">By default Catchr creates a ready-to-use Google Sheet for you automatically when you catch your first job. If you already have a sheet you'd like to use, you can connect it instead.</p>
+          <ol class="substeps">
+            <li>
+              <span class="sub-marker">a</span>
+              <span>Open <strong>⚙ Settings</strong> in the extension and paste your Google Sheets URL into the <strong>Job Tracker Sheet</strong> field.</span>
+            </li>
+            <li>
+              <span class="sub-marker">b</span>
+              <span>Row 1 of your sheet must have column headers. Catchr will match <strong>Company</strong>, <strong>Position</strong>, <strong>Link</strong>, <strong>Applied?</strong>, <strong>Date Applied</strong>, and <strong>Outcome</strong> by name — case-insensitive. Any extra columns are left untouched.</span>
+            </li>
+            <li>
+              <span class="sub-marker">c</span>
+              <span>Leave the field blank and Catchr will handle everything — creating and naming the sheet for you.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Ready to start catching jobs?</h2>
+      <p>Add Catchr to Chrome and open it on any job listing to begin.</p>
+      <button class="btn btn-cream btn-lg" type="button">
+        <img class="net" src="assets/net-forest.webp" alt="" />
+        Add to Chrome — it's free
+      </button>
+      <p class="note">Free forever · Your API key, your data · Works on every major job board</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap-wide">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <img class="net" src="assets/net-cream.webp" alt="" />
+            <span class="word">Catchr</span>
+          </div>
+          <p class="foot-tag">Know your fit, tailor your resume, and walk into every interview ready — all for free with your own API key.</p>
+        </div>
+        <div class="foot-links">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#how">How it works</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="setup.html">Setup guide</a>
+          <a class="nav-kofi" href="https://ko-fi.com/kevinjustin" target="_blank" rel="noopener" aria-label="Support Catchr on Ko-fi"><span class="cup" aria-hidden="true">☕</span>Support</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Catchr. Free forever.</span>
+        <span>Made for job seekers who'd rather not do this twice.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
