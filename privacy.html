@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Privacy Policy — Catchr</title>
-<meta name="description" content="Catchr has no backend server. We do not collect, store, transmit, or have any access to your personal data." />
+<meta name="description" content="Catchr has no data backend. We do not collect, store, transmit, or have any access to your personal data." />
 <link rel="canonical" href="https://www.jobcatchr.app/privacy.html" />
 <link rel="icon" type="image/webp" href="assets/net-forest.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -133,12 +133,12 @@
       <div class="inner">
         <p class="eyebrow">Catchr Chrome Extension</p>
         <h1>Privacy Policy</h1>
-        <p class="meta">Last updated: May 2026</p>
+        <p class="meta">Last updated: September 2026</p>
 
         <p>Catchr is a Chrome extension helping job seekers track applications and refine resumes with AI. This page outlines what data Catchr accesses, how it's used, and what is never collected.</p>
 
         <div class="callout">
-          <p>Catchr has no backend server. We do not collect, store, transmit, or have any access to your personal data.</p>
+          <p>Catchr has no data backend. We do not collect, store, transmit, or have any access to your personal data.</p>
         </div>
 
         <h2>Data we never collect</h2>
@@ -162,6 +162,15 @@
         </ul>
         <p>Your Gemini API key is stored locally in your browser's storage and is sent directly to the Gemini API to process requests. It is never transmitted to any Catchr developer servers.</p>
         <p>Catchr's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+        <h2>The Catchr file picker</h2>
+        <p>To let you choose a tracking sheet or a resume from your Google Drive, Catchr opens one page we host, at <code>picker.jobcatchr.app</code>. It is a static page that runs Google's own file picker inside your browser.</p>
+        <ul>
+          <li>It has no server-side code and no database, and it stores nothing.</li>
+          <li>The Google access token it needs is passed in the fragment of the web address, the portion that browsers never transmit to a server.</li>
+          <li>The only thing it returns to the extension is the name and ID of the file you selected.</li>
+        </ul>
+        <p>Your job data, your resume contents, and your API key are never sent to this page.</p>
 
         <h2>Job page data</h2>
         <p>Catchr reads job listing pages (title, company, location, description) locally in your browser, or sends the content directly to Gemini using your API key. This data is not saved to any external server or storage outside your own browser and Google account.</p>
