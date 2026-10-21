@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Catchr share image</title>
+<!-- Source for assets/og-image.png (1200x630 link preview card). Render with design-system/previews/og/render.js -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --forest:#2C5F4A;
+    --forest-deep:#245040;
+    --cream:#FDFAF6;
+    --mint:#7DD4A8;
+    --display:"Bricolage Grotesque", serif;
+    --body:"Work Sans", sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1200px;height:630px;overflow:hidden;}
+  body{
+    position:relative;
+    font-family:var(--body);
+    color:var(--cream);
+    background:
+      linear-gradient(to right, rgba(36,80,64,.97) 0%, rgba(36,80,64,.90) 38%, rgba(36,80,64,.40) 66%, rgba(36,80,64,.10) 100%),
+      url('../../../assets/hero-bg.webp') 62% center/cover no-repeat,
+      var(--forest);
+    -webkit-font-smoothing:antialiased;
+  }
+  .copy{
+    position:absolute;left:72px;top:64px;bottom:60px;width:700px;
+    display:flex;flex-direction:column;
+  }
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand img{width:48px;height:48px;}
+  .brand span{font-family:var(--display);font-weight:700;font-size:34px;letter-spacing:-0.02em;}
+  h1{
+    margin-top:auto;
+    font-family:var(--display);font-weight:800;
+    font-size:74px;line-height:1.0;letter-spacing:-0.03em;
+  }
+  h1 em{font-style:normal;color:var(--mint);}
+  .tools{
+    margin-top:28px;display:flex;gap:26px;
+    font-weight:500;font-size:26px;color:rgba(253,250,246,.92);
+  }
+  .tools span{display:flex;align-items:center;gap:10px;white-space:nowrap;}
+  .tools span::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--mint);}
+  .foot{
+    margin-top:auto;padding-top:26px;
+    font-weight:600;font-size:22px;letter-spacing:0.04em;text-transform:uppercase;
+    color:rgba(253,250,246,.85);
+  }
+  .shot{
+    position:absolute;right:72px;top:44px;width:300px;
+    border-radius:18px;overflow:hidden;
+    transform:rotate(2.5deg);
+    box-shadow:0 30px 60px rgba(20,45,36,.45), 0 8px 18px rgba(20,45,36,.30);
+  }
+  .shot img{display:block;width:100%;}
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="brand">
+      <img src="../../../assets/net-cream.webp" alt="" />
+      <span>Catchr</span>
+    </div>
+    <h1>The free job tracker with <em>AI built in.</em></h1>
+    <div class="tools">
+      <span>Fit score</span>
+      <span>Tailored resume</span>
+      <span>Interview prep</span>
+    </div>
+    <div class="foot">Free for Chrome &middot; jobcatchr.app</div>
+  </div>
+  <div class="shot"><img src="../../../assets/card-checkfit.webp" alt="" /></div>
+</body>
+</html>

@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Catchr: Your AI copilot for the job hunt</title>
-<meta name="description" content="Catchr is a Chrome extension and AI copilot for job seekers. Know your fit, tailor your resume, and walk into every interview ready. It all starts with one click." />
+<title>Catchr: Free AI Job Tracker &amp; Resume Tailor for Chrome</title>
+<meta name="description" content="(None, 'Free Chrome extension that saves jobs to your Google Sheet in one click, then uses AI to score your fit, tailor your resume, and prep your interview.')" />
 <link rel="canonical" href="https://www.jobcatchr.app/" />
 <link rel="icon" type="image/webp" href="assets/net-forest.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" href="assets/hero-bg.webp" as="image" fetchpriority="high" />
+<link rel="preload" href="assets/hero-bg.webp" as="image" fetchpriority="high" media="(min-width: 841px)" />
+<link rel="preload" href="assets/hero-bg-mobile.webp" as="image" fetchpriority="high" media="(max-width: 840px)" />
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Work+Sans:wght@400;500;600&display=swap" as="style" />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
@@ -189,7 +190,7 @@
       background:
         linear-gradient(180deg, rgba(36,80,64,.55) 0%, rgba(36,80,64,.20) 46%, rgba(36,80,64,.62) 100%),
         linear-gradient(to right, rgba(36,80,64,.86) 0%, rgba(36,80,64,.74) 55%, rgba(36,80,64,.55) 100%),
-        url('assets/hero-bg.webp') center center/cover no-repeat,
+        url('assets/hero-bg-mobile.webp') center center/cover no-repeat,
         var(--forest);
     }
     .hero-grid{grid-template-columns:1fr;gap:8px;padding-top:96px;padding-bottom:56px;}
@@ -384,6 +385,73 @@
     font-size:0.85rem;color:rgba(253,250,246,.5);}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Catchr" />
+<meta property="og:title" content="Catchr: the free job tracker with AI built in" />
+<meta property="og:description" content="(None, 'Free Chrome extension that saves jobs to your Google Sheet in one click, then uses AI to score your fit, tailor your resume, and prep your interview.')" />
+<meta property="og:url" content="https://www.jobcatchr.app/" />
+<meta property="og:image" content="https://www.jobcatchr.app/assets/og-image.jpg" />
+<meta property="og:image:width" content="2400" />
+<meta property="og:image:height" content="1260" />
+<meta property="og:image:alt" content="Catchr: the free job tracker with AI built in. Check your fit, tailor your resume, prep the interview." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Catchr: the free job tracker with AI built in" />
+<meta name="twitter:description" content="(None, 'Free Chrome extension that saves jobs to your Google Sheet in one click, then uses AI to score your fit, tailor your resume, and prep your interview.')" />
+<meta name="twitter:image" content="https://www.jobcatchr.app/assets/og-image.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.jobcatchr.app/#org",
+      "name": "Catchr",
+      "url": "https://www.jobcatchr.app/",
+      "logo": "https://www.jobcatchr.app/assets/net-forest.webp",
+      "sameAs": [
+        "https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.jobcatchr.app/#website",
+      "name": "Catchr",
+      "url": "https://www.jobcatchr.app/",
+      "publisher": {
+        "@id": "https://www.jobcatchr.app/#org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.jobcatchr.app/#app",
+      "name": "Catchr",
+      "description": "A free Chrome extension that logs job listings to your own Google Sheet in one click, then uses AI to score your fit, tailor your resume, and build an interview prep doc.",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Job search",
+      "operatingSystem": "Chrome",
+      "browserRequirements": "Requires Google Chrome",
+      "url": "https://www.jobcatchr.app/",
+      "installUrl": "https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia",
+      "image": "https://www.jobcatchr.app/assets/og-image.jpg",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "One-click job capture to your own Google Sheet",
+        "AI fit score against your resume",
+        "AI resume tailoring in Google Docs",
+        "AI interview prep document",
+        "Works on LinkedIn, Indeed, Greenhouse, Lever, Wellfound and Ashby"
+      ],
+      "publisher": {
+        "@id": "https://www.jobcatchr.app/#org"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -401,7 +469,7 @@
         <a class="nav-kofi" href="https://ko-fi.com/kevinjustin" target="_blank" rel="noopener" aria-label="Support Catchr on Ko-fi"><span class="cup" aria-hidden="true">☕</span>Support</a>
       </div>
       <div class="nav-cta">
-        <a class="btn btn-chrome" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia" target="_blank" rel="noopener">Add to Chrome</a>
+        <a class="btn btn-chrome" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=home-nav" target="_blank" rel="noopener">Add to Chrome</a>
       </div>
     </div>
   </nav>
@@ -414,7 +482,7 @@
         <h1>The free job tracker with AI built in.</h1>
         <p class="sub">Catchr tracks every job you're watching, then puts AI to work on each one: scoring your fit, tailoring your resume to the role, and getting your interview answers ready, all from your browser for free.</p>
         <div class="hero-actions">
-          <a class="btn btn-chrome btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia" target="_blank" rel="noopener">
+          <a class="btn btn-chrome btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=home-hero" target="_blank" rel="noopener">
             <img class="net" src="assets/net-cream.webp" alt="" />
             Add to Chrome
           </a>
@@ -648,7 +716,7 @@
     <div class="wrap">
       <h2>The next role you apply to could be the one.</h2>
       <p>Go in knowing your fit, with a resume that speaks to the job, and your answers ready before they ask.</p>
-      <a class="btn btn-cream btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia" target="_blank" rel="noopener">
+      <a class="btn btn-cream btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=home-cta" target="_blank" rel="noopener">
         <img class="net" src="assets/net-forest.webp" alt="" />
         Add to Chrome
       </a>
@@ -670,10 +738,11 @@
         <div class="foot-links">
           <a href="#features">Features</a>
           <a href="#how">How it works</a>
+          <a href="setup.html">Setup guide</a>
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
           <a class="nav-kofi" href="https://ko-fi.com/kevinjustin" target="_blank" rel="noopener" aria-label="Support Catchr on Ko-fi"><span class="cup" aria-hidden="true">☕</span>Support</a>
-          <a href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia" target="_blank" rel="noopener">Add to Chrome</a>
+          <a href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=home-footer" target="_blank" rel="noopener">Add to Chrome</a>
         </div>
       </div>
       <div class="foot-bottom">
