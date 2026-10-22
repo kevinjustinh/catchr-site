@@ -186,6 +186,9 @@ def apply(ws, requests, rows, cols):
                         left=side(body["left"]) if "left" in body and c == c1 else b.left,
                         right=side(body["right"]) if "right" in body and c == c2 - 1 else b.right,
                     )
+        elif kind == "setBasicFilter":
+            r1, r2, c1, c2 = bounds(body["filter"]["range"], rows, cols)
+            ws.auto_filter.ref = f"{get_column_letter(c1 + 1)}{r1 + 1}:{get_column_letter(c2)}{r2}"
         elif kind == "mergeCells":
             r1, r2, c1, c2 = bounds(body["range"], rows, cols)
             merges.append((r1 + 1, c1 + 1, r2, c2))
