@@ -112,7 +112,7 @@ para("Product manager with 7 years in B2B SaaS, most recently owning self-serve 
      "Looking for a senior product role on a growth or platform team.")
 
 heading("Experience")
-job("Senior Product Manager, Contoso Analytics", "Mar 2022 to Present", "San Francisco, CA · Hybrid")
+job("Senior Product Manager, Contoso Analytics", "Mar 2022 to Present", "San Francisco, CA")
 bullet("Led a redesign of self-serve onboarding with 1 designer and 6 engineers, raising trial-to-paid conversion from 9% to 13% in two quarters.")
 bullet("Cut the roadmap from 14 initiatives to 5 after 60 customer interviews traced churn to reporting gaps, reducing customer churn 18% year over year.")
 bullet("Introduced feature flags and staged rollouts with engineering, shortening the release cycle from 6 weeks to 2.")
