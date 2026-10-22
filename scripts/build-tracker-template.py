@@ -1,33 +1,35 @@
-"""Builds downloads/catchr-job-tracker-template.xlsx.
+"""Builds downloads/catchr-job-tracker-template.xlsx: the exact tracker Catchr makes.
 
-The columns, dropdowns and colours mirror the sheet the Catchr extension
-creates (CATCHR_HEADERS and formatNewSheet in the extension's background.js),
-so a sheet started from this template can be connected to Catchr later.
+Input is scripts/catchr-sheet-requests.json, the Google Sheets batchUpdate
+requests the extension sends when it creates a new tracker (Jobs + Dashboard
+tabs), captured by running the extension's own code:
 
-Run: python3 scripts/build-tracker-template.py  (needs openpyxl)
+    node scripts/capture-catchr-sheet.js ../catchr > scripts/catchr-sheet-requests.json
+    python3 scripts/build-tracker-template.py        # needs openpyxl
+
+Re-run both whenever the extension's sheet layout changes. Two adaptations so
+the file is valid outside Google Sheets: open-ended ranges (F2:F) get an end
+row, and repeat-down formats/formulas are written to JOB_ROWS rows. Google-only
+functions (QUERY) are kept as-is; Excel shows those cells blank.
 """
+import json
+import re
 from datetime import date
 from pathlib import Path
 
 from openpyxl import Workbook
 from openpyxl.formatting.rule import CellIsRule, FormulaRule
-from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
-OUT = Path(__file__).resolve().parent.parent / "downloads" / "catchr-job-tracker-template.xlsx"
-ROWS = 500  # rows pre-filled with the Days in Between formula and dropdowns
+HERE = Path(__file__).resolve().parent
+REQ = json.loads((HERE / "catchr-sheet-requests.json").read_text())
+OUT = HERE.parent / "downloads" / "catchr-job-tracker-template.xlsx"
+JOB_ROWS = 1000  # a new Google Sheet's default height
+END_ROW = JOB_ROWS
 
-HEADERS = ["Company", "Location", "Position", "Link", "Applied?", "Date Applied",
-           "Response Date", "Days in Between", "Outcome", "Offer?", "Fit Score", "Notes"]
-WIDTHS = [160, 120, 180, 200, 70, 110, 120, 130, 130, 65, 80, 240]
-OUTCOMES = ["Unresponsive", "Interview", "Offer Received", "Rejection", "Withdrawn"]
-OUTCOME_FILLS = {
-    "Offer Received": "6BA751", "Interview": "A4D6FA", "Rejection": "EA9999",
-    "Unresponsive": "D9D2C8", "Withdrawn": "FCDD9E",
-}
-FOREST, CREAM = "2C5F4A", "FDFAF6"
-
-EXAMPLES = [
+EXAMPLES = [  # sample rows only; the sheet Catchr creates starts empty
     ["Example Co", "Remote", "Product Manager", "https://example.com/jobs/1", "yes",
      date(2026, 10, 1), date(2026, 10, 9), None, "Interview", "no", 82, "Example row. Delete it."],
     ["Sample Labs", "New York, NY", "Operations Lead", "https://example.com/jobs/2", "yes",
@@ -37,83 +39,178 @@ EXAMPLES = [
 ]
 
 
-def px_to_width(px):
-    return round(px / 7, 1)
+def hexcolor(c):
+    return "%02X%02X%02X" % tuple(round(c.get(k, 0) * 255) for k in ("red", "green", "blue"))
+
+
+def excel_formula(f):
+    # 'Jobs'!F2:F -> 'Jobs'!F2:F1000 (Excel has no open-ended ranges)
+    return re.sub(r"(\$?[A-Z]{1,2}\$?\d+):(\$?[A-Z]{1,2})(?![\w$])", lambda m: f"{m.group(1)}:{m.group(2)}{END_ROW}", f)
+
+
+def shift_rows(f, delta):
+    # Moves relative refs down by delta rows, as a Sheets repeatCell would.
+    return re.sub(r"(?<![$\w'!])([A-Z]{1,2})(\d+)(?![\w(])", lambda m: f"{m.group(1)}{int(m.group(2)) + delta}", f)
+
+
+def bounds(rng, ws_rows, ws_cols):
+    return (rng.get("startRowIndex", 0), rng.get("endRowIndex", ws_rows),
+            rng.get("startColumnIndex", 0), rng.get("endColumnIndex", ws_cols))
+
+
+def number_format(nf):
+    if not nf:
+        return None
+    if nf.get("type") == "TEXT":
+        return "@"
+    return nf.get("pattern")
+
+
+def apply_format(cell, fmt):
+    if not fmt:
+        return
+    if "backgroundColor" in fmt:
+        cell.fill = PatternFill("solid", fgColor=hexcolor(fmt["backgroundColor"]))
+    tf = fmt.get("textFormat")
+    if tf:
+        f = cell.font
+        cell.font = Font(
+            name=tf.get("fontFamily", f.name), size=tf.get("fontSize", f.size),
+            bold=tf.get("bold", f.bold), italic=tf.get("italic", f.italic),
+            color=hexcolor(tf["foregroundColor"]) if "foregroundColor" in tf else f.color,
+        )
+    h, v = fmt.get("horizontalAlignment"), fmt.get("verticalAlignment")
+    if h or v:
+        a = cell.alignment
+        cell.alignment = Alignment(
+            horizontal=h.lower() if h else a.horizontal,
+            vertical={"MIDDLE": "center"}.get(v, v.lower()) if v else a.vertical,
+            wrap_text=a.wrap_text,
+        )
+    nf = number_format(fmt.get("numberFormat"))
+    if nf:
+        cell.number_format = nf
+
+
+def set_value(cell, uev):
+    if not uev:
+        return
+    if "formulaValue" in uev:
+        cell.value = excel_formula(uev["formulaValue"])
+    elif "stringValue" in uev:
+        cell.value = uev["stringValue"]
+    elif "numberValue" in uev:
+        cell.value = uev["numberValue"]
+
+
+def side(spec):
+    style = {"SOLID": "thin", "SOLID_MEDIUM": "medium", "SOLID_THICK": "thick"}.get(spec["style"], "thin")
+    return Side(style=style, color=hexcolor(spec.get("color", {})))
+
+
+def conditional_rule(cond, fmt, top):
+    vals = [v["userEnteredValue"] for v in cond.get("values", [])]
+    fill = PatternFill("solid", fgColor=hexcolor(fmt["backgroundColor"])) if "backgroundColor" in fmt else None
+    tf = fmt.get("textFormat", {})
+    font = Font(color=hexcolor(tf["foregroundColor"])) if "foregroundColor" in tf else None
+    t = cond["type"]
+    if t == "TEXT_EQ":
+        return CellIsRule(operator="equal", formula=[f'"{vals[0]}"'], fill=fill, font=font)
+    if t == "TEXT_CONTAINS":
+        return FormulaRule(formula=[f'NOT(ISERROR(SEARCH("{vals[0]}",{top})))'], fill=fill, font=font)
+    if t == "NUMBER_GREATER_THAN_EQ":
+        return CellIsRule(operator="greaterThanOrEqual", formula=[vals[0]], fill=fill, font=font)
+    if t == "NUMBER_LESS":
+        return CellIsRule(operator="lessThan", formula=[vals[0]], fill=fill, font=font)
+    if t == "NUMBER_BETWEEN":
+        return CellIsRule(operator="between", formula=vals[:2], fill=fill, font=font)
+    raise ValueError(f"unhandled condition {t}")
+
+
+def apply(ws, requests, rows, cols):
+    merges = []
+    for req in requests:
+        (kind, body), = req.items()
+        if kind == "updateCells" and "start" in body:
+            s = body["start"]
+            for ri, row in enumerate(body.get("rows", [])):
+                for ci, val in enumerate(row.get("values", [])):
+                    cell = ws.cell(row=s.get("rowIndex", 0) + ri + 1, column=s.get("columnIndex", 0) + ci + 1)
+                    set_value(cell, val.get("userEnteredValue"))
+                    apply_format(cell, val.get("userEnteredFormat"))
+        elif kind == "repeatCell":
+            r1, r2, c1, c2 = bounds(body["range"], rows, cols)
+            spec = body["cell"]
+            uev = spec.get("userEnteredValue")
+            for r in range(r1, r2):
+                for c in range(c1, c2):
+                    cell = ws.cell(row=r + 1, column=c + 1)
+                    if uev and "formulaValue" in uev:
+                        cell.value = excel_formula(shift_rows(uev["formulaValue"], r - r1))
+                    apply_format(cell, spec.get("userEnteredFormat"))
+        elif kind == "updateDimensionProperties":
+            rng, px = body["range"], body["properties"]["pixelSize"]
+            for i in range(rng["startIndex"], rng["endIndex"]):
+                if rng["dimension"] == "COLUMNS":
+                    ws.column_dimensions[get_column_letter(i + 1)].width = round(px / 7, 2)
+                else:
+                    ws.row_dimensions[i + 1].height = round(px * 0.75, 2)
+        elif kind == "updateSheetProperties":
+            gp = body["properties"].get("gridProperties", {})
+            if gp.get("frozenRowCount"):
+                ws.freeze_panes = ws.cell(row=gp["frozenRowCount"] + 1, column=1)
+            if gp.get("hideGridlines"):
+                ws.sheet_view.showGridLines = False
+        elif kind == "setDataValidation":
+            r1, r2, c1, c2 = bounds(body["range"], rows, cols)
+            values = [v["userEnteredValue"] for v in body["rule"]["condition"]["values"]]
+            dv = DataValidation(type="list", formula1='"' + ",".join(values) + '"', allow_blank=True)
+            dv.add(f"{get_column_letter(c1 + 1)}{r1 + 1}:{get_column_letter(c2)}{r2}")
+            ws.add_data_validation(dv)
+        elif kind == "addConditionalFormatRule":
+            rule = body["rule"]
+            for rng in rule["ranges"]:
+                r1, r2, c1, c2 = bounds(rng, rows, cols)
+                ref = f"{get_column_letter(c1 + 1)}{r1 + 1}:{get_column_letter(c2)}{r2}"
+                br = rule["booleanRule"]
+                ws.conditional_formatting.add(ref, conditional_rule(br["condition"], br["format"], f"{get_column_letter(c1 + 1)}{r1 + 1}"))
+        elif kind == "updateBorders":
+            r1, r2, c1, c2 = bounds(body["range"], rows, cols)
+            for r in range(r1, r2):
+                for c in range(c1, c2):
+                    cell = ws.cell(row=r + 1, column=c + 1)
+                    b = cell.border
+                    cell.border = Border(
+                        top=side(body["top"]) if "top" in body and r == r1 else b.top,
+                        bottom=side(body["bottom"]) if "bottom" in body and r == r2 - 1 else b.bottom,
+                        left=side(body["left"]) if "left" in body and c == c1 else b.left,
+                        right=side(body["right"]) if "right" in body and c == c2 - 1 else b.right,
+                    )
+        elif kind == "mergeCells":
+            r1, r2, c1, c2 = bounds(body["range"], rows, cols)
+            merges.append((r1 + 1, c1 + 1, r2, c2))
+        elif kind in ("updateCells", "unmergeCells"):
+            pass  # clearing a fresh tab: nothing to clear
+        else:
+            raise ValueError(f"unhandled request {kind}")
+    for r1, c1, r2, c2 in merges:
+        if r2 > r1 or c2 > c1:
+            ws.merge_cells(start_row=r1, start_column=c1, end_row=r2, end_column=c2)
 
 
 wb = Workbook()
-ws = wb.active
-ws.title = "Jobs"
-
-header_font = Font(bold=True, color=CREAM, size=10)
-header_fill = PatternFill("solid", fgColor=FOREST)
-for col, (name, px) in enumerate(zip(HEADERS, WIDTHS), start=1):
-    cell = ws.cell(row=1, column=col, value=name)
-    cell.font, cell.fill = header_font, header_fill
-    cell.alignment = Alignment(vertical="center")
-    ws.column_dimensions[cell.column_letter].width = px_to_width(px)
-ws.row_dimensions[1].height = 22
-ws.freeze_panes = "A2"
-
+jobs = wb.active
+jobs.title = "Jobs"
+apply(jobs, REQ["jobs"], JOB_ROWS, len(REQ["headers"]))
 for r, values in enumerate(EXAMPLES, start=2):
     for c, v in enumerate(values, start=1):
         if v is not None:
-            ws.cell(row=r, column=c, value=v)
+            cell = jobs.cell(row=r, column=c, value=v)
+            if isinstance(v, date):
+                cell.number_format = "m/d/yyyy"
 
-center = Alignment(horizontal="center")
-for r in range(2, ROWS + 2):
-    ws.cell(row=r, column=8, value=f'=IF(AND(F{r}<>"",G{r}<>""),G{r}-F{r},"")').number_format = "0"
-    for c in (6, 7):
-        ws.cell(row=r, column=c).number_format = "yyyy-mm-dd"
-    for c in range(5, 12):
-        ws.cell(row=r, column=c).alignment = center
-
-last = ROWS + 1
-yes_no = DataValidation(type="list", formula1='"yes,no"', allow_blank=True)
-outcome = DataValidation(type="list", formula1='"' + ",".join(OUTCOMES) + '"', allow_blank=True)
-for dv, ref in ((yes_no, f"E2:E{last}"), (outcome, f"I2:I{last}")):
-    dv.add(ref)
-    ws.add_data_validation(dv)
-yes_no.add(f"J2:J{last}")
-
-white = Font(color="FFFFFF")
-for col in ("E", "J"):
-    rng = f"{col}2:{col}{last}"
-    ws.conditional_formatting.add(rng, CellIsRule(operator="equal", formula=['"yes"'],
-                                  fill=PatternFill("solid", fgColor="11734B"), font=white))
-    ws.conditional_formatting.add(rng, CellIsRule(operator="equal", formula=['"no"'],
-                                  fill=PatternFill("solid", fgColor="B10202"), font=white))
-for value, color in OUTCOME_FILLS.items():
-    ws.conditional_formatting.add(f"I2:I{last}", CellIsRule(operator="equal", formula=[f'"{value}"'],
-                                  fill=PatternFill("solid", fgColor=color)))
-
-# Summary tab: plain COUNTIFS, so it works the same in Google Sheets and Excel.
-sm = wb.create_sheet("Summary")
-sm.column_dimensions["A"].width = 44
-sm.column_dimensions["B"].width = 14
-title = sm.cell(row=1, column=1, value="Your job search at a glance")
-title.font = Font(bold=True, size=14, color=FOREST)
-J = f"Jobs!$A$2:$A${last}"
-rows = [
-    ("Jobs tracked", f'=COUNTA({J})', "0"),
-    ("Applied", f'=COUNTIF(Jobs!$E$2:$E${last},"yes")', "0"),
-    ("Responses", f'=COUNT(Jobs!$G$2:$G${last})', "0"),
-    ("Response rate", f'=IFERROR(B5/B4,0)', "0%"),
-    ("Interviews", f'=COUNTIF(Jobs!$I$2:$I${last},"Interview")', "0"),
-    ("Offers", f'=COUNTIF(Jobs!$J$2:$J${last},"yes")', "0"),
-    ("Rejections", f'=COUNTIF(Jobs!$I$2:$I${last},"Rejection")', "0"),
-    ("Follow up now (applied 7 to 14 days ago, no reply)",
-     f'=COUNTIFS(Jobs!$E$2:$E${last},"yes",Jobs!$G$2:$G${last},"",Jobs!$F$2:$F${last},"<="&(TODAY()-7),Jobs!$F$2:$F${last},">="&(TODAY()-14))', "0"),
-    ("Probably ghosted (no reply after 14+ days)",
-     f'=COUNTIFS(Jobs!$E$2:$E${last},"yes",Jobs!$G$2:$G${last},"",Jobs!$F$2:$F${last},"<"&(TODAY()-14))', "0"),
-]
-for i, (label, formula, fmt) in enumerate(rows, start=3):
-    sm.cell(row=i, column=1, value=label)
-    c = sm.cell(row=i, column=2, value=formula)
-    c.number_format = fmt
-    c.font = Font(bold=True)
-    c.alignment = Alignment(horizontal="right")
-sm.cell(row=13, column=1, value="Made by Catchr, the free Chrome extension that fills this in for you: jobcatchr.app").font = Font(italic=True, color="8C7E6E")
+dash = wb.create_sheet("Dashboard")
+apply(dash, REQ["dashboard"], 80, 20)
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 wb.save(OUT)

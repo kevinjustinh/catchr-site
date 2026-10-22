@@ -99,36 +99,38 @@ def job(title, dates, where):
     para(where, color=STONE, size=10, after=3)
 
 
-para("Alex Morgan", size=22, bold=True, after=2)
-para("Austin, TX · alex.morgan@example.com · (555) 010-0147 · linkedin.com/in/alexmorgan",
+# Everything below is fictional: Contoso and Fabrikam are Microsoft's stock
+# example companies, 555-01xx numbers are reserved for fiction, and
+# example.com is reserved for documentation.
+para("Jane Doe", size=22, bold=True, after=2)
+para("Austin, TX · jane.doe@example.com · (512) 555-0147 · linkedin.com/in/your-profile",
      size=10, color=STONE, after=4)
 
 heading("Summary")
-para("Product manager with 6 years of experience shipping B2B software, most recently leading a team "
-     "of 8 that grew self-serve revenue 40%. Strongest where customer research, data and engineering "
-     "meet. Replace this with two or three sentences: who you are, your best result, and the kind of "
-     "role you want next.")
+para("Product manager with 7 years in B2B SaaS, most recently owning self-serve growth at an analytics "
+     "company. Pairs customer research with product data to decide what to build, and what not to. "
+     "Looking for a senior product role on a growth or platform team.")
 
 heading("Experience")
-job("Senior Product Manager, Brightline Software", "Mar 2022 to Present", "Austin, TX · Remote-first")
-bullet("Led the redesign of self-serve onboarding, lifting trial-to-paid conversion from 9% to 14% in two quarters.")
-bullet("Built a weekly customer interview program (120+ interviews) that set the roadmap for three product lines.")
-bullet("Cut average release cycle from 6 weeks to 2 by introducing feature flags with engineering.")
-bullet("Start each bullet with a strong verb, include a number, and end with the result it produced.")
+job("Senior Product Manager, Contoso Analytics", "Mar 2022 to Present", "Austin, TX · Hybrid")
+bullet("Led a redesign of self-serve onboarding with 1 designer and 6 engineers, raising trial-to-paid conversion from 9% to 13% in two quarters.")
+bullet("Cut the roadmap from 14 initiatives to 5 after 60 customer interviews traced churn to reporting gaps, reducing customer churn 18% year over year.")
+bullet("Introduced feature flags and staged rollouts with engineering, shortening the release cycle from 6 weeks to 2.")
+bullet("Defined the product's activation metric with data science; it became the company-wide goal used in quarterly planning.")
 
-job("Product Manager, Fieldnote", "Jun 2019 to Feb 2022", "Denver, CO")
-bullet("Launched a mobile app used by 30,000 field technicians, reaching a 4.7 App Store rating.")
-bullet("Partnered with sales on pricing research that raised average contract value 18%.")
-bullet("Wrote specs and acceptance criteria for a team of 6 engineers and 1 designer.")
+job("Product Manager, Fabrikam Field Services", "Jun 2019 to Feb 2022", "Denver, CO")
+bullet("Launched an offline-first mobile app for 30,000 field technicians, reaching a 4.7 App Store rating within six months.")
+bullet("Partnered with sales on packaging and pricing research that raised average contract value 12%.")
+bullet("Wrote specs and acceptance criteria for 6 engineers and 1 designer, shipping 3 major releases a year.")
 
-job("Associate Product Manager, Fieldnote", "Jul 2018 to May 2019", "Denver, CO")
-bullet("Ran 40+ A/B tests on the signup flow; shipped the 5 winners, adding 2,100 signups a month.")
-bullet("Give every job its own line like the one above, even at the same company, so each one is unique.")
+job("Associate Product Manager, Fabrikam Field Services", "Jul 2017 to May 2019", "Denver, CO")
+bullet("Ran 40 A/B tests on the signup flow and shipped the 5 winners, adding about 2,100 signups a month.")
+bullet("Built the team's first SQL funnel dashboard, replacing a manual weekly report.")
 
 heading("Skills")
-for cat, items in (("Product", "Roadmapping, customer research, A/B testing, pricing, PRDs"),
-                   ("Tools", "Jira, Figma, Amplitude, SQL, Looker"),
-                   ("Ways of working", "Cross-functional leadership, stakeholder communication, mentoring")):
+for cat, items in (("Product", "Roadmapping, customer discovery, A/B testing, pricing and packaging, PRDs"),
+                   ("Tools", "Jira, Figma, Amplitude, Mixpanel, SQL, Looker"),
+                   ("Leadership", "Cross-functional leadership, stakeholder communication, mentoring")):
     p = para(after=2)
     r = p.add_run(f"{cat}: ")
     r.bold = True
@@ -137,8 +139,11 @@ for cat, items in (("Product", "Roadmapping, customer research, A/B testing, pri
 heading("Education")
 p = para()
 p.paragraph_format.tab_stops.add_tab_stop(Inches(7.0), WD_TAB_ALIGNMENT.RIGHT)
-p.add_run("B.S. Business Administration, University of Colorado Boulder").bold = True
-p.add_run("\tMay 2018")
+p.add_run("B.S. Business Administration, State University").bold = True
+p.add_run("\tMay 2017")
+
+doc.core_properties.author = "Catchr"
+doc.core_properties.title = "Resume template"
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 doc.save(OUT)
