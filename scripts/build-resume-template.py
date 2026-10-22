@@ -13,13 +13,13 @@ Run: python3 scripts/build-resume-template.py  (needs python-docx)
 from pathlib import Path
 
 from docx import Document
-from docx.enum.text import WD_TAB_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
 OUT = Path(__file__).resolve().parent.parent / "downloads" / "catchr-resume-template.docx"
-FONT = "Lato"
+FONT = "Arial"  # installed almost everywhere, so the file, the Google Doc and the site preview match
 INK = RGBColor(0x2C, 0x2C, 0x2A)
 STONE = RGBColor(0x5E, 0x56, 0x4C)  # darker than the site's stone: stays legible printed or scanned
 FOREST = RGBColor(0x2C, 0x5F, 0x4A)
@@ -102,9 +102,9 @@ def job(title, dates, where):
 # Everything below is fictional: Contoso and Fabrikam are Microsoft's stock
 # example companies, 555-01xx numbers are reserved for fiction, and
 # example.com is reserved for documentation.
-para("Jane Doe", size=22, bold=True, after=2)
+para("Jane Doe", size=22, bold=True, after=2).alignment = WD_ALIGN_PARAGRAPH.CENTER
 para("San Francisco, CA · jane.doe@example.com · (512) 555-0147 · linkedin.com/in/your-profile",
-     size=10, color=STONE, after=4)
+     size=10, color=STONE, after=4).alignment = WD_ALIGN_PARAGRAPH.CENTER
 
 heading("Summary")
 para("Product manager with 7 years in B2B SaaS, most recently owning self-serve growth at an analytics "
