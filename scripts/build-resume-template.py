@@ -103,7 +103,7 @@ def job(title, dates, where):
 # example companies, 555-01xx numbers are reserved for fiction, and
 # example.com is reserved for documentation.
 para("Jane Doe", size=22, bold=True, after=2)
-para("Austin, TX · jane.doe@example.com · (512) 555-0147 · linkedin.com/in/your-profile",
+para("San Francisco, CA · jane.doe@example.com · (512) 555-0147 · linkedin.com/in/your-profile",
      size=10, color=STONE, after=4)
 
 heading("Summary")
@@ -112,7 +112,7 @@ para("Product manager with 7 years in B2B SaaS, most recently owning self-serve 
      "Looking for a senior product role on a growth or platform team.")
 
 heading("Experience")
-job("Senior Product Manager, Contoso Analytics", "Mar 2022 to Present", "Austin, TX · Hybrid")
+job("Senior Product Manager, Contoso Analytics", "Mar 2022 to Present", "San Francisco, CA · Hybrid")
 bullet("Led a redesign of self-serve onboarding with 1 designer and 6 engineers, raising trial-to-paid conversion from 9% to 13% in two quarters.")
 bullet("Cut the roadmap from 14 initiatives to 5 after 60 customer interviews traced churn to reporting gaps, reducing customer churn 18% year over year.")
 bullet("Introduced feature flags and staged rollouts with engineering, shortening the release cycle from 6 weeks to 2.")
