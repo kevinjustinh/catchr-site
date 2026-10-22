@@ -330,6 +330,8 @@
   .header-actions .text-link{color:var(--cream);font-weight:500;border-bottom:1px solid rgba(253,250,246,.35);padding-bottom:2px;transition:border-color .15s;}
   .header-actions .text-link:hover{border-color:var(--cream);}
   .file-meta{margin-top:14px;font-size:0.875rem;color:rgba(253,250,246,.6);}
+  .file-meta a{color:rgba(253,250,246,.85);border-bottom:1px solid rgba(253,250,246,.3);transition:border-color .15s;}
+  .file-meta a:hover{border-color:var(--cream);}
   .plain-badge{
     display:inline-flex;align-items:center;gap:8px;margin-top:22px;
     border:1px solid rgba(253,250,246,.22);border-radius:999px;padding:7px 15px;
@@ -345,6 +347,7 @@
   .qa-block .answer{margin-top:14px;font-size:1.125rem;line-height:1.6;color:var(--ink);max-width:36em;}
   .qa-block .detail{margin-top:12px;color:var(--stone);font-size:1rem;line-height:1.62;max-width:36em;}
   .qa-block .detail strong{color:var(--ink);font-weight:600;}
+  .qa-block .detail a{color:var(--forest);font-weight:600;border-bottom:1px solid rgba(44,95,74,.25);}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin:26px 0 0;}
   .cols div{padding:13px 0;border-top:1px solid var(--cream-warm);}
   .cols dt{font-weight:600;color:var(--ink);font-size:0.975rem;}
@@ -416,7 +419,7 @@
    "name": "How do I use it in Google Docs?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Upload the file to Google Drive and open it with Google Docs, then replace the sample details with your own."
+    "text": "Click Open in Google Docs, then Make a copy. Your own copy lands in your Google Drive, ready for your details."
    }
   },
   {
@@ -466,12 +469,12 @@
     <div class="wrap">
       <p class="eyebrow">Free template</p>
       <h1>Free resume template for Google Docs.</h1>
-      <p class="sub">A clean, one-column resume that applicant tracking systems read correctly. Opens in Google Docs or Word.</p>
+      <p class="sub">A clean, one-column resume that applicant tracking systems read correctly. Open it in Google Docs, or download it for Word.</p>
       <div class="header-actions">
-        <a class="btn btn-cream btn-lg" href="downloads/catchr-resume-template.docx" download aria-label="Download the resume template (Word file)">Download the template</a>
+        <a class="btn btn-cream btn-lg" href="https://docs.google.com/document/d/DOC_ID_PENDING/copy" target="_blank" rel="noopener">Open in Google Docs</a>
         <a class="text-link" href="#tailor">or see how Catchr tailors it</a>
       </div>
-      <p class="file-meta">.docx (Word file) · 38 KB · Free, no sign-up.</p>
+      <p class="file-meta">Free, no sign-up. Prefer Word? <a href="downloads/catchr-resume-template.docx" download>Download the file</a> (.docx, 38 KB).</p>
     </div>
   </header>
 
@@ -524,13 +527,13 @@
 
       <div class="qa-block">
         <h2>How do I use it in Google Docs?</h2>
-        <p class="answer">Upload the file to Google Drive and open it with Google Docs, then replace the sample details with your own.</p>
+        <p class="answer">Click Open in Google Docs, then Make a copy. Your own copy lands in your Google Drive, ready for your details.</p>
         <ol class="substeps">
-          <li><span class="sub-marker">a</span><span><a href="downloads/catchr-resume-template.docx" download>Download the template</a>.</span></li>
-          <li><span class="sub-marker">b</span><span>In <a href="https://drive.google.com" target="_blank" rel="noopener">Google Drive</a>, click <strong>New</strong>, then <strong>File upload</strong>, and pick the file. Open it, then choose <strong>File</strong>, <strong>Save as Google Docs</strong>.</span></li>
+          <li><span class="sub-marker">a</span><span>Click <a href="https://docs.google.com/document/d/DOC_ID_PENDING/copy" target="_blank" rel="noopener">Open in Google Docs</a> and sign in to Google if it asks.</span></li>
+          <li><span class="sub-marker">b</span><span>Click <strong>Make a copy</strong>. The copy is yours, saved in your own Google Drive.</span></li>
           <li><span class="sub-marker">c</span><span>Replace Alex's details with yours. Give every job its own line with the title, company and dates, even two jobs at the same company.</span></li>
         </ol>
-        <p class="detail">Prefer Word? The same file opens there directly.</p>
+        <p class="detail">Prefer Word? <a href="downloads/catchr-resume-template.docx" download>Download the .docx file</a> instead.</p>
       </div>
 
       <div class="qa-block">
