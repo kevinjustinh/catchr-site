@@ -359,8 +359,6 @@
   .pill-no{background:#B10202;color:#fff;}
   .pill-interview{background:#D6ECFC;}
   .pill-unresponsive{background:#ECE7E0;}
-  .scroll-hint{display:none;margin-top:10px;font-size:0.8125rem;color:var(--stone);}
-  @media(max-width:1359px){.scroll-hint{display:block;}}
 
   /* Question and answer blocks */
   .qa{padding-top:clamp(56px,7vw,88px);padding-bottom:clamp(72px,10vw,120px);}
@@ -385,7 +383,8 @@
 
   /* Sibling-template card, the in-section Chrome button, wide screenshot */
   .shot-wide{max-width:720px;}
-  .qa-block .answer + .btn-chrome{margin-top:22px;margin-bottom:6px;}
+  .btn-row{max-width:40.5rem;display:flex;justify-content:center;margin:22px 0 6px;}
+  .qa-block .btn-row .btn{margin-top:0;}
   @media(max-width:480px){.qa-block .btn-lg{width:100%;justify-content:center;}}
   .sibling{padding:0 0 clamp(64px,9vw,104px);}
   .sib-card{display:flex;align-items:center;gap:22px;min-height:44px;background:#fff;border:1px solid #DCD4CA;border-radius:16px;padding:14px 24px 14px 14px;box-shadow:0 14px 32px -26px rgba(36,80,64,.5);transition:transform .18s ease,border-color .18s ease;}
@@ -514,7 +513,6 @@
           </tbody>
         </table>
       </div>
-      <p class="scroll-hint">Scroll the table sideways to see all 12 columns.</p>
     </div>
   </section>
 
@@ -566,10 +564,12 @@
       <div class="qa-block" id="fill-itself">
         <h2>Can the tracker fill itself in?</h2>
         <p class="answer">Yes. Catchr is a free Chrome extension that adds the job to your Google Sheet in one click, using these same columns, from LinkedIn, Indeed, Greenhouse, Lever, Wellfound, and Ashby.</p>
-        <a class="btn btn-chrome btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=template-body" target="_blank" rel="noopener">
-          <img class="net" src="assets/net-cream.webp" alt="" />
-          Add to Chrome, it's free
-        </a>
+        <div class="btn-row">
+          <a class="btn btn-chrome btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=template-body" target="_blank" rel="noopener">
+            <img class="net" src="assets/net-cream.webp" alt="" />
+            Add to Chrome, it's free
+          </a>
+        </div>
         <p class="detail">Click <strong>Catch It</strong> on a job posting and Catchr writes the company, position, location, link, and today's date into your sheet. Before you apply, <strong>Check Fit</strong> scores how well your resume matches the job, and the score lands in the Fit Score column. It's the same sheet as this template, dashboard included. It's free, and it runs on your own Google account and your own AI key.</p>
         <figure class="shot">
           <img src="assets/in-site.webp" alt="The Catchr button on a job posting, ready to save the job to Google Sheets" loading="lazy" />
