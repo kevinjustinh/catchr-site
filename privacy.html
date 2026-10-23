@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Privacy Policy — Catchr</title>
+<title>Privacy Policy: Catchr</title>
 <meta name="description" content="Catchr has no data backend. We do not collect, store, transmit, or have any access to your personal data." />
 <link rel="canonical" href="https://www.jobcatchr.app/privacy.html" />
 <link rel="icon" type="image/webp" href="assets/net-forest.webp" />
@@ -176,7 +176,7 @@
       <div class="inner">
         <p class="eyebrow">Catchr Chrome Extension</p>
         <h1>Privacy Policy</h1>
-        <p class="meta">Last updated: September 2026</p>
+        <p class="meta">Last updated: October 2026</p>
 
         <p>Catchr is a Chrome extension helping job seekers track applications and refine resumes with AI. This page outlines what data Catchr accesses, how it's used, and what is never collected.</p>
 
@@ -187,23 +187,26 @@
         <h2>Data we never collect</h2>
         <p>The extension includes no analytics, tracking pixels, or account requirements. Nothing you do in Catchr is reported back to us.</p>
 
-        <h2>Data stored locally on your device</h2>
-        <p>The following information is saved in your browser's local storage and never leaves your device:</p>
+        <h2>Data stored on your device</h2>
+        <p>Catchr keeps the following in your browser's storage. None of it is ever sent to us:</p>
         <ul>
-          <li>Your Gemini API key</li>
-          <li>Connected resume file(s) — name and ID only, via Google file picker</li>
-          <li>Connected job tracking sheet — name and ID only, via Google file picker</li>
+          <li>Your Gemini API key. It is sent only to Google's Gemini API, when you use an AI feature.</li>
+          <li>Connected resume files: the name and ID only, chosen with the Google file picker.</li>
+          <li>Your connected job tracking sheet: the name and ID only, chosen with the Google file picker.</li>
+          <li>Your settings, such as the color theme and whether the Catch It button shows on job sites.</li>
+          <li>Recent results, such as your last fit score and the link to your last tailored resume. These are cleared when you close your browser.</li>
+          <li>A troubleshooting log of recent AI requests. It records only timings and status codes, never your resume, job details, documents, or keys. It is cleared when you close your browser and leaves your device only if you copy it yourself.</li>
         </ul>
 
         <h2>Data sent to third-party services</h2>
-        <p>Catchr connects to Google services using your own credentials:</p>
+        <p>Catchr connects to Google services using your own Google account and API key:</p>
         <ul>
-          <li><strong>Google Sheets API</strong> — logs applications to your personal Sheet</li>
-          <li><strong>Google Docs API</strong> — reads your resume and creates tailored copies</li>
-          <li><strong>Google Drive API</strong> — organizes tailored copies using the <code>drive.file</code> scope</li>
-          <li><strong>Google Gemini API</strong> — processes resume content and job descriptions using your API key</li>
+          <li><strong>Google Sheets API:</strong> logs applications to your own Sheet.</li>
+          <li><strong>Google Docs API:</strong> reads your resume and creates tailored copies and interview prep documents.</li>
+          <li><strong>Google Drive API:</strong> organizes those copies, using the <code>drive.file</code> scope, so Catchr can only see files it created or that you picked.</li>
+          <li><strong>Google Gemini API:</strong> processes your resume and job descriptions using your API key.</li>
         </ul>
-        <p>Your Gemini API key is stored locally in your browser's storage and is sent directly to the Gemini API to process requests. It is never transmitted to any Catchr developer servers.</p>
+        <p>Your API key goes directly from your browser to the Gemini API. It is never transmitted to any Catchr server.</p>
         <p>Catchr's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
 
         <h2>The Catchr file picker</h2>
@@ -216,20 +219,32 @@
         <p>Your job data, your resume contents, and your API key are never sent to this page.</p>
 
         <h2>Job page data</h2>
-        <p>Catchr reads job listing pages (title, company, location, description) locally in your browser, or sends the content directly to Gemini using your API key. This data is not saved to any external server or storage outside your own browser and Google account.</p>
+        <p>Catchr reads the job listing you are viewing (title, company, location, and description) in your browser, and sends it directly to Gemini using your API key when you use an AI feature. When you create Interview Prep, Catchr may also ask Gemini to look up public information about the company with Google Search, using only the company name and job title. None of this is saved anywhere outside your own browser and Google account.</p>
 
         <h2>Permissions</h2>
         <ul>
-          <li><strong>identity</strong> — Google OAuth authentication</li>
-          <li><strong>storage</strong> — local browser settings</li>
-          <li><strong>activeTab / scripting</strong> — reading job listing pages</li>
-          <li><strong>notifications</strong> — alerting you when a task completes</li>
-          <li><strong>alarms</strong> — background task maintenance</li>
-          <li><strong>webNavigation</strong> — detects when you navigate to a job page so the in-site button can appear</li>
+          <li><strong>identity:</strong> signs you in with Google.</li>
+          <li><strong>storage:</strong> keeps the settings and items listed above in your browser.</li>
+          <li><strong>activeTab and scripting:</strong> read the job listing you are viewing.</li>
+          <li><strong>notifications:</strong> tell you when a tailored resume is ready.</li>
+          <li><strong>alarms:</strong> keep longer tasks running in the background.</li>
+          <li><strong>webNavigation:</strong> notice when you open a job page, so the Catch It button can appear.</li>
+          <li><strong>Job sites</strong> (LinkedIn, Indeed, Greenhouse, Lever, Wellfound, and Ashby): show the Catch It button on job listings and read the listing you are viewing.</li>
         </ul>
 
+        <h2>Deleting your data</h2>
+        <ul>
+          <li>Uninstalling Catchr removes everything it stored in your browser, including your API key.</li>
+          <li>To remove Catchr's access to your Google account, open <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">your Google account's third-party connections</a> and remove Catchr.</li>
+          <li>Sheets and documents Catchr created are yours and stay in your Google Drive until you delete them.</li>
+          <li>To retire your API key, delete it in <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Google AI Studio</a>.</li>
+        </ul>
+
+        <h2>This website</h2>
+        <p>jobcatchr.app uses Vercel Web Analytics to count page visits. It sets no cookies, does not track you across sites, and records visits anonymously, without tying them to you or your IP address. The site loads its fonts from Google Fonts, and the Support link opens Ko-fi, which has its own privacy policy. The free templates open in your own Google account or download straight to your device; we never see what you put in them.</p>
+
         <h2>Children's privacy</h2>
-        <p>Catchr is intended for adults only and does not knowingly collect information from anyone under 13.</p>
+        <p>Catchr is intended for people 18 and older, as Google's Gemini API requires. We do not knowingly collect information from anyone, including anyone under 18.</p>
 
         <h2>Changes to this policy</h2>
         <p>If this policy changes materially, the date above will be updated. Continued use of Catchr after changes implies acceptance.</p>
@@ -256,10 +271,12 @@
         <div class="foot-links">
           <a href="/#features">Features</a>
           <a href="/#how">How it works</a>
+          <a href="setup.html">Setup guide</a>
+          <a href="resume-template.html">Free resume template</a>
+          <a href="job-tracker-template.html">Free tracker template</a>
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
           <a href="https://ko-fi.com/kevinjustin" target="_blank" rel="noopener">☕ Support</a>
-          <a href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=privacy-footer" target="_blank" rel="noopener">Add to Chrome</a>
         </div>
       </div>
       <div class="foot-bottom">
