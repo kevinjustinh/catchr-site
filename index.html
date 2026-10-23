@@ -123,6 +123,27 @@
   .nav-links{display:flex;align-items:center;gap:34px;}
   .nav-links a{font-weight:500;color:var(--ink);font-size:0.95rem;opacity:.78;transition:opacity .15s;}
   .nav-links a:hover{opacity:1;}
+
+  /* Free templates dropdown (disclosure: button + list of links; script below is the source of truth) */
+  .nav-drop{position:relative;display:flex;align-items:center;}
+  .nav-drop::after{content:"";position:absolute;left:-14px;right:-14px;top:100%;height:14px;}
+  .nav-drop-btn{font:inherit;font-weight:500;font-size:0.95rem;color:var(--ink);opacity:.78;background:none;border:0;padding:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:opacity .15s;}
+  .nav-drop-btn:hover,.nav-drop-btn[aria-expanded="true"]{opacity:1;}
+  .nav-drop-btn.active{opacity:1;color:var(--forest);font-weight:600;}
+  .nav-drop-btn:focus-visible{outline:2px solid var(--forest);outline-offset:4px;border-radius:6px;}
+  .nav-drop-btn svg{width:10px;height:6px;transition:transform .15s ease;}
+  .nav-drop-btn[aria-expanded="true"] svg{transform:rotate(180deg);}
+  .nav-menu{position:absolute;top:calc(100% + 12px);left:50%;width:260px;margin:0;padding:8px;list-style:none;background:#fff;border:1px solid var(--cream-warm);border-radius:14px;box-shadow:0 18px 40px -18px rgba(36,80,64,.45);opacity:0;visibility:hidden;transform:translate(-50%,-4px);transition:opacity .15s ease,transform .15s ease,visibility 0s linear .15s;z-index:60;}
+  .nav-drop.open .nav-menu{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .15s ease,transform .15s ease,visibility 0s;}
+  @media(hover:hover){.nav-drop:not(.js-ready):hover .nav-menu{opacity:1;visibility:visible;transform:translate(-50%,0);transition:none;}}
+  .nav-links .nav-menu a{display:block;padding:10px 12px;border-radius:10px;opacity:1;}
+  .nav-links .nav-menu a:hover,.nav-links .nav-menu a:focus-visible{background:var(--mint-wash,#EAF7F1);outline:none;}
+  .nav-links .nav-menu a:focus-visible{box-shadow:inset 0 0 0 2px var(--forest);}
+  .nav-menu .t{display:flex;align-items:center;gap:6px;font-weight:600;font-size:0.95rem;color:var(--ink);}
+  .nav-menu .s{display:block;margin-top:2px;font-size:0.8125rem;font-weight:400;color:#6B5F51;}
+  .nav-menu a[aria-current="page"] .t{color:var(--forest);}
+  .nav-menu .cur{width:12px;height:12px;flex:none;}
+  @media(prefers-reduced-motion:reduce){.nav-menu,.nav-drop.open .nav-menu{transition:none;transform:translate(-50%,0);}.nav-drop-btn svg{transition:none;}}
   .nav-cta{display:flex;align-items:center;gap:20px;}
   .nav-cta .btn{border-radius:999px;}
   .nav-kofi{
@@ -132,7 +153,9 @@
   }
   .nav-kofi:hover{opacity:1;}
   .nav-kofi .cup{font-size:1rem;}
-  @media(max-width:860px){
+  .nav-links a,.nav-drop-btn{white-space:nowrap;}
+  @media(max-width:1100px){.nav-links{gap:22px;}}
+  @media(max-width:980px){
     .nav-links{display:none;}
   }
   @media(max-width:520px){
@@ -465,6 +488,13 @@
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#how">How it works</a>
+        <div class="nav-drop">
+          <button class="nav-drop-btn" type="button" aria-expanded="false" aria-controls="nav-templates">Free templates<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="nav-menu" id="nav-templates">
+            <li><a href="job-tracker-template.html"><span class="t">Job tracker</span><span class="s">For Google Sheets</span></a></li>
+            <li><a href="resume-template.html"><span class="t">Resume</span><span class="s">For Google Docs</span></a></li>
+          </ul>
+        </div>
         <a href="privacy.html">Privacy</a>
         <a class="nav-kofi" href="https://ko-fi.com/kevinjustin" target="_blank" rel="noopener" aria-label="Support Catchr on Ko-fi"><span class="cup" aria-hidden="true">☕</span>Support</a>
       </div>
@@ -738,7 +768,7 @@
         <div class="foot-links">
           <a href="#features">Features</a>
           <a href="#how">How it works</a>
-          <a href="setup.html">Setup guide</a>
+            <a href="setup.html">Setup guide</a>
           <a href="job-tracker-template.html">Free tracker template</a>
           <a href="resume-template.html">Free resume template</a>
           <a href="privacy.html">Privacy</a>
@@ -754,5 +784,21 @@
     </div>
   </footer>
 
+<script>
+(function(){
+  var d=document.querySelector('.nav-drop');if(!d)return;
+  var b=d.querySelector('.nav-drop-btn'),hover=window.matchMedia('(hover:hover)').matches,t;
+  d.classList.add('js-ready');
+  function set(o){clearTimeout(t);d.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');}
+  b.addEventListener('click',function(){set(hover?true:b.getAttribute('aria-expanded')!=='true');});
+  if(hover){
+    d.addEventListener('mouseenter',function(){set(true);});
+    d.addEventListener('mouseleave',function(){t=setTimeout(function(){set(false);},160);});
+  }
+  d.addEventListener('focusout',function(e){if(!d.contains(e.relatedTarget))set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('open')){set(false);b.focus();}});
+  document.addEventListener('click',function(e){if(!d.contains(e.target))set(false);});
+})();
+</script>
 </body>
 </html>

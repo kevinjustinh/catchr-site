@@ -103,7 +103,7 @@ def job(title, dates, where):
 # example companies, 555-01xx numbers are reserved for fiction, and
 # example.com is reserved for documentation.
 para("Jane Doe", size=22, bold=True, after=2).alignment = WD_ALIGN_PARAGRAPH.CENTER
-para("San Francisco, CA · jane.doe@example.com · (512) 555-0147 · linkedin.com/in/your-profile",
+para("San Francisco, CA | jane.doe@example.com | (512) 555-0147 | linkedin.com/in/your-profile",
      size=10, color=STONE, after=4).alignment = WD_ALIGN_PARAGRAPH.CENTER
 
 heading("Summary")
