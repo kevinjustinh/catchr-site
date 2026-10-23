@@ -382,6 +382,22 @@
   .btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--forest);}
   .btn-outline:hover{background:var(--mint-wash);transform:translateY(-1px);}
   .qa-block .btn{margin-top:28px;}
+
+  /* Sibling-template card, the in-section Chrome button, wide screenshot */
+  .shot-wide{max-width:720px;}
+  .qa-block .answer + .btn-chrome{margin-top:22px;margin-bottom:6px;}
+  @media(max-width:480px){.qa-block .btn-lg{width:100%;justify-content:center;}}
+  .sibling{padding:0 0 clamp(64px,9vw,104px);}
+  .sib-card{display:flex;align-items:center;gap:22px;min-height:44px;background:#fff;border:1px solid #DCD4CA;border-radius:16px;padding:14px 24px 14px 14px;box-shadow:0 14px 32px -26px rgba(36,80,64,.5);transition:transform .18s ease,border-color .18s ease;}
+  .sib-card:hover{transform:translateY(-1px);border-color:rgba(44,95,74,.45);}
+  .sib-card:focus-visible{outline:3px solid var(--forest);outline-offset:3px;}
+  .sib-thumb{width:156px;height:96px;flex:none;object-fit:cover;object-position:top left;border-radius:10px;border:1px solid var(--cream-warm);}
+  .sib-eyebrow{font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--forest);}
+  .sib-title{margin-top:6px;font-size:1.25rem;line-height:1.2;color:var(--ink);}
+  .sib-line{margin-top:6px;font-size:0.9375rem;color:var(--stone);line-height:1.5;}
+  .sib-arrow{margin-left:auto;flex:none;font-size:1.5rem;color:var(--forest);transition:transform .18s ease;}
+  .sib-card:hover .sib-arrow{transform:translateX(3px);}
+  @media(max-width:600px){.sib-thumb{display:none;}.sib-card{padding:18px 20px;}}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 <meta property="og:type" content="website" />
@@ -524,6 +540,10 @@
             <div><dt>Fit Score</dt><dd>How well you match the job, out of 100. Catchr's Check Fit fills this in.</dd></div>
             <div><dt>Notes</dt><dd>Recruiter names, referrals, salary range, or anything else.</dd></div>
         </dl>
+        <figure class="shot shot-wide">
+          <img src="assets/dashboard-preview.webp" width="1440" height="720" loading="lazy" alt="The template's Dashboard tab: total applications, active leads, interview and offer rates, response rate, average days to interview, this month versus last month, and an outcome breakdown." />
+          <figcaption>The Dashboard tab updates itself from your Jobs rows.</figcaption>
+        </figure>
       </div>
 
       <div class="qa-block">
@@ -546,23 +566,41 @@
       <div class="qa-block" id="fill-itself">
         <h2>Can the tracker fill itself in?</h2>
         <p class="answer">Yes. Catchr is a free Chrome extension that adds the job to your Google Sheet in one click, using these same columns, from LinkedIn, Indeed, Greenhouse, Lever, Wellfound, and Ashby.</p>
+        <a class="btn btn-chrome btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=template-body" target="_blank" rel="noopener">
+          <img class="net" src="assets/net-cream.webp" alt="" />
+          Add to Chrome, it's free
+        </a>
         <p class="detail">Click <strong>Catch It</strong> on a job posting and Catchr writes the company, position, location, link, and today's date into your sheet. Before you apply, <strong>Check Fit</strong> scores how well your resume matches the job, and the score lands in the Fit Score column. It's the same sheet as this template, dashboard included. It's free, and it runs on your own Google account and your own AI key.</p>
         <figure class="shot">
           <img src="assets/in-site.webp" alt="The Catchr button on a job posting, ready to save the job to Google Sheets" loading="lazy" />
           <figcaption>Catchr's button sits right on the job posting.</figcaption>
         </figure>
         <p class="detail"><strong>Already made a copy of this template?</strong> After you add Catchr, open its <strong>Settings</strong>, click <strong>Connect a sheet from Drive</strong>, and pick your copy. Catchr then fills in that sheet instead of making a new one. It can only see files you pick, so it never finds the sheet on its own.</p>
-        <a class="btn btn-outline" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=template-body" target="_blank" rel="noopener">Add Catchr to Chrome</a>
       </div>
 
     </div>
   </main>
 
+  <!-- ===================== SIBLING TEMPLATE ===================== -->
+  <section class="sibling" aria-label="Another free template">
+    <div class="wrap">
+      <a class="sib-card" href="resume-template.html">
+        <img class="sib-thumb" src="assets/resume-thumb.webp" alt="" loading="lazy" width="156" height="96" />
+        <span>
+          <span class="sib-eyebrow">Another free template</span>
+          <h3 class="sib-title">Resume template for Google Docs</h3>
+          <p class="sib-line">One column, ATS-friendly, and ready for Catchr to tailor.</p>
+        </span>
+        <span class="sib-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </section>
+
   <!-- ===================== CTA ===================== -->
   <section class="cta-band">
     <div class="wrap">
-      <h2>Ready to start catching jobs?</h2>
-      <p>Add Catchr to Chrome and open it on any job listing to begin.</p>
+      <h2>Let Catchr fill in your tracker</h2>
+      <p>Click Catch It on any job posting and the row fills itself in.</p>
       <a class="btn btn-cream btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=template-cta" target="_blank" rel="noopener">
         <img class="net" src="assets/net-forest.webp" alt="" />
         Add to Chrome, it's free
