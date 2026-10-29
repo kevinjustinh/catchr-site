@@ -204,9 +204,11 @@
           <li><strong>Google Sheets API:</strong> logs applications to your own Sheet.</li>
           <li><strong>Google Docs API:</strong> reads your resume and creates tailored copies and interview prep documents.</li>
           <li><strong>Google Drive API:</strong> organizes those copies, using the <code>drive.file</code> scope, so Catchr can only see files it created or that you picked.</li>
-          <li><strong>Google Gemini API:</strong> processes your resume and job descriptions using your API key.</li>
+          <li><strong>Google Gemini API:</strong> processes your resume (with your name and contact details removed) and job descriptions using your API key.</li>
         </ul>
         <p>Your API key goes directly from your browser to the Gemini API. It is never transmitted to any Catchr server.</p>
+        <p>Before anything goes to Gemini, Catchr removes your name and contact details from your resume, and puts them back in the results on your device. It asks you once to confirm your name, then removes it wherever it appears in that spelling. Email addresses, phone numbers and web links are removed wherever they appear, and your street address is removed from the top of your resume. Your city and state stay, because the fit check uses location.</p>
+        <p>On Gemini's free tier, Google may use the rest (your work history) to improve its AI, and its reviewers may read it. To stop that, turn on billing for your key's project in Google AI Studio.</p>
         <p>Catchr's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
 
         <h2>The Catchr file picker</h2>
@@ -219,7 +221,7 @@
         <p>Your job data, your resume contents, and your API key are never sent to this page.</p>
 
         <h2>Job page data</h2>
-        <p>Catchr reads the job listing you are viewing (title, company, location, and description) in your browser, and sends it directly to Gemini using your API key when you use an AI feature. When you create Interview Prep, Catchr may also ask Gemini to look up public information about the company with Google Search, using only the company name and job title. None of this is saved anywhere outside your own browser and Google account.</p>
+        <p>Catchr reads the job listing you are viewing (title, company, location, and description) in your browser, and sends it directly to Gemini using your API key when you use an AI feature. When you create Interview Prep, Catchr may also ask Gemini to look up public information about the company with Google Search, using only the company name and job title. Catchr doesn't save it anywhere outside your browser and your Google account, though Google may keep it for a time under its own terms.</p>
 
         <h2>Permissions</h2>
         <ul>
