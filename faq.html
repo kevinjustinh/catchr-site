@@ -392,8 +392,12 @@
   .ledger h3{font-family:var(--body);font-weight:600;font-size:1.0625rem;line-height:1.45;letter-spacing:0;color:var(--ink);}
   .ledger p{color:var(--stone);font-size:1rem;line-height:1.62;}
   .ledger p strong{color:var(--ink);font-weight:600;}
+  .ledger h3 .msg{display:block;}
+  .ledger h3 .msg + .msg{margin-top:8px;}
   @media(max-width:700px){.ledger li{grid-template-columns:1fr;gap:6px;padding:18px 0;}}
 
+  .cta-band p a.cta-link{color:var(--cream);border-bottom:1px solid rgba(253,250,246,.4);}
+  .cta-band p a.cta-link:hover{border-color:var(--cream);}
   .contact{margin-top:clamp(64px,8vw,96px);padding-top:clamp(32px,4vw,44px);border-top:1px solid var(--cream-warm);}
   .contact h2{font-size:clamp(1.5rem,2.8vw,2.1rem);color:var(--ink);}
   .contact p{margin-top:12px;font-size:1.0625rem;color:var(--ink);max-width:36em;}
@@ -508,7 +512,7 @@
         <div class="qa-block" id="own-key">
           <h3>Why do I need my own AI key?</h3>
           <p class="answer">Because there is no Catchr server. Your resume and the job go from your browser straight to Google's Gemini API using your key, so nobody in between sees them.</p>
-          <p class="detail">It's also why Catchr can be free: there's nothing for us to run or pay for. Getting a key takes about a minute. The <a href="setup.html">setup guide</a> walks you through it.</p>
+          <p class="detail">It's also why Catchr can be free: there's nothing for us to run or pay for. The <a href="setup.html">setup guide</a> walks you through getting a key.</p>
         </div>
 
         <div class="qa-block" id="paid-key">
@@ -531,8 +535,8 @@
 
         <div class="qa-block" id="job-sites">
           <h3>Which job sites does it work on?</h3>
-          <p class="answer">LinkedIn, Indeed, Greenhouse, Lever, Wellfound, and Ashby. On those sites, the Catch It button sits right on the job posting.</p>
-          <p class="detail">On any other job site, click the Catchr icon in Chrome's toolbar. If Catchr can't find the job description there, paste it in and carry on.</p>
+          <p class="answer">LinkedIn, Indeed, Greenhouse, Lever, Wellfound, and Ashby. On these sites, Catchr adds a Catch It button to the job posting. If you don't see it, click the Catchr icon in Chrome's toolbar.</p>
+          <p class="detail">On other job sites, use the toolbar icon too. If Catchr can't find the job description there, you can paste it in.</p>
           <figure class="shot">
             <img src="assets/in-site.webp" alt="The Catchr button on a job posting, ready to save the job to Google Sheets" loading="lazy" />
             <figcaption>Catchr's button on a job posting.</figcaption>
@@ -579,36 +583,36 @@
 
         <ul class="ledger">
           <li id="err-quota">
-            <h3>“Your Gemini quota is used up for now.”</h3>
-            <p>The free tier has daily limits. Wait a few minutes and try again. If it keeps happening, you've hit the day's limit, and the AI tools work again once it resets. You can check your limits in Google AI Studio.</p>
+            <h3><span class="msg">“Your Gemini quota is used up for now. Wait a few minutes and try again, or check your limits in Google AI Studio.”</span></h3>
+            <p>The free tier has daily limits. If waiting a few minutes doesn't help, you've hit the day's limit, and the AI tools work again once it resets.</p>
           </li>
           <li id="err-busy">
-            <h3>“Gemini is busy. Try again in a minute.” or “Gemini took too long to respond.”</h3>
+            <h3><span class="msg">“Gemini is busy. Try again in a minute.”</span><span class="msg">“Gemini took too long to respond. Please try again.”</span></h3>
             <p>Google's servers are under load. Nothing is wrong with your setup. Wait a minute and try again.</p>
           </li>
           <li id="err-key">
-            <h3>“Your Gemini API key looks invalid.”</h3>
+            <h3><span class="msg">“Your Gemini API key looks invalid. Update it in Settings (⚙️).”</span></h3>
             <p>Copy your key again from Google AI Studio and paste it into Catchr's <strong>Settings</strong>. Check that nothing was cut off at either end.</p>
           </li>
           <li id="err-restrict">
-            <h3>“Your Gemini key needs to be restricted to the Gemini API.”</h3>
-            <p>Open the key in Google AI Studio and click <strong>Restrict to Gemini API</strong>, or create a new key. Then try again.</p>
+            <h3><span class="msg">“Your Gemini key needs to be restricted to the Gemini API. Open it in Google AI Studio, click ‘Restrict to Gemini API’ (or create a new key), then try again.”</span></h3>
+            <p>In Google AI Studio, open your key's settings to find <strong>Restrict to Gemini API</strong>. A new key works too: paste it into Catchr's <strong>Settings</strong>.</p>
           </li>
           <li id="err-google">
-            <h3>“Google access expired.”</h3>
+            <h3><span class="msg">“Google access expired. Reconnect your account in Settings (⚙️).”</span></h3>
             <p>Open Catchr's <strong>Settings</strong> and reconnect your Google account.</p>
           </li>
           <li id="err-resume">
-            <h3>“Catchr can’t open your resume file.”</h3>
-            <p>Open <strong>Settings</strong>, click <strong>Replace</strong> next to your resume, and pick it again from Drive.</p>
+            <h3><span class="msg">“Catchr can’t open your resume file. Open Settings (⚙️) and use Replace to reconnect it from Drive.”</span></h3>
+            <p>Click <strong>Replace</strong> next to your resume and pick it again in the Google file picker.</p>
           </li>
           <li id="err-no-jd">
-            <h3>“No job description found”</h3>
+            <h3><span class="msg">“No job description found”</span></h3>
             <p>Catchr couldn't read the description on this page. Copy it from the posting, click <strong>Paste it here</strong>, paste it in, and click <strong>Use this description</strong>.</p>
           </li>
           <li id="err-button">
             <h3>The Catch It button isn't on the page</h3>
-            <p>Reload the page. If it's still missing, check that <strong>Button on job pages</strong> is on in Catchr's <strong>Settings</strong>. You can always catch the job from the Catchr icon in Chrome's toolbar instead.</p>
+            <p>Try reloading the page. If it's still missing, check that <strong>Button on job pages</strong> is on in Catchr's <strong>Settings</strong>. You can always catch the job from the Catchr icon in Chrome's toolbar instead.</p>
           </li>
         </ul>
       </section>
@@ -625,7 +629,7 @@
   <section class="cta-band">
     <div class="wrap">
       <h2>Ready to catch your first job?</h2>
-      <p>Setup takes about five minutes.</p>
+      <p>Follow the <a class="cta-link" href="setup.html">setup guide</a> to get started.</p>
       <a class="btn btn-cream btn-lg" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=faq-cta" target="_blank" rel="noopener">
         <img class="net" src="assets/net-forest.webp" alt="" />
         Add to Chrome, it's free
