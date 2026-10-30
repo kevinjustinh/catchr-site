@@ -55,8 +55,8 @@ hustle-culture urgency. Catchr makes an anxious task feel handled.
 | Cream (surface) | `#FDFAF6` | Page background, cards — the "parchment" |
 | Cream warm | `#EDE8E2` | Secondary surfaces, dividers, input fills |
 | Ink | `#2C2C2A` | Body text on cream |
-| Stone / taupe | `#8C7E6E` | Eyebrow labels, captions, secondary text |
-| Stone light | `#B0A090` | Tertiary text, muted detail |
+| Stone / taupe | `#6B5F51` | Eyebrow labels, captions, secondary text (darkened from #8C7E6E 2026-10-29 to pass 4.5:1 contrast) |
+| Stone light | `#B0A090` | Non-text detail only (dots, dividers); fails contrast for text, use Stone |
 
 ### Accent — use sparingly
 | Role | Hex | Notes |
