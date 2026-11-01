@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Catchr Setup Guide: Get Started in a Few Minutes</title>
-<meta name="description" content="Get Catchr up and running in a few minutes. Step-by-step guide to your Gemini API key, resume, and Google account setup." />
+<meta name="description" content="Get Catchr up and running in a few minutes. Step-by-step guide to your AI key (Gemini, Claude, or ChatGPT), resume, and Google account setup." />
 <link rel="canonical" href="https://www.jobcatchr.app/setup" />
 <link rel="icon" type="image/webp" href="assets/net-forest.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -297,6 +297,36 @@
   }
   .note-icon svg{width:11px;height:11px;}
 
+  /* AI provider groups in step 1: Gemini open, Claude and ChatGPT fold out */
+  .provider-head{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;
+    font-size:1.15rem;color:var(--ink);line-height:1.3;
+    margin:40px 0 0;
+  }
+  .step-lead + .provider-head{margin-top:32px;}
+  .provider-head + .substeps{margin-top:16px;}
+  .provider-alt summary + .substeps{margin-top:4px;}
+  .provider-tag{
+    font-family:var(--body);font-weight:600;font-size:0.75rem;letter-spacing:0;
+    padding:3px 10px;border-radius:999px;
+    border:1px solid var(--stone-light);color:#6B5F51;
+  }
+  .provider-tag-free{background:var(--mint-wash);border-color:rgba(125,212,168,.35);color:#2a5c41;}
+  .provider-more{margin-top:28px;font-size:0.9625rem;color:#6B5F51;}
+  .provider-alt{border-top:1px solid var(--cream-warm);}
+  .provider-alt:first-of-type{margin-top:16px;}
+  .provider-alt:last-of-type{border-bottom:1px solid var(--cream-warm);}
+  .provider-alt summary{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:20px 0;cursor:pointer;list-style:none;border-radius:4px;
+  }
+  .provider-alt summary::-webkit-details-marker{display:none;}
+  .provider-alt summary:focus-visible{outline:2px solid var(--forest);outline-offset:4px;}
+  .provider-alt summary .provider-head{margin:0;}
+  .provider-chev{flex:none;width:12px;height:8px;color:var(--stone);transition:transform .2s;}
+  .provider-alt[open] .provider-chev{transform:rotate(180deg);}
+  .provider-alt[open]{padding-bottom:28px;}
+
   @media(max-width:600px){
     .step-block{
       grid-template-columns:1fr;
@@ -352,7 +382,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Catchr" />
 <meta property="og:title" content="Catchr setup guide" />
-<meta property="og:description" content="Get Catchr up and running in a few minutes. Step-by-step guide to your Gemini API key, resume, and Google account setup." />
+<meta property="og:description" content="Get Catchr up and running in a few minutes. Step-by-step guide to your AI key (Gemini, Claude, or ChatGPT), resume, and Google account setup." />
 <meta property="og:url" content="https://www.jobcatchr.app/setup" />
 <meta property="og:image" content="https://www.jobcatchr.app/assets/og-image.jpg" />
 <meta property="og:image:width" content="2400" />
@@ -360,7 +390,7 @@
 <meta property="og:image:alt" content="Catchr: the free job tracker with AI built in. Check your fit, tailor your resume, prep the interview." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Catchr setup guide" />
-<meta name="twitter:description" content="Get Catchr up and running in a few minutes. Step-by-step guide to your Gemini API key, resume, and Google account setup." />
+<meta name="twitter:description" content="Get Catchr up and running in a few minutes. Step-by-step guide to your AI key (Gemini, Claude, or ChatGPT), resume, and Google account setup." />
 <meta name="twitter:image" content="https://www.jobcatchr.app/assets/og-image.jpg" />
 </head>
 <body>
@@ -396,7 +426,7 @@
     <div class="wrap">
       <p class="eyebrow">Setup guide</p>
       <h1>Up and running in minutes.</h1>
-      <p class="sub">Catchr needs three things to work: a free Gemini API key, your resume in Google Docs, and a Google account connection. Here's exactly how to do each one.</p>
+      <p class="sub">Catchr needs three things to work: an AI key (Gemini's is free), your resume in Google Docs, and a Google account connection. Here's exactly how to do each one.</p>
       <div class="time-badge">
         <span class="dot-mint"></span>
         About 5 minutes total
@@ -413,8 +443,9 @@
         <div class="step-num">01</div>
         <div class="step-content">
           <p class="step-eyebrow">Required</p>
-          <h2>Get a free Gemini API key</h2>
-          <p class="step-lead">Catchr's AI runs on Google's Gemini model using your own key. The free tier has daily limits, and you won't be charged unless you turn on billing yourself.</p>
+          <h2>Get an AI key</h2>
+          <p class="step-lead">Catchr's AI runs on your own key from Google, Anthropic, or OpenAI. Gemini, Google's AI, is free and the easiest place to start. Claude and ChatGPT keys work too, and those companies bill you for what you use.</p>
+          <h3 class="provider-head">Gemini <span class="provider-tag provider-tag-free">Free</span></h3>
           <ol class="substeps">
             <li>
               <span class="sub-marker">a</span>
@@ -430,13 +461,74 @@
             </li>
             <li>
               <span class="sub-marker">d</span>
-              <span>Copy the key that appears. Then paste it into the <strong>Gemini API Key</strong> field in the Catchr extension. It saves automatically.</span>
+              <span>Copy the key that appears. Then open the Catchr extension, choose <strong>Gemini</strong> as your AI, and paste the key. Already set up? Paste it in <strong>Settings</strong> instead. It saves automatically.</span>
             </li>
           </ol>
           <div class="step-note">
             <span class="note-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span>Gemini's free tier has daily limits. If you hit one, the AI tools work again once it resets. Catchr removes your name and contact details from your resume before it is sent. On the free tier, Google may use the rest (like your work history and skills) to improve its AI, and its reviewers may read it. Turning on billing for your key's project in Google AI Studio stops Google using it to improve its AI, though Google may still keep requests for a limited time to check for misuse. Your key is saved in your browser and sent only to Google's Gemini API, never to us. <strong>In the EU, Iceland, Liechtenstein, Norway, Switzerland, or the UK,</strong> Google allows only paid Gemini access, so turn on billing for your project in Google AI Studio before you use the key.</span>
           </div>
+          <p class="provider-more">Prefer Claude or ChatGPT? Steps below.</p>
+
+          <details class="provider-alt">
+            <summary><h3 class="provider-head">Claude <span class="provider-tag">Pay as you go</span></h3><svg class="provider-chev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+            <ol class="substeps">
+              <li>
+                <span class="sub-marker">a</span>
+                <span>Go to the <a href="https://console.anthropic.com" target="_blank" rel="noopener">Anthropic Console</a> and sign in or create an account.</span>
+              </li>
+              <li>
+                <span class="sub-marker">b</span>
+                <span>Open <strong>Settings → Billing</strong> and add credit. Claude is pay as you go, so start small, like $5.</span>
+              </li>
+              <li>
+                <span class="sub-marker">c</span>
+                <span>Open <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">API Keys</a>, click <strong>Create Key</strong>, and name it "Catchr". You can ignore any other settings.</span>
+              </li>
+              <li>
+                <span class="sub-marker">d</span>
+                <span>Copy the key right away. Anthropic only shows it once.</span>
+              </li>
+              <li>
+                <span class="sub-marker">e</span>
+                <span>Open the Catchr extension and choose <strong>Claude</strong> as your AI (in setup, or in <strong>Settings</strong> if you already use Catchr). Catchr shows what it will send to Anthropic. Click <strong>Use Claude</strong> to agree. Chrome then asks to let Catchr read and change your data on <strong>api.anthropic.com</strong>. Click <strong>Allow</strong>. That only lets Catchr send your requests to Anthropic, and no other site. Then paste the key.</span>
+              </li>
+            </ol>
+            <div class="step-note">
+              <span class="note-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span>A Claude Pro or Max subscription doesn't include an API key, so you'll need a Console account even if you already pay for Claude. Anthropic bills you for what you use. Your key is saved in your browser and sent only to Anthropic, never to us.</span>
+            </div>
+          </details>
+
+          <details class="provider-alt">
+            <summary><h3 class="provider-head">ChatGPT <span class="provider-tag">Pay as you go</span></h3><svg class="provider-chev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+            <ol class="substeps">
+              <li>
+                <span class="sub-marker">a</span>
+                <span>Go to the <a href="https://platform.openai.com" target="_blank" rel="noopener">OpenAI Platform</a> and sign in or create an account.</span>
+              </li>
+              <li>
+                <span class="sub-marker">b</span>
+                <span>Open <strong>Settings → Billing</strong> and add credit. The API is pay as you go, so start small, like $5.</span>
+              </li>
+              <li>
+                <span class="sub-marker">c</span>
+                <span>Open <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">API keys</a>, click <strong>Create new secret key</strong>, and name it "Catchr". You can ignore any other settings.</span>
+              </li>
+              <li>
+                <span class="sub-marker">d</span>
+                <span>Copy the key right away. OpenAI only shows it once.</span>
+              </li>
+              <li>
+                <span class="sub-marker">e</span>
+                <span>Open the Catchr extension and choose <strong>ChatGPT</strong> as your AI (in setup, or in <strong>Settings</strong> if you already use Catchr). Catchr shows what it will send to OpenAI. Click <strong>Use ChatGPT</strong> to agree. Chrome then asks to let Catchr read and change your data on <strong>api.openai.com</strong>. Click <strong>Allow</strong>. That only lets Catchr send your requests to OpenAI, and no other site. Then paste the key.</span>
+              </li>
+            </ol>
+            <div class="step-note">
+              <span class="note-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span>A ChatGPT Plus or Pro subscription doesn't include an API key, so you'll need a Platform account even if you already pay for ChatGPT. OpenAI bills you for what you use. Your key is saved in your browser and sent only to OpenAI, never to us.</span>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -471,7 +563,7 @@
           </ol>
           <div class="step-note">
             <span class="note-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Catchr never stores your resume on a server of its own. It reads it from your Google Docs when you use an AI tool, and only the file you select is ever accessed. Before your resume goes to the AI, Catchr removes your name and contact details.</span>
+            <span>Catchr never stores your resume on a server of its own. It reads it directly from your Google Docs when you use an AI tool, and only the file you select is ever accessed. Before your resume goes to the AI, Catchr removes your name and contact details.</span>
           </div>
         </div>
       </div>
@@ -553,7 +645,7 @@
             <img class="net" src="assets/net-cream.webp" alt="" />
             <span class="word">Catchr</span>
           </div>
-          <p class="foot-tag">Know your fit, tailor your resume, and walk into every interview ready. Catchr is free; you bring your own Gemini key.</p>
+          <p class="foot-tag">Know your fit, tailor your resume, and walk into every interview ready. Catchr is free, and the AI runs on your own key.</p>
         </div>
         <div class="foot-links">
           <a href="/#features">Features</a>
