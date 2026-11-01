@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Catchr Help and FAQ: Cost, Privacy, and Fixes | Catchr</title>
-<meta name="description" content="Answers about Catchr, the free AI job tracker for Chrome: what it costs, why you use your own Gemini key, what it can see, which job sites it works on, and how to fix common error messages." />
+<meta name="description" content="Answers about Catchr, the free AI job tracker for Chrome: what it costs, why you use your own AI key (Gemini, Claude, or ChatGPT), what it can see, which job sites it works on, and how to fix common error messages." />
 <link rel="canonical" href="https://www.jobcatchr.app/faq" />
 <link rel="icon" type="image/webp" href="assets/net-forest.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -406,7 +406,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Catchr" />
 <meta property="og:title" content="Catchr help and FAQ" />
-<meta property="og:description" content="Answers about Catchr, the free AI job tracker for Chrome: what it costs, why you use your own Gemini key, what it can see, which job sites it works on, and how to fix common error messages." />
+<meta property="og:description" content="Answers about Catchr, the free AI job tracker for Chrome: what it costs, why you use your own AI key (Gemini, Claude, or ChatGPT), what it can see, which job sites it works on, and how to fix common error messages." />
 <meta property="og:url" content="https://www.jobcatchr.app/faq" />
 <meta property="og:image" content="https://www.jobcatchr.app/assets/og-image.jpg" />
 <meta property="og:image:width" content="2400" />
@@ -414,7 +414,7 @@
 <meta property="og:image:alt" content="Catchr: the free job tracker with AI built in. Check your fit, tailor your resume, prep the interview." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Catchr help and FAQ" />
-<meta name="twitter:description" content="Answers about Catchr, the free AI job tracker for Chrome: what it costs, why you use your own Gemini key, what it can see, which job sites it works on, and how to fix common error messages." />
+<meta name="twitter:description" content="Answers about Catchr, the free AI job tracker for Chrome: what it costs, why you use your own AI key (Gemini, Claude, or ChatGPT), what it can see, which job sites it works on, and how to fix common error messages." />
 <meta name="twitter:image" content="https://www.jobcatchr.app/assets/og-image.jpg" />
 </head>
 <body>
@@ -463,7 +463,7 @@
           <ul>
             <li><a href="#free">Is Catchr free?</a></li>
             <li><a href="#own-key">Why do I need my own AI key?</a></li>
-            <li><a href="#paid-key">What does a paid Gemini key cost?</a></li>
+            <li><a href="#paid-key">What does a paid AI key cost?</a></li>
             <li><a href="#google-access">What can Catchr see in my Google account?</a></li>
             <li><a href="#resume">Does anyone see my resume?</a></li>
             <li><a href="#job-sites">Which job sites does it work on?</a></li>
@@ -474,7 +474,8 @@
           <ul>
             <li><a href="#template">Do I need a tracker template?</a></li>
             <li><a href="#fit-score">How accurate is the fit score?</a></li>
-            <li><a href="#other-ai">Can I use Claude or ChatGPT?</a></li>
+            <li><a href="#which-ai">Which AI can I use?</a></li>
+            <li><a href="#subscription">Does my ChatGPT or Claude subscription work?</a></li>
             <li><a href="#eu-uk">Does it work in the EU or UK?</a></li>
             <li><a href="#remove">How do I remove Catchr and my data?</a></li>
           </ul>
@@ -483,9 +484,11 @@
           <p class="eyebrow">If something goes wrong</p>
           <ul>
             <li><a href="#err-quota">Quota used up</a></li>
-            <li><a href="#err-busy">Gemini is busy or slow</a></li>
+            <li><a href="#err-busy">AI is busy or slow</a></li>
             <li><a href="#err-key">Key looks invalid</a></li>
-            <li><a href="#err-restrict">Key needs restricting</a></li>
+            <li><a href="#err-permission">Needs permission for your AI</a></li>
+            <li><a href="#err-agreement">Needs your OK for Claude or ChatGPT</a></li>
+            <li><a href="#err-restrict">Gemini key needs restricting</a></li>
             <li><a href="#err-google">Google access expired</a></li>
             <li><a href="#err-resume">Can't open your resume</a></li>
             <li><a href="#err-no-jd">No job description found</a></li>
@@ -505,20 +508,20 @@
 
         <div class="qa-block" id="free">
           <h3>Is Catchr free?</h3>
-          <p class="answer">Yes. Catchr has no price, no account, and no subscription. Its AI runs on your own Google Gemini key, and Gemini has a free tier.</p>
-          <p class="detail">Gemini's free tier has daily limits. If you hit one, the AI tools work again once it resets. Google won't charge you unless you turn on billing for your key yourself.</p>
+          <p class="answer">Yes. Catchr has no price, no account, and no subscription. Its AI runs on your own key, and Gemini has a free tier.</p>
+          <p class="detail">Gemini's free tier has daily limits. If you hit one, the AI tools work again once it resets. Google won't charge you unless you turn on billing for your key yourself. Claude and ChatGPT keys work too, but they're paid: Anthropic or OpenAI bills you for what you use.</p>
         </div>
 
         <div class="qa-block" id="own-key">
           <h3>Why do I need my own AI key?</h3>
-          <p class="answer">Because there is no Catchr server. Your resume and the job go from your browser straight to Google's Gemini API using your key, so nobody in between sees them.</p>
+          <p class="answer">Because there is no Catchr server. Your resume and the job go from your browser straight to the AI you choose (Gemini, Claude, or ChatGPT) using your key, so nobody in between sees them.</p>
           <p class="detail">It's also why Catchr can be free: there's nothing for us to run or pay for. The <a href="/setup">setup guide</a> walks you through getting a key.</p>
         </div>
 
         <div class="qa-block" id="paid-key">
-          <h3>What does a paid Gemini key cost?</h3>
-          <p class="answer">You pay Google for what you use, at Google's prices. Catchr charges nothing.</p>
-          <p class="detail">Billing is optional in most places. Turning it on stops Google using your requests to improve its AI. Google lists its current prices on its <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener">Gemini API pricing page</a>.</p>
+          <h3>What does a paid AI key cost?</h3>
+          <p class="answer">You pay the AI company for what you use, at its own prices. Catchr charges nothing.</p>
+          <p class="detail">Claude and ChatGPT are pay as you go: you add credit to your account first, and each use draws from it. The <a href="/setup">setup guide</a> suggests starting small, like $5. With Gemini, billing is optional in most places, and turning it on stops Google using your requests to improve its AI. Current prices: <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener">Gemini</a>, <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">Claude API</a>, <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">OpenAI API</a>.</p>
         </div>
 
         <div class="qa-block" id="google-access">
@@ -529,8 +532,8 @@
 
         <div class="qa-block" id="resume">
           <h3>Does anyone see my resume?</h3>
-          <p class="answer">We never do. Catchr reads your resume in your browser and sends it only to the AI, with your name and contact details removed first.</p>
-          <p class="detail">The removal works by matching text, so <strong>it can miss details</strong> written in an unusual way, like a nickname or an email address spelled out in words. If something must stay private, leave it out of the resume you use with Catchr. On Gemini's free tier, Google may use the rest (like your work history and skills) to improve its AI, and its reviewers may read it. The <a href="/privacy">privacy policy</a> has the full detail.</p>
+          <p class="answer">We never do. Catchr reads your resume in your browser and sends it only to the AI you chose, with your name and contact details removed first.</p>
+          <p class="detail">The removal works by matching text, so <strong>it can miss details</strong> written in an unusual way, like a nickname or an email address spelled out in words. If something must stay private, leave it out of the resume you use with Catchr. Each AI company handles what you send under its own terms. On Gemini's free tier, Google may use the rest (like your work history and skills) to improve its AI, and its reviewers may read it. The <a href="/privacy">privacy policy</a> has the full detail.</p>
         </div>
 
         <div class="qa-block" id="job-sites">
@@ -556,24 +559,31 @@
         <div class="qa-block" id="fit-score">
           <h3>How accurate is the fit score?</h3>
           <p class="answer">It's a guide, not a verdict. It compares your resume with what the job asks for and shows what matches and what's missing.</p>
-          <p class="detail">The same job can score a few points differently from one check to the next, and AI can make mistakes. Read the matches and gaps, not just the number.</p>
+          <p class="detail">The same job can score a few points differently from one check to the next, and AI can make mistakes. Scores can differ between AIs, even for the same resume and job, so compare scores from the same AI. Read the matches and gaps, not just the number.</p>
         </div>
 
-        <div class="qa-block" id="other-ai">
-          <h3>Can I use Claude or ChatGPT?</h3>
-          <p class="answer">Not yet. Catchr runs on Google Gemini today.</p>
+        <div class="qa-block" id="which-ai">
+          <h3>Which AI can I use?</h3>
+          <p class="answer">Gemini, Claude, or ChatGPT. Choose one when you set up Catchr, or later in <strong>Settings</strong>, and paste its key.</p>
+          <p class="detail">Gemini has a free tier where available and is the easiest place to start. The first time you choose Claude or ChatGPT, Catchr shows exactly what it will send to that company and asks for your OK. Nothing goes to them until you click <strong>Use Claude</strong> or <strong>Use ChatGPT</strong>. Then Chrome asks to let Catchr send requests to that company. Click <strong>Allow</strong>. It covers that one company and no other site.</p>
+        </div>
+
+        <div class="qa-block" id="subscription">
+          <h3>Does my ChatGPT or Claude subscription work?</h3>
+          <p class="answer">No. A ChatGPT Plus or Claude Pro subscription doesn't include an API key, which is what Catchr needs.</p>
+          <p class="detail">You'll need a separate account on the <strong>OpenAI Platform</strong> or the <strong>Anthropic Console</strong>, even if you already pay for the chat app. The <a href="/setup">setup guide</a> shows each step.</p>
         </div>
 
         <div class="qa-block" id="eu-uk">
           <h3>Does it work in the EU or UK?</h3>
-          <p class="answer">Yes, with billing turned on. In the EU, Iceland, Liechtenstein, Norway, Switzerland, or the UK, Google allows only paid Gemini access.</p>
-          <p class="detail">Turn on billing for your key's project in Google AI Studio before you use the key with Catchr.</p>
+          <p class="answer">Yes. With Gemini, turn on billing first: in the EU, Iceland, Liechtenstein, Norway, Switzerland, or the UK, Google allows only paid Gemini access.</p>
+          <p class="detail">Turn on billing for your key's project in Google AI Studio before you use the key with Catchr. The Gemini billing step doesn't apply to Claude or ChatGPT. Set up billing with Anthropic or OpenAI before using those keys.</p>
         </div>
 
         <div class="qa-block" id="remove">
           <h3>How do I remove Catchr and my data?</h3>
           <p class="answer">Uninstall the extension. That removes everything Catchr stored in your browser, including your API key.</p>
-          <p class="detail">To remove Catchr's access to your Google account, open your Google account's <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener">third-party connections</a> and remove Catchr. Sheets and documents it made stay in your Drive until you delete them. To retire your key, delete it in Google AI Studio.</p>
+          <p class="detail">To remove Catchr's access to your Google account, open your Google account's <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener">third-party connections</a> and remove Catchr. Sheets and documents it made stay in your Drive until you delete them. To retire your key, delete it where you made it: Google AI Studio, the Anthropic Console, or the OpenAI Platform.</p>
         </div>
       </section>
 
@@ -583,20 +593,28 @@
 
         <ul class="ledger">
           <li id="err-quota">
-            <h3><span class="msg">“Your Gemini quota is used up for now. Wait a few minutes and try again, or check your limits in Google AI Studio.”</span></h3>
-            <p>Gemini has usage limits, including daily ones on the free tier. If it keeps happening, check your limits in Google AI Studio. You may need to wait for that limit to reset.</p>
+            <h3><span class="msg">“Your Gemini quota is used up for now. Wait a few minutes and try again, or check your limits in Google AI Studio.”</span><span class="msg">“You’ve hit your provider’s rate limit or quota. Wait a moment, or check your plan and billing with your provider.”</span></h3>
+            <p>If it keeps happening on Gemini, check your limits in Google AI Studio. You may need to wait for that limit to reset. On Claude or ChatGPT, check that your account still has credit in its billing settings.</p>
           </li>
           <li id="err-busy">
-            <h3><span class="msg">“Gemini is busy. Try again in a minute.”</span><span class="msg">“Gemini took too long to respond. Please try again.”</span></h3>
-            <p>“Busy” means Google's servers are overloaded, which is on their side. “Took too long” means the request didn't finish. Either way, wait a minute and try again. If it keeps happening, check your internet connection.</p>
+            <h3><span class="msg">“Gemini is busy. Try again in a minute.”</span><span class="msg">“Your AI provider is busy. Try again in a minute.”</span><span class="msg">“Gemini took too long to respond. Please try again.”</span><span class="msg">“The AI took too long to respond. Please try again.”</span></h3>
+            <p>“Busy” means the AI company's servers are overloaded, which is on their side. “Took too long” means the request didn't finish. Either way, wait a minute and try again. If it keeps happening, check your internet connection.</p>
           </li>
           <li id="err-key">
-            <h3><span class="msg">“Your Gemini API key looks invalid. Update it in Settings (⚙️).”</span></h3>
-            <p>Copy your key again from Google AI Studio and paste it into Catchr's <strong>Settings</strong>. Check that nothing was cut off at either end.</p>
+            <h3><span class="msg">“Your Gemini API key looks invalid. Update it in Settings (⚙️).”</span><span class="msg">“That API key looks invalid. Check it in your provider’s console, then update it in Settings (⚙️).”</span></h3>
+            <p>Copy your key again from where you made it (Google AI Studio, the Anthropic Console, or the OpenAI Platform) and paste it into Catchr's <strong>Settings</strong>. Check that nothing was cut off at either end.</p>
+          </li>
+          <li id="err-permission">
+            <h3><span class="msg">“Catchr needs your permission to use this AI provider. Open Settings (⚙️), remove your API key, then add it again to allow access.”</span></h3>
+            <p>Chrome's access to that AI company was turned off. Open <strong>Settings</strong> and click <strong>Allow access</strong> (removing and re-adding the key works too). When Chrome asks, click <strong>Allow</strong>.</p>
+          </li>
+          <li id="err-agreement">
+            <h3><span class="msg">“Catchr needs your OK before sending your resume to Claude. Open Settings (⚙️) to review what is shared.”</span></h3>
+            <p>Shown for Claude or ChatGPT when you haven't agreed yet, or when what Catchr sends to that company has changed. Open <strong>Settings</strong>, read what gets sent, and click <strong>Use Claude</strong> or <strong>Use ChatGPT</strong>. Or switch back to Gemini.</p>
           </li>
           <li id="err-restrict">
             <h3><span class="msg">“Your Gemini key needs to be restricted to the Gemini API. Open it in Google AI Studio, click ‘Restrict to Gemini API’ (or create a new key), then try again.”</span></h3>
-            <p>In Google AI Studio, open your key's settings to find <strong>Restrict to Gemini API</strong>. A new key works too: paste it into Catchr's <strong>Settings</strong>.</p>
+            <p>Gemini only. In Google AI Studio, open your key's settings to find <strong>Restrict to Gemini API</strong>. A new key works too: paste it into Catchr's <strong>Settings</strong>.</p>
           </li>
           <li id="err-google">
             <h3><span class="msg">“Google access expired. Reconnect your account in Settings (⚙️).”</span></h3>
@@ -647,7 +665,7 @@
             <img class="net" src="assets/net-cream.webp" alt="" />
             <span class="word">Catchr</span>
           </div>
-          <p class="foot-tag">Know your fit, tailor your resume, and walk into every interview ready. Catchr is free; you bring your own Gemini key.</p>
+          <p class="foot-tag">Know your fit, tailor your resume, and walk into every interview ready. Catchr is free, and the AI runs on your own key.</p>
         </div>
         <div class="foot-links">
           <a href="/#features">Features</a>
