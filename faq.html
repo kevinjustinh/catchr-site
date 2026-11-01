@@ -514,8 +514,8 @@
 
         <div class="qa-block" id="own-key">
           <h3>Why do I need my own AI key?</h3>
-          <p class="answer">Because there is no Catchr server. Your resume and the job go from your browser straight to the AI you choose (Gemini, Claude, or ChatGPT) using your key, so nobody in between sees them.</p>
-          <p class="detail">It's also why Catchr can be free: there's nothing for us to run or pay for. The <a href="/setup">setup guide</a> walks you through getting a key.</p>
+          <p class="answer">Your resume and the job description go directly from your browser to your chosen AI (Gemini, Claude, or ChatGPT) using your own key. They never pass through a Catchr data server.</p>
+          <p class="detail">You manage that key, and any AI charges, with the company that issued it. It's also why Catchr can be free: there's nothing for us to run or pay for. The <a href="/setup">setup guide</a> walks you through getting a key.</p>
         </div>
 
         <div class="qa-block" id="paid-key">
@@ -532,8 +532,8 @@
 
         <div class="qa-block" id="resume">
           <h3>Does anyone see my resume?</h3>
-          <p class="answer">We never do. Catchr reads your resume in your browser and sends it only to the AI you chose, with your name and contact details removed first.</p>
-          <p class="detail">The removal works by matching text, so <strong>it can miss details</strong> written in an unusual way, like a nickname or an email address spelled out in words. If something must stay private, leave it out of the resume you use with Catchr. Each AI company handles what you send under its own terms. On Gemini's free tier, Google may use the rest (like your work history and skills) to improve its AI, and its reviewers may read it. The <a href="/privacy">privacy policy</a> has the full detail.</p>
+          <p class="answer">We never do. Catchr reads your resume in your browser and sends it only to the AI you chose, with the name and contact details it detects removed first.</p>
+          <p class="detail">The removal works by matching text, so <strong>it can miss details</strong>, and the rest of your work history may still identify you. If something must stay private, leave it out of the resume you use with Catchr. Each AI company handles what you send under its own terms. On Gemini's free tier, Google may use the rest (like your work history and skills) to improve its AI, and its reviewers may read it. Google's free-tier terms also say not to submit personal, confidential, or sensitive information, so if your resume contains any, turn on billing for your key's project first. The <a href="/privacy">privacy policy</a> has the full detail.</p>
         </div>
 
         <div class="qa-block" id="job-sites">
@@ -605,15 +605,15 @@
             <p>Copy your key again from where you made it (Google AI Studio, the Anthropic Console, or the OpenAI Platform) and paste it into Catchr's <strong>Settings</strong>. Check that nothing was cut off at either end.</p>
           </li>
           <li id="err-permission">
-            <h3><span class="msg">“Catchr needs your permission to use this AI provider. Open Settings (⚙️), remove your API key, then add it again to allow access.”</span></h3>
-            <p>Chrome's access to that AI company was turned off. Open <strong>Settings</strong> and click <strong>Allow access</strong> (removing and re-adding the key works too). When Chrome asks, click <strong>Allow</strong>.</p>
+            <h3><span class="msg">“Catchr needs your permission to use this AI provider. Open Settings (⚙️) and click Allow access.”</span></h3>
+            <p>Catchr's access to that AI company was turned off in Chrome. Open <strong>Settings</strong> and click <strong>Allow access</strong>. When Chrome asks, click <strong>Allow</strong>. Your saved key stays in place.</p>
           </li>
           <li id="err-agreement">
             <h3><span class="msg">“Catchr needs your OK before sending your resume to Claude. Open Settings (⚙️) to review what is shared.”</span></h3>
             <p>Shown for Claude or ChatGPT when you haven't agreed yet, or when what Catchr sends to that company has changed. Open <strong>Settings</strong>, read what gets sent, and click <strong>Use Claude</strong> or <strong>Use ChatGPT</strong>. Or switch back to Gemini.</p>
           </li>
           <li id="err-restrict">
-            <h3><span class="msg">“Your Gemini key needs to be restricted to the Gemini API. Open it in Google AI Studio, click ‘Restrict to Gemini API’ (or create a new key), then try again.”</span></h3>
+            <h3><span class="msg">“Your Gemini key needs to be restricted to the Gemini API. Open it in Google AI Studio, click "Restrict to Gemini API" (or create a new key), then try again.”</span></h3>
             <p>Gemini only. In Google AI Studio, open your key's settings to find <strong>Restrict to Gemini API</strong>. A new key works too: paste it into Catchr's <strong>Settings</strong>.</p>
           </li>
           <li id="err-google">
@@ -625,7 +625,7 @@
             <p>Click <strong>Replace</strong> next to your resume and pick it again in the Google file picker.</p>
           </li>
           <li id="err-no-jd">
-            <h3><span class="msg">“No job description found”</span></h3>
+            <h3><span class="msg">“No job description found. Open a job listing first.”</span></h3>
             <p>Catchr couldn't read the description on this page. Copy it from the posting, click <strong>Paste it here</strong>, paste it in, and click <strong>Use this description</strong>.</p>
           </li>
           <li id="err-button">
