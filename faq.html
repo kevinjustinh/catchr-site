@@ -509,7 +509,7 @@
         <div class="qa-block" id="free">
           <h3>Is Catchr free?</h3>
           <p class="answer">Yes. Catchr has no price, no account, and no subscription. Its AI runs on your own key, and Gemini has a free tier.</p>
-          <p class="detail">Gemini's free tier has daily limits. If you hit one, the AI tools work again once it resets. Google won't charge you unless you turn on billing for your key yourself. Claude and ChatGPT keys work too, but they're paid: Anthropic or OpenAI bills you for what you use.</p>
+          <p class="detail">Gemini's free tier has daily limits, and Google doesn't offer it on every account. If you hit a limit, the AI tools work again once it resets. Google won't charge you unless you turn on billing for your key yourself. Claude and ChatGPT keys work too, but they're paid: Anthropic or OpenAI bills you for what you use.</p>
         </div>
 
         <div class="qa-block" id="own-key">
@@ -521,7 +521,7 @@
         <div class="qa-block" id="paid-key">
           <h3>What does a paid AI key cost?</h3>
           <p class="answer">You pay the AI company for what you use, at its own prices. Catchr charges nothing.</p>
-          <p class="detail">Claude and ChatGPT are pay as you go: you add credit to your account first, and each use draws from it. The <a href="/setup">setup guide</a> suggests starting small, like $5. With Gemini, billing is optional in most places, and turning it on stops Google using your requests to improve its AI. Current prices: <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener">Gemini</a>, <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">Claude API</a>, <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">OpenAI API</a>.</p>
+          <p class="detail">Claude and ChatGPT are pay as you go: each use draws from the credit on your account, so check you have some before you start. The <a href="/setup">setup guide</a> suggests starting small, like $5. With Gemini, billing is optional in most places, and turning it on stops Google using your requests to improve its AI. Current prices: <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener">Gemini</a>, <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">Claude API</a>, <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">OpenAI API</a>.</p>
         </div>
 
         <div class="qa-block" id="google-access">
@@ -564,7 +564,7 @@
 
         <div class="qa-block" id="which-ai">
           <h3>Which AI can I use?</h3>
-          <p class="answer">Gemini, Claude, or ChatGPT. Choose one when you set up Catchr, or later in <strong>Settings</strong>, and paste its key.</p>
+          <p class="answer">Gemini, Claude, or ChatGPT. Choose one when you set up Catchr and paste its key. To switch later, open <strong>Settings</strong>, click your current AI, and pick another from the list.</p>
           <p class="detail">Gemini has a free tier where available and is the easiest place to start. The first time you choose Claude or ChatGPT, Catchr shows exactly what it will send to that company and asks for your OK. Nothing goes to them until you click <strong>Use Claude</strong> or <strong>Use ChatGPT</strong>. Then Chrome asks to let Catchr send requests to that company. Click <strong>Allow</strong>. It covers that one company and no other site.</p>
         </div>
 
@@ -597,12 +597,20 @@
             <p>If it keeps happening on Gemini, check your limits in Google AI Studio. You may need to wait for that limit to reset. On Claude or ChatGPT, check that your account still has credit in its billing settings.</p>
           </li>
           <li id="err-busy">
-            <h3><span class="msg">“Gemini is busy. Try again in a minute.”</span><span class="msg">“Your AI provider is busy. Try again in a minute.”</span><span class="msg">“Gemini took too long to respond. Please try again.”</span><span class="msg">“The AI took too long to respond. Please try again.”</span></h3>
-            <p>“Busy” means the AI company's servers are overloaded, which is on their side. “Took too long” means the request didn't finish. Either way, wait a minute and try again. If it keeps happening, check your internet connection.</p>
+            <h3><span class="msg">“Gemini is busy.”</span><span class="msg">“Claude is busy.” or “ChatGPT is busy.”</span><span class="msg">“It ran out of time.”</span><span class="msg">“Gemini took too long to respond. Please try again.”</span><span class="msg">“The AI took too long to respond. Please try again.”</span></h3>
+            <p>“Busy” means the AI company's servers are overloaded, which is on their side. “Ran out of time” or “took too long” means the request didn't finish. Either way, wait a minute and click <strong>Try again</strong>. If it keeps happening, check your internet connection.</p>
           </li>
           <li id="err-key">
             <h3><span class="msg">“Your Gemini API key looks invalid. Update it in Settings (⚙️).”</span><span class="msg">“That API key looks invalid. Check it in your provider’s console, then update it in Settings (⚙️).”</span></h3>
-            <p>Copy your key again from where you made it (Google AI Studio, the Anthropic Console, or the OpenAI Platform) and paste it into Catchr's <strong>Settings</strong>. Check that nothing was cut off at either end.</p>
+            <p>Click <strong>Open Settings</strong> on the message (if Chrome won't open it, click the Catchr icon in your toolbar, then the gear). Click <strong>Change</strong> next to your key and paste the full key again. Check that nothing was cut off at either end. Lost it? Make a new key where you made the first one: Google AI Studio, the Anthropic Console, or the OpenAI Platform.</p>
+          </li>
+          <li id="err-free-tier">
+            <h3><span class="msg">“Google isn't offering Gemini's free tier on this account. Set up billing in Google AI Studio, or switch to Claude or ChatGPT in Settings.”</span></h3>
+            <p>Google doesn't give every account a free tier, and waiting won't change it. Turn on billing for your key's project in Google AI Studio, or switch to Claude or ChatGPT in <strong>Settings</strong> and add that key.</p>
+          </li>
+          <li id="err-rejected">
+            <h3><span class="msg">“That key was rejected. Double-check it.”</span></h3>
+            <p>The AI company turned the key down when Catchr checked it. Make sure you copied the whole key, and that it's for the AI you picked: a Gemini key won't work for Claude. In setup you can also click <strong>I'll set this up later</strong> and add the key in <strong>Settings</strong>.</p>
           </li>
           <li id="err-permission">
             <h3><span class="msg">“Catchr needs your permission to use this AI provider. Open Settings (⚙️) and click Allow access.”</span></h3>
@@ -617,16 +625,20 @@
             <p>Gemini only. In Google AI Studio, open your key's settings to find <strong>Restrict to Gemini API</strong>. A new key works too: paste it into Catchr's <strong>Settings</strong>.</p>
           </li>
           <li id="err-google">
-            <h3><span class="msg">“Google access expired. Reconnect your account in Settings (⚙️).”</span></h3>
-            <p>Open Catchr's <strong>Settings</strong> and reconnect your Google account.</p>
+            <h3><span class="msg">“Google signed you out.”</span></h3>
+            <p>Click <strong>Reconnect Google</strong> on the message and sign in when Google asks. Then run the tool again.</p>
           </li>
           <li id="err-resume">
-            <h3><span class="msg">“Catchr can’t open your resume file. Open Settings (⚙️) and use Replace to reconnect it from Drive.”</span></h3>
-            <p>Click <strong>Replace</strong> next to your resume and pick it again in the Google file picker.</p>
+            <h3><span class="msg">“Catchr can’t open your resume.”</span></h3>
+            <p>Open <strong>Settings</strong>, click <strong>Replace</strong> next to your resume, and pick it again in the Google file picker.</p>
+          </li>
+          <li id="err-picker">
+            <h3><span class="msg">“Couldn't connect to Google. Try again.”</span></h3>
+            <p>The Google file picker couldn't open. Click the button again and sign in if Google asks. If Catchr says it couldn't reach the server instead, check your internet connection first.</p>
           </li>
           <li id="err-no-jd">
-            <h3><span class="msg">“No job description found. Open a job listing first.”</span></h3>
-            <p>Catchr couldn't read the description on this page. Copy it from the posting, click <strong>Paste it here</strong>, paste it in, and click <strong>Use this description</strong>.</p>
+            <h3><span class="msg">“No job description found.”</span></h3>
+            <p>Catchr couldn't read the description on this page. Copy it from the posting, click <strong>Paste the description</strong> on the message (or <strong>Paste it here</strong> on Catchr's main screen), paste it in, and click <strong>Use this description</strong>.</p>
           </li>
           <li id="err-button">
             <h3>The Catch It button isn't on the page</h3>

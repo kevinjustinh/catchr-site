@@ -426,7 +426,7 @@
     <div class="wrap">
       <p class="eyebrow">Setup guide</p>
       <h1>Up and running in minutes.</h1>
-      <p class="sub">Catchr needs three things to work: an AI key (Gemini's is free), your resume in Google Docs, and a Google account connection. Here's exactly how to do each one.</p>
+      <p class="sub">Catchr needs two things: your own AI key and your resume in Google Docs. Open Catchr, click <strong>Accept &amp; Continue</strong> on the welcome screen, then follow the steps below.</p>
       <div class="time-badge">
         <span class="dot-mint"></span>
         About 5 minutes total
@@ -444,8 +444,8 @@
         <div class="step-content">
           <p class="step-eyebrow">Required</p>
           <h2>Get an AI key</h2>
-          <p class="step-lead">Catchr's AI runs on your own key from Google, Anthropic, or OpenAI. Gemini, Google's AI, is free and the easiest place to start. Claude and ChatGPT keys work too, and those companies bill you for what you use.</p>
-          <h3 class="provider-head">Gemini <span class="provider-tag provider-tag-free">Free</span></h3>
+          <p class="step-lead">Catchr's AI runs on your own key from Google, Anthropic, or OpenAI. Gemini, Google's AI, has a free tier and is the easiest place to start, though Google asks some accounts and regions to turn on billing. Claude and ChatGPT keys work too, and those companies bill you for what you use.</p>
+          <h3 class="provider-head">Gemini <span class="provider-tag provider-tag-free">Free tier</span></h3>
           <ol class="substeps">
             <li>
               <span class="sub-marker">a</span>
@@ -461,12 +461,12 @@
             </li>
             <li>
               <span class="sub-marker">d</span>
-              <span>Copy the key that appears. Open Catchr, select <strong>Gemini</strong> under Choose your AI, and click <strong>Continue</strong>. Paste the key, then click <strong>Get Started</strong> to check and save it. Already set up? Paste it in <strong>Settings</strong> instead, where it saves automatically.</span>
+              <span>Copy the key that appears. In Catchr, choose <strong>Gemini</strong> under Choose your AI and click <strong>Continue</strong>. Paste the key into <strong>Gemini API key</strong>. Catchr checks it right away and shows <strong>Valid</strong>. Then add your resume (step 2) before you click <strong>Get Started</strong>. Already set up? Open <strong>Settings</strong>, click <strong>Change</strong> next to your key, and paste the new one. It saves automatically.</span>
             </li>
           </ol>
           <div class="step-note">
             <span class="note-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.6 9 10 3" stroke="#1f5a3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span>Gemini's free tier has daily limits. If you hit one, the AI tools work again once it resets. Catchr removes the name and contact details it detects from your resume before it is sent, though this can miss details. On the free tier, Google may use the rest (like your work history and skills) to improve its AI, and its reviewers may read it. Turning on billing for your key's project in Google AI Studio stops Google using it to improve its AI, though Google may still keep requests for a limited time to check for misuse. Google's free-tier terms also say not to submit personal, confidential, or sensitive information, so if your resume contains any, turn on billing first. Your key is saved in your browser and sent only to Google's Gemini API, never to us. <strong>In the EU, Iceland, Liechtenstein, Norway, Switzerland, or the UK,</strong> Google allows only paid Gemini access, so turn on billing for your project in Google AI Studio before you use the key.</span>
+            <span>Gemini's free tier has daily limits, and Google doesn't offer it on every account. If you hit a limit, the AI tools work again once it resets. If Catchr says Google isn't offering the free tier on your account, turn on billing in Google AI Studio or switch to Claude or ChatGPT. Catchr removes the name and contact details it detects from your resume before it is sent, though this can miss details. On the free tier, Google may use the rest (like your work history and skills) to improve its AI, and its reviewers may read it. Turning on billing for your key's project in Google AI Studio stops Google using it to improve its AI, though Google may still keep requests for a limited time to check for misuse. Google's free-tier terms also say not to submit personal, confidential, or sensitive information, so if your resume contains any, turn on billing first. Your key is saved in your browser and sent only to Google's Gemini API, never to us. <strong>In the EU, Iceland, Liechtenstein, Norway, Switzerland, or the UK,</strong> Google allows only paid Gemini access, so turn on billing for your project in Google AI Studio before you use the key.</span>
           </div>
           <p class="provider-more">Prefer Claude or ChatGPT? Steps below.</p>
 
@@ -491,7 +491,7 @@
               </li>
               <li>
                 <span class="sub-marker">e</span>
-                <span>Open the Catchr extension and choose <strong>Claude</strong> as your AI (in setup, or in <strong>Settings</strong> if you already use Catchr). Catchr shows what it will send to Anthropic. Click <strong>Use Claude</strong> to agree. Chrome then asks to let Catchr read and change your data on <strong>api.anthropic.com</strong>. Click <strong>Allow</strong>. That only lets Catchr send your requests to Anthropic, and no other site. Then paste your key. In first-time setup, click <strong>Get Started</strong> to check and save it. In <strong>Settings</strong>, it saves automatically.</span>
+                <span>Open the Catchr extension and choose <strong>Claude</strong> as your AI (in setup, or in <strong>Settings</strong> if you already use Catchr). Catchr shows what it will send to Anthropic. Click <strong>Use Claude</strong> to agree. Chrome then asks to let Catchr read and change your data on <strong>api.anthropic.com</strong>. Click <strong>Allow</strong>. That only lets Catchr send your requests to Anthropic, and no other site. If the Catchr popup closes when Chrome asks, just open it again. Then paste your key. Catchr checks it right away and shows <strong>Valid</strong>. In first-time setup, add your resume (step 2) before you click <strong>Get Started</strong>. In <strong>Settings</strong>, it saves automatically.</span>
               </li>
             </ol>
             <div class="step-note">
@@ -509,7 +509,7 @@
               </li>
               <li>
                 <span class="sub-marker">b</span>
-                <span>Open <strong>Settings → Billing</strong> and add credit. The API is pay as you go, so start small, like $5.</span>
+                <span>Open <strong>Settings → Billing</strong> and check that you have credit. If not, add some. The API is pay as you go, so start small, like $5.</span>
               </li>
               <li>
                 <span class="sub-marker">c</span>
@@ -521,7 +521,7 @@
               </li>
               <li>
                 <span class="sub-marker">e</span>
-                <span>Open the Catchr extension and choose <strong>ChatGPT</strong> as your AI (in setup, or in <strong>Settings</strong> if you already use Catchr). Catchr shows what it will send to OpenAI. Click <strong>Use ChatGPT</strong> to agree. Chrome then asks to let Catchr read and change your data on <strong>api.openai.com</strong>. Click <strong>Allow</strong>. That only lets Catchr send your requests to OpenAI, and no other site. Then paste your key. In first-time setup, click <strong>Get Started</strong> to check and save it. In <strong>Settings</strong>, it saves automatically.</span>
+                <span>Open the Catchr extension and choose <strong>ChatGPT</strong> as your AI (in setup, or in <strong>Settings</strong> if you already use Catchr). Catchr shows what it will send to OpenAI. Click <strong>Use ChatGPT</strong> to agree. Chrome then asks to let Catchr read and change your data on <strong>api.openai.com</strong>. Click <strong>Allow</strong>. That only lets Catchr send your requests to OpenAI, and no other site. If the Catchr popup closes when Chrome asks, just open it again. Then paste your key. Catchr checks it right away and shows <strong>Valid</strong>. In first-time setup, add your resume (step 2) before you click <strong>Get Started</strong>. In <strong>Settings</strong>, it saves automatically.</span>
               </li>
             </ol>
             <div class="step-note">
@@ -546,15 +546,15 @@
             </li>
             <li>
               <span class="sub-marker">b</span>
-              <span>During first-time setup, click <strong>+ Add resume from Drive</strong> before <strong>Get Started</strong>. Already set up? Open <strong>⚙ Settings</strong> and click <strong>Add a resume</strong> in the Resumes section.</span>
+              <span>On the <strong>Add your key and resume</strong> screen, click <strong>+ Add resume from Drive</strong>. If Google asks, sign in and allow access. Already set up? Open <strong>⚙ Settings</strong> and click <strong>Add a resume</strong> in the Resumes section.</span>
             </li>
             <li>
               <span class="sub-marker">c</span>
-              <span>A Google file picker will open. Find and select your resume. Catchr only gets access to the file you pick.</span>
+              <span>A Google file picker opens. Find and select your resume. Catchr only gets access to the file you pick. If the Catchr popup closed, open it again: your resume shows as <strong>Connected</strong>.</span>
             </li>
             <li>
               <span class="sub-marker">d</span>
-              <span>Give it a short label, for example <strong>Product Manager</strong> or <strong>Software Engineer</strong>. It saves when you click away.</span>
+              <span>Click <strong>Get Started</strong> to finish setup. Catchr then asks you to confirm your name under <strong>Keep your name private</strong>, so it can hide it from the AI. Click <strong>Yes</strong>, or <strong>Fix</strong> to correct it. Later, you can give each resume a short label in <strong>Settings</strong>, for example <strong>Product Manager</strong>.</span>
             </li>
             <li>
               <span class="sub-marker">e</span>
@@ -578,7 +578,7 @@
           <ol class="substeps">
             <li>
               <span class="sub-marker">a</span>
-              <span>The first time you use a Catchr feature that requires Drive or Sheets access, a Google sign-in prompt will appear automatically.</span>
+              <span>Google asks you to sign in the first time Catchr needs it: when you add your resume, or when you catch your first job. If you added your resume in step 2, this is already done.</span>
             </li>
             <li>
               <span class="sub-marker">b</span>
@@ -606,7 +606,7 @@
             </li>
             <li>
               <span class="sub-marker">b</span>
-              <span>Row 1 of your sheet must have column headers. Catchr will match <strong>Company</strong>, <strong>Position</strong>, <strong>Link</strong>, <strong>Applied?</strong>, <strong>Date Applied</strong>, and <strong>Outcome</strong> by name, in any capitalization. Any extra columns are left untouched.</span>
+              <span>Row 1 of your sheet must have column headers. Catchr will match <strong>Company</strong>, <strong>Position</strong>, <strong>Link</strong>, <strong>Applied?</strong>, <strong>Date Applied</strong>, and <strong>Outcome</strong> by name, in any capitalization. Each job is added as a new row, and other columns in that row are left blank.</span>
             </li>
             <li>
               <span class="sub-marker">c</span>
