@@ -239,12 +239,8 @@ for (const p of all) {
   console.log('wrote', `${p.slug}.html`);
 }
 
-// Existing pages: add the footer Guides link.
-for (const f of ['index.html', 'setup.html', 'faq.html', 'privacy.html', 'terms.html', 'job-tracker-template.html', 'resume-template.html']) {
-  const fp = path.join(ROOT, f); const html = fs.readFileSync(fp, 'utf8'); const out = withGuides(html);
-  if (out !== html) { fs.writeFileSync(fp, out); console.log('footer Guides link:', f); }
-  else if (!html.includes('href="/guides"')) console.log('NOTE: no "Help and FAQ" footer link to anchor on in', f);
-}
+// Every page (new and existing): nav and footer from the one shared template.
+require('../site/build-chrome.js').buildChrome();
 
 // vercel.json clean URLs.
 const vp = path.join(ROOT, 'vercel.json'); const v = JSON.parse(fs.readFileSync(vp, 'utf8'));
