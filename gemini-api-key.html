@@ -438,14 +438,15 @@
   .sources{margin-top:clamp(40px,5vw,56px);padding-top:20px;border-top:1px solid var(--cream-warm);font-size:0.875rem;color:var(--stone);line-height:1.6;}
   .sources ul{margin:8px 0 0;padding-left:1.1em;}
   .sources a{color:var(--forest);border-bottom:1px solid rgba(44,95,74,.25);}
-  .flow{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;margin-bottom:clamp(40px,5vw,56px);}
+  .flow{display:flex;flex-direction:column;gap:14px;margin:0 0 clamp(40px,5vw,56px);}
+  .flow .link{display:grid;grid-template-columns:1fr auto 1.5fr;align-items:stretch;gap:14px;}
   .flow .node{border:1px solid var(--cream-warm);background:#fff;border-radius:14px;padding:16px 18px;}
+  .flow .node.src{background:var(--cream-warm);}
   .flow .node b{display:block;font-family:var(--display);font-size:1.1rem;color:var(--ink);}
   .flow .node span{display:block;margin-top:4px;font-size:0.9rem;color:var(--stone);line-height:1.5;}
-  .flow .hub{grid-row:1 / span 2;}
-  .flow .arrow{color:var(--forest);font-size:1.4rem;text-align:center;}
-  .flow .none{grid-column:1 / -1;border:1.5px dashed var(--stone);border-radius:14px;padding:12px 18px;color:var(--stone);font-size:0.95rem;text-align:center;}
-  @media(max-width:700px){.flow{grid-template-columns:1fr;}.flow .hub{grid-row:auto;}.flow .arrow{transform:rotate(90deg);}}
+  .flow .arrow{align-self:center;color:var(--forest);font-size:1.4rem;text-align:center;}
+  .flow .none{border:1.5px dashed var(--stone);border-radius:14px;padding:12px 18px;color:var(--stone);font-size:0.95rem;text-align:center;}
+  @media(max-width:700px){.flow{gap:22px;}.flow .link{grid-template-columns:1fr;gap:6px;}.flow .arrow{transform:rotate(90deg);line-height:1;}}
   .related{margin-top:clamp(48px,6vw,72px);}
   .related h2{font-size:1.25rem;color:var(--ink);}
   .related ul{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
@@ -544,7 +545,14 @@
           
         </section>
         <section class="qa-block" aria-labelledby="q4">
-          <h2 id="q4">Does it work in the EU or UK?</h2>
+          <h2 id="q4">My older Gemini key stopped working. What do I do?</h2>
+          <p class="answer">Make a new key in Google AI Studio and paste it into Catchr.</p>
+          <p class="detail">Google is moving the Gemini API to a newer kind of key and has said it will stop accepting older keys. New keys made in Google AI Studio use the newer kind. Details are on <a href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener">Google's API key page</a>.</p>
+          
+          
+        </section>
+        <section class="qa-block" aria-labelledby="q5">
+          <h2 id="q5">Does it work in the EU or UK?</h2>
           <p class="answer">Yes, with billing turned on.</p>
           <p class="detail">In the EU, Iceland, Liechtenstein, Norway, Switzerland, or the UK, Google allows only paid Gemini access. Turn on billing for your key's project in Google AI Studio before you use the key.</p>
           
@@ -553,7 +561,7 @@
         <section class="ledger-wrap" aria-labelledby="problems">
           <h2 id="problems">Common problems</h2>
           <p class="ledger-intro">Find the message Catchr showed you. The fix is next to it.</p>
-          <ul class="ledger"><li><h3><span class="msg">“Google isn't offering Gemini's free tier on this account.”</span></h3><p>Google doesn't give every account a free tier, and waiting won't change it. Turn on billing for your key's project in Google AI Studio, or switch to Claude or ChatGPT in Catchr's Settings.</p></li><li><h3><span class="msg">“Your Gemini quota is used up for now.”</span></h3><p>You've reached a free-tier limit. Wait a few minutes and try again, or check your limits in Google AI Studio.</p></li><li><h3><span class="msg">“Your Gemini key needs to be restricted to the Gemini API.”</span></h3><p>In Google AI Studio, open your key's settings and click <strong>Restrict to Gemini API</strong>. A new key works too.</p></li><li><h3><span class="msg">“That key was rejected. Double-check it.”</span></h3><p>The AI company turned the key down when Catchr checked it. Make sure you copied the whole key, and that it's for the AI you picked: a Gemini key won't work for Claude.</p></li><li><h3><span class="msg">“That API key looks invalid.”</span></h3><p>Open Catchr's <strong>Settings</strong>, click <strong>Change</strong> next to your key and paste the full key again. Check that nothing was cut off at either end. Lost it? Make a new key where you made the first one.</p></li></ul>
+          <ul class="ledger"><li><h3><span class="msg">“Google isn't offering Gemini's free tier on this account. Set up billing in Google AI Studio, or switch to Claude or ChatGPT in Settings.”</span></h3><p>Google doesn't give every account a free tier, and waiting won't change it. Turn on billing for your key's project in Google AI Studio, or switch to Claude or ChatGPT in Catchr's Settings.</p></li><li><h3><span class="msg">“Your Gemini quota is used up for now. Wait a few minutes and try again, or check your limits in Google AI Studio.”</span></h3><p>Your key has hit one of its limits. Free-tier keys have daily limits, and paid keys have rate limits too. Wait a few minutes and try again, or check your limits in Google AI Studio.</p></li><li><h3><span class="msg">“Your Gemini key needs to be restricted to the Gemini API. Open it in Google AI Studio, click "Restrict to Gemini API" (or create a new key), then try again.”</span></h3><p>Create a new key in Google AI Studio and paste it into Catchr's <strong>Settings</strong>. Google now makes new keys in its newer format and is retiring older keys, so a new key is the lasting fix.</p></li><li><h3><span class="msg">“That key was rejected. Double-check it.”</span></h3><p>The AI company turned the key down when Catchr checked it. Make sure you copied the whole key, and that it's for the AI you picked: a Gemini key won't work for Claude.</p></li><li><h3><span class="msg">“Your Gemini API key looks invalid. Update it in Settings (⚙️).”</span></h3><p>Open Catchr's <strong>Settings</strong>, click <strong>Change</strong> next to your key and paste the full key again. Check that nothing was cut off at either end. Lost it? Make a new key where you made the first one.</p></li></ul>
         </section>
         <nav class="related" aria-labelledby="related">
           <h2 id="related">Related</h2>

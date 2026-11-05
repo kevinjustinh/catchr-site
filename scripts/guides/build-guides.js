@@ -58,14 +58,15 @@ const EXTRA_CSS = `
   .sources{margin-top:clamp(40px,5vw,56px);padding-top:20px;border-top:1px solid var(--cream-warm);font-size:0.875rem;color:var(--stone);line-height:1.6;}
   .sources ul{margin:8px 0 0;padding-left:1.1em;}
   .sources a{color:var(--forest);border-bottom:1px solid rgba(44,95,74,.25);}
-  .flow{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;margin-bottom:clamp(40px,5vw,56px);}
+  .flow{display:flex;flex-direction:column;gap:14px;margin:0 0 clamp(40px,5vw,56px);}
+  .flow .link{display:grid;grid-template-columns:1fr auto 1.5fr;align-items:stretch;gap:14px;}
   .flow .node{border:1px solid var(--cream-warm);background:#fff;border-radius:14px;padding:16px 18px;}
+  .flow .node.src{background:var(--cream-warm);}
   .flow .node b{display:block;font-family:var(--display);font-size:1.1rem;color:var(--ink);}
   .flow .node span{display:block;margin-top:4px;font-size:0.9rem;color:var(--stone);line-height:1.5;}
-  .flow .hub{grid-row:1 / span 2;}
-  .flow .arrow{color:var(--forest);font-size:1.4rem;text-align:center;}
-  .flow .none{grid-column:1 / -1;border:1.5px dashed var(--stone);border-radius:14px;padding:12px 18px;color:var(--stone);font-size:0.95rem;text-align:center;}
-  @media(max-width:700px){.flow{grid-template-columns:1fr;}.flow .hub{grid-row:auto;}.flow .arrow{transform:rotate(90deg);}}
+  .flow .arrow{align-self:center;color:var(--forest);font-size:1.4rem;text-align:center;}
+  .flow .none{border:1.5px dashed var(--stone);border-radius:14px;padding:12px 18px;color:var(--stone);font-size:0.95rem;text-align:center;}
+  @media(max-width:700px){.flow{gap:22px;}.flow .link{grid-template-columns:1fr;gap:6px;}.flow .arrow{transform:rotate(90deg);line-height:1;}}
   .related{margin-top:clamp(48px,6vw,72px);}
   .related h2{font-size:1.25rem;color:var(--ink);}
   .related ul{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
@@ -188,12 +189,9 @@ const compareBody = (p) => `${short(p)}${table(p)}
           <ul>${p.sources.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${t}</a></li>`).join('')}</ul></div>`;
 
 const FLOW = `
-        <figure class="flow" aria-label="Where your data goes">
-          <div class="node hub"><b>Your browser</b><span>Catchr runs here. Your AI key is stored here.</span></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="node"><b>The AI you chose</b><span>Gemini, Claude, or ChatGPT gets your resume (name and contact details removed first) and the job description.</span></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="node"><b>Your Google account</b><span>Your tracker sheet, tailored resumes and prep docs, in your own Drive.</span></div>
+        <figure class="flow" aria-label="Where your data goes: two separate connections from your browser">
+          <div class="link"><div class="node src"><b>Your browser</b><span>Catchr runs here. Your AI key is stored here.</span></div><div class="arrow" aria-hidden="true">→</div><div class="node"><b>The AI you chose</b><span>Gemini, Claude, or ChatGPT gets your resume, with the name and contact details Catchr detects removed first, and the job description.</span></div></div>
+          <div class="link"><div class="node src"><b>Your browser</b><span>Catchr saves and reads your files from here.</span></div><div class="arrow" aria-hidden="true">→</div><div class="node"><b>Your Google account</b><span>Your tracker sheet, tailored resumes and prep docs, in your own Drive.</span></div></div>
           <p class="none">No Catchr data server: your resume and jobs never pass through one.</p>
         </figure>`;
 

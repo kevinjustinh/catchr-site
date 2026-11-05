@@ -438,14 +438,15 @@
   .sources{margin-top:clamp(40px,5vw,56px);padding-top:20px;border-top:1px solid var(--cream-warm);font-size:0.875rem;color:var(--stone);line-height:1.6;}
   .sources ul{margin:8px 0 0;padding-left:1.1em;}
   .sources a{color:var(--forest);border-bottom:1px solid rgba(44,95,74,.25);}
-  .flow{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;margin-bottom:clamp(40px,5vw,56px);}
+  .flow{display:flex;flex-direction:column;gap:14px;margin:0 0 clamp(40px,5vw,56px);}
+  .flow .link{display:grid;grid-template-columns:1fr auto 1.5fr;align-items:stretch;gap:14px;}
   .flow .node{border:1px solid var(--cream-warm);background:#fff;border-radius:14px;padding:16px 18px;}
+  .flow .node.src{background:var(--cream-warm);}
   .flow .node b{display:block;font-family:var(--display);font-size:1.1rem;color:var(--ink);}
   .flow .node span{display:block;margin-top:4px;font-size:0.9rem;color:var(--stone);line-height:1.5;}
-  .flow .hub{grid-row:1 / span 2;}
-  .flow .arrow{color:var(--forest);font-size:1.4rem;text-align:center;}
-  .flow .none{grid-column:1 / -1;border:1.5px dashed var(--stone);border-radius:14px;padding:12px 18px;color:var(--stone);font-size:0.95rem;text-align:center;}
-  @media(max-width:700px){.flow{grid-template-columns:1fr;}.flow .hub{grid-row:auto;}.flow .arrow{transform:rotate(90deg);}}
+  .flow .arrow{align-self:center;color:var(--forest);font-size:1.4rem;text-align:center;}
+  .flow .none{border:1.5px dashed var(--stone);border-radius:14px;padding:12px 18px;color:var(--stone);font-size:0.95rem;text-align:center;}
+  @media(max-width:700px){.flow{gap:22px;}.flow .link{grid-template-columns:1fr;gap:6px;}.flow .arrow{transform:rotate(90deg);line-height:1;}}
   .related{margin-top:clamp(48px,6vw,72px);}
   .related h2{font-size:1.25rem;color:var(--ink);}
   .related ul{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
@@ -519,7 +520,7 @@
           <h2 id="q0">How do I make an OpenAI API key?</h2>
           <p class="answer">On the OpenAI Platform, in four steps.</p>
           
-          <ol class="substeps"><li><span class="sub-marker" aria-hidden="true">1</span><span>Go to the <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">OpenAI Platform</a> and sign in or create an account.</span></li><li><span class="sub-marker" aria-hidden="true">2</span><span>Open <strong>Settings → Billing</strong> and check that you have credit. If not, add some. The API is pay as you go, so start small, like $5.</span></li><li><span class="sub-marker" aria-hidden="true">3</span><span>Open <strong>API keys</strong>, click <strong>Create new secret key</strong>, and name it, for example "Catchr". You can ignore any other settings.</span></li><li><span class="sub-marker" aria-hidden="true">4</span><span>Copy the key right away. OpenAI only shows it once.</span></li></ol>
+          <ol class="substeps"><li><span class="sub-marker" aria-hidden="true">1</span><span>Go to the <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">OpenAI Platform</a> and sign in or create an account.</span></li><li><span class="sub-marker" aria-hidden="true">2</span><span>Open <strong>Settings → Billing</strong> and check that you have credit. If not, add some. The API is pay as you go, so start small, like $5. On ChatGPT Pro or an eligible Business plan? Claim your included API credits first (see below).</span></li><li><span class="sub-marker" aria-hidden="true">3</span><span>Open <strong>API keys</strong>, click <strong>Create new secret key</strong>, and name it, for example "Catchr". You can ignore any other settings.</span></li><li><span class="sub-marker" aria-hidden="true">4</span><span>Copy the key right away. OpenAI only shows it once.</span></li></ol>
           
         </section>
         <section class="qa-block" aria-labelledby="q1">
@@ -530,9 +531,9 @@
           
         </section>
         <section class="qa-block" aria-labelledby="q2">
-          <h2 id="q2">Does ChatGPT Plus include an API key?</h2>
-          <p class="answer">No. You need a separate OpenAI Platform account, even if you already pay for ChatGPT.</p>
-          <p class="detail">The ChatGPT app and the API are billed separately. OpenAI bills the API for what you use.</p>
+          <h2 id="q2">Does my ChatGPT subscription include an API key?</h2>
+          <p class="answer">No. You need a separate OpenAI Platform account and key, even if you already pay for ChatGPT.</p>
+          <p class="detail">The ChatGPT app and the API are billed separately. ChatGPT Pro and eligible Business plans include monthly API credits you can claim in your billing settings. ChatGPT Plus doesn't. Details are in <a href="https://help.openai.com/en/articles/20001626-api-credits-benefit-for-eligible-chatgpt-subscriptions" target="_blank" rel="noopener">OpenAI's help article</a>.</p>
           
           
         </section>
@@ -553,7 +554,7 @@
         <section class="ledger-wrap" aria-labelledby="problems">
           <h2 id="problems">Common problems</h2>
           <p class="ledger-intro">Find the message Catchr showed you. The fix is next to it.</p>
-          <ul class="ledger"><li><h3><span class="msg">“Catchr needs your OK before sending your resume to ChatGPT.”</span></h3><p>Open Settings, read what gets sent, and click <strong>Use ChatGPT</strong>. Or switch back to Gemini.</p></li><li><h3><span class="msg">“Catchr needs your permission to use this AI provider.”</span></h3><p>Catchr's access to OpenAI was turned off in Chrome. Open Settings and click <strong>Allow access</strong>, then <strong>Allow</strong> when Chrome asks.</p></li><li><h3><span class="msg">“You've hit your provider's rate limit or quota.”</span></h3><p>Check that your OpenAI account still has credit under Billing, or wait a moment and try again.</p></li><li><h3><span class="msg">“That key was rejected. Double-check it.”</span></h3><p>The AI company turned the key down when Catchr checked it. Make sure you copied the whole key, and that it's for the AI you picked: a Gemini key won't work for Claude.</p></li><li><h3><span class="msg">“That API key looks invalid.”</span></h3><p>Open Catchr's <strong>Settings</strong>, click <strong>Change</strong> next to your key and paste the full key again. Check that nothing was cut off at either end. Lost it? Make a new key where you made the first one.</p></li></ul>
+          <ul class="ledger"><li><h3><span class="msg">“Catchr needs your OK before sending your resume to ChatGPT. Open Settings (⚙️) to review what is shared.”</span></h3><p>Open Settings, read what gets sent, and click <strong>Use ChatGPT</strong>. Or switch back to Gemini.</p></li><li><h3><span class="msg">“Catchr needs your permission to use this AI provider. Open Settings (⚙️) and click Allow access.”</span></h3><p>Catchr's access to OpenAI was turned off in Chrome. Open Settings and click <strong>Allow access</strong>, then <strong>Allow</strong> when Chrome asks. Your saved key stays in place.</p></li><li><h3><span class="msg">“You’ve hit your provider’s rate limit or quota. Wait a moment, or check your plan and billing with your provider.”</span></h3><p>Wait a moment and try again. If it keeps happening, check that your OpenAI account still has credit in its billing settings.</p></li><li><h3><span class="msg">“That key was rejected. Double-check it.”</span></h3><p>The AI company turned the key down when Catchr checked it. Make sure you copied the whole key, and that it's for the AI you picked: a Gemini key won't work for Claude.</p></li><li><h3><span class="msg">“That API key looks invalid. Check it in your provider’s console, then update it in Settings (⚙️).”</span></h3><p>Open Catchr's <strong>Settings</strong>, click <strong>Change</strong> next to your key and paste the full key again. Check that nothing was cut off at either end. Lost it? Make a new key where you made the first one.</p></li></ul>
         </section>
         <nav class="related" aria-labelledby="related">
           <h2 id="related">Related</h2>
