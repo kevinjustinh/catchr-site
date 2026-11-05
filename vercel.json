@@ -7,14 +7,14 @@
       "permanent": true
     },
     {
-      "source": "/:page(setup|privacy|terms|faq|job-tracker-template|resume-template).html",
+      "source": "/:page(setup|privacy|terms|faq|job-tracker-template|resume-template|gemini-api-key|claude-api-key|openai-api-key|tailor-resume-to-job-description|am-i-qualified-for-this-job|how-catchr-handles-your-data|teal-alternative|simplify-alternative|huntr-alternative|jobscan-alternative|guides).html",
       "destination": "/:page",
       "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/:page(setup|privacy|terms|faq|job-tracker-template|resume-template)",
+      "source": "/:page(setup|privacy|terms|faq|job-tracker-template|resume-template|gemini-api-key|claude-api-key|openai-api-key|tailor-resume-to-job-description|am-i-qualified-for-this-job|how-catchr-handles-your-data|teal-alternative|simplify-alternative|huntr-alternative|jobscan-alternative|guides)",
       "destination": "/:page.html"
     }
   ],
