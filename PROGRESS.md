@@ -28,4 +28,4 @@ Plain HTML pages at the repo root; no build step.
 - Nothing in progress.
 - When page copy changes, update that page's `<lastmod>` in `sitemap.xml`.
 
-HANDOFF-ANCHOR: 5de47e0
+HANDOFF-ANCHOR: 3b23e83
