@@ -9,6 +9,12 @@ Plain HTML pages at the repo root; no build step.
   (job tracker, resume).
 - Clean URLs: pages are served without `.html`, and old `.html` addresses redirect permanently
   (`vercel.json`).
+- Guides section (live 2026-11-06): /guides hub plus 10 pages. AI key guides (Gemini, Claude, OpenAI),
+  two how-tos (tailor your resume, am I qualified), how Catchr handles your data, and comparisons with
+  Teal, Simplify, Huntr and Jobscan. Content lives in `scripts/guides/content.js`; run
+  `node scripts/guides/build-guides.js` after editing it. Shared nav and footer for every page come from
+  `node scripts/site/build-chrome.js`. Comparison facts were checked against each company's own pages in
+  November 2026 and will drift; recheck before relying on them.
 - Homepage feature images come from the real 2.0.1 popup, using Catchr / San Francisco example data.
 - `sitemap.xml` dates were last updated for the 2.0 pages (2026-11-04).
 - `faq.html` has FAQPage structured data (JSON-LD in `<head>`) covering the 12 questions in
@@ -25,7 +31,9 @@ Plain HTML pages at the repo root; no build step.
 
 ## Next
 
-- Nothing in progress.
+- After deploy: confirm the 11 guide URLs load on the live site, then request indexing in Search Console.
+- Open work for Catchr overall (extension release, directory listings) is tracked in the extension
+  project's own notes, not here.
 - When page copy changes, update that page's `<lastmod>` in `sitemap.xml`.
 
-HANDOFF-ANCHOR: 3b23e83
+HANDOFF-ANCHOR: 2b1edb6
