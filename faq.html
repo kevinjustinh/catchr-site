@@ -416,6 +416,111 @@
 <meta name="twitter:title" content="Catchr help and FAQ" />
 <meta name="twitter:description" content="Answers about Catchr, the free AI job tracker for Chrome: what it costs, why you use your own AI key (Gemini, Claude, or ChatGPT), what it can see, which job sites it works on, and how to fix common error messages." />
 <meta name="twitter:image" content="https://www.jobcatchr.app/assets/og-image.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "url": "https://www.jobcatchr.app/faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Catchr free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Catchr has no price, no account, and no subscription. Its AI runs on your own key, and Gemini has a free tier. Gemini's free tier has daily limits, and Google doesn't offer it on every account. If you hit a limit, the AI tools work again once it resets. Google won't charge you unless you turn on billing for your key yourself. Claude and ChatGPT keys work too, but they're paid: Anthropic or OpenAI bills you for what you use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I need my own AI key?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your resume and the job description go directly from your browser to your chosen AI (Gemini, Claude, or ChatGPT) using your own key. They never pass through a Catchr data server. You manage that key, and any AI charges, with the company that issued it. It's also why Catchr can be free: there's nothing for us to run or pay for. The setup guide walks you through getting a key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a paid AI key cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You pay the AI company for what you use, at its own prices. Catchr charges nothing. Claude and ChatGPT are pay as you go: each use draws from the credit on your account, so check you have some before you start. The setup guide suggests starting small, like $5. With Gemini, billing is optional in most places, and turning it on stops Google using your requests to improve its AI. Current prices: Gemini, Claude API, OpenAI API."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can Catchr see in my Google account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only the files it creates for you and the files you pick. It can't see the rest of your Drive, your email, or anything else. In practice that's your job tracker sheet, the resume you choose, and the tailored resumes and prep docs Catchr makes. They're all yours, saved in your own Google Drive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does anyone see my resume?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We never do. Catchr reads your resume in your browser and sends it only to the AI you chose, with the name and contact details it detects removed first. The removal works by matching text, so it can miss details, and the rest of your work history may still identify you. If something must stay private, leave it out of the resume you use with Catchr. Each AI company handles what you send under its own terms. On Gemini's free tier, Google may use the rest (like your work history and skills) to improve its AI, and its reviewers may read it. Google's free-tier terms also say not to submit personal, confidential, or sensitive information, so if your resume contains any, turn on billing for your key's project first. The privacy policy has the full detail."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which job sites does it work on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LinkedIn, Indeed, Greenhouse, Lever, Wellfound, and Ashby. On these sites, Catchr adds a Catch It button to the job posting. If you don't see it, click the Catchr icon in Chrome's toolbar. On other job sites, use the toolbar icon too. If Catchr can't find the job description there, you can paste it in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a tracker template?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Catchr makes a ready-to-use Google Sheet for you the first time you catch a job. The free tracker template is for people who'd rather start by hand, or already have one. To use your own sheet, open Catchr's Settings and click Connect next to Tracker sheet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the fit score?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's a guide, not a verdict. It compares your resume with what the job asks for and shows what matches and what's missing. The same job can score a few points differently from one check to the next, and AI can make mistakes. Scores can differ between AIs, even for the same resume and job, so compare scores from the same AI. Read the matches and gaps, not just the number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI can I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gemini, Claude, or ChatGPT. Choose one when you set up Catchr and paste its key. To switch later, open Settings, click your current AI, and pick another from the list. Gemini has a free tier where available and is the easiest place to start. The first time you choose Claude or ChatGPT, Catchr shows exactly what it will send to that company and asks for your OK. Nothing goes to them until you click Use Claude or Use ChatGPT. Then Chrome asks to let Catchr send requests to that company. Click Allow. It covers that one company and no other site."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my ChatGPT or Claude subscription work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A ChatGPT Plus or Claude Pro subscription doesn't include an API key, which is what Catchr needs. You'll need a separate account on the OpenAI Platform or the Anthropic Console, even if you already pay for the chat app. The setup guide shows each step."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work in the EU or UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. With Gemini, turn on billing first: in the EU, Iceland, Liechtenstein, Norway, Switzerland, or the UK, Google allows only paid Gemini access. Turn on billing for your key's project in Google AI Studio before you use the key with Catchr. The Gemini billing step doesn't apply to Claude or ChatGPT. Set up billing with Anthropic or OpenAI before using those keys."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I remove Catchr and my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uninstall the extension. That removes everything Catchr stored in your browser, including your API key. To remove Catchr's access to your Google account, open your Google account's third-party connections and remove Catchr. Sheets and documents it made stay in your Drive until you delete them. To retire your key, delete it where you made it: Google AI Studio, the Anthropic Console, or the OpenAI Platform."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

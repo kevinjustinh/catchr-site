@@ -1,0 +1,5 @@
+# macOS folder metadata
+.DS_Store
+
+# Playwright CLI scratch output (local browser checks)
+.playwright-cli/
