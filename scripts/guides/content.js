@@ -229,7 +229,7 @@ module.exports = [
       ['Where your data lives', 'Your own Google Sheet and Drive. No Catchr account', 'Your Huntr account'],
       ['Jobs you can track', '✓ As many as your Sheet holds', '✓ Up to 100 on the free plan, unlimited on Pro'],
       ['Fit or match score', '✓ 0 to 100, with matches and gaps', '✓ Basic resume scoring free, advanced on Pro'],
-      ['Resume tailoring', '✓ Free on your key, copy in Google Docs', '✓ 2 tailored resumes on the free plan'],
+      ['Resume tailoring', '✓ Free on your key, copy in Google Docs', '✓ 2 tailored resumes on the free plan. Huntr doesn\'t say if that\'s per month or in total'],
       ['Interview prep', '✓ Prep doc saved to your Drive', '✓ Interview tracker and question generator'],
       ['Autofill applications', '– No', '✓ Unlimited, free'],
     ],
