@@ -44,9 +44,12 @@ Plain HTML pages at the repo root; no build step.
 
 ## Next
 
-- After deploying the /get/ pages: click each of the four template buttons on the live site, then
-  check that Vercel Analytics lists the four /get/ paths. The two -google paths matter most: they
-  forward away fast, so they are the ones that would go missing if the timing were wrong.
+- /get/ pages live-verified 2026-11-09: all four send their visit to Vercel Analytics, downloads start,
+  Google pages hand over in ~0.6s. Four test visits from that check (one per path) are in the counts.
+  Next: glance at Vercel Analytics in a day or two to confirm real visitors show under /get/.
+- Testing trap: Vercel's analytics script sends nothing from automated browsers (it checks
+  `navigator.webdriver` and "Headless" in the user agent). To test counting with Playwright, set a
+  normal user agent and override `navigator.webdriver`, or it looks broken when it isn't.
 - After deploy: confirm the 11 guide URLs load on the live site, then request indexing in Search Console.
 - Later (Kev, 2026-11-09): set up fuller site analytics for better insights (clicks, downloads,
   where visitors come from). Prefer a cookieless tool so the privacy page stays simple; the /get/
@@ -55,4 +58,4 @@ Plain HTML pages at the repo root; no build step.
   project's own notes, not here.
 - When page copy changes, update that page's `<lastmod>` in `sitemap.xml`.
 
-HANDOFF-ANCHOR: 3c4013d
+HANDOFF-ANCHOR: 2b2ec19
