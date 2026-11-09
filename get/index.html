@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--
+  Handoff page for the free templates. Served at four addresses (see vercel.json rewrites):
+    /get/resume-google  /get/resume-docx  /get/tracker-google  /get/tracker-xlsx
+  Each visit is a page view in Vercel Web Analytics, which is how template use is counted
+  (the free Vercel plan has no click events). The page then sends the visitor on to the file.
+  The no-script defaults below are the resume .docx; the script swaps in the right item.
+-->
+<title>Your free template | Catchr</title>
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="https://www.jobcatchr.app/resume-template" />
+<link rel="icon" type="image/webp" href="/assets/net-forest.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --forest:#2C5F4A;
+    --forest-deep:#245040;
+    --cream:#FDFAF6;
+    --cream-warm:#EDE8E2;
+    --ink:#2C2C2A;
+    --stone:#6B5F51;
+    --mint-wash:#EAF7F1;
+    --display:"Bricolage Grotesque", serif;
+    --body:"Work Sans", sans-serif;
+    --pad:clamp(20px,5vw,48px);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;min-height:100vh;display:flex;flex-direction:column;
+    font-family:var(--body);background:var(--cream);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.6;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  p{margin:0;}
+
+  .top{padding:28px var(--pad) 0;}
+  .brand{display:inline-flex;align-items:center;gap:11px;}
+  .brand .net{width:28px;height:28px;object-fit:contain;}
+  .brand .word{font-family:var(--display);font-weight:700;font-size:1.4rem;color:var(--forest);letter-spacing:-0.02em;}
+
+  main{flex:1;display:flex;align-items:center;padding:56px var(--pad) 72px;}
+  .col{max-width:520px;margin:0 auto;width:100%;}
+  .eyebrow{font-weight:600;font-size:0.8125rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);}
+  h1{
+    margin:14px 0 0;font-family:var(--display);font-weight:700;
+    font-size:clamp(1.75rem,6.4vw,2.5rem);letter-spacing:-0.02em;line-height:1.08;
+  }
+  .note{margin-top:16px;color:var(--stone);font-size:1.0625rem;}
+  .note a{color:var(--forest);font-weight:500;text-decoration:underline;text-underline-offset:3px;}
+  .note a:hover{color:var(--forest-deep);}
+
+  .pitch{
+    margin-top:44px;background:var(--mint-wash);border-radius:16px;
+    padding:24px 24px 26px;
+  }
+  .pitch p{font-size:1.0625rem;line-height:1.55;}
+  .pitch[hidden]{display:none;}
+  .btn{
+    display:inline-flex;align-items:center;gap:0.55em;margin-top:18px;
+    font-family:var(--body);font-weight:600;font-size:1rem;line-height:1;
+    border-radius:11px;padding:15px 24px;white-space:nowrap;
+    background:var(--forest);color:var(--cream);
+    box-shadow:0 1px 0 rgba(0,0,0,.18), 0 8px 22px -12px rgba(44,95,74,.7);
+    transition:transform .18s ease, background .18s ease;
+  }
+  .btn:hover{background:var(--forest-deep);transform:translateY(-1px);}
+
+  .back{display:inline-block;margin-top:36px;color:var(--forest);font-weight:500;}
+  .back:hover{text-decoration:underline;text-underline-offset:3px;}
+
+  a:focus-visible{outline:2px solid var(--forest);outline-offset:3px;border-radius:4px;}
+
+  /* Fade only when the script has run, so the page is never stuck invisible. */
+  .js .col{animation:rise .5s ease both;}
+  @keyframes rise{from{opacity:0;}to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){ .js .col{animation:none;} .btn{transition:none;} }
+</style>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/" aria-label="Catchr home">
+      <img class="net" src="/assets/net-forest.webp" alt="" />
+      <span class="word">Catchr</span>
+    </a>
+  </header>
+
+  <main>
+    <div class="col">
+      <p class="eyebrow">Free template</p>
+      <h1 id="title">Your resume template is downloading.</h1>
+      <p class="note" id="note">Check your downloads folder. Didn’t start? <a id="file-link" href="/downloads/catchr-resume-template.docx" download>Download it again</a>.</p>
+
+      <div class="pitch" id="pitch">
+        <p id="pitch-text">Catchr tailors this resume to each job you apply for, without inventing anything.</p>
+        <a class="btn" id="chrome" href="https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&amp;utm_medium=website&amp;utm_campaign=get-resume-docx" target="_blank" rel="noopener">Add to Chrome</a>
+      </div>
+
+      <a class="back" id="back" href="/resume-template">&larr; Back to the resume template</a>
+    </div>
+  </main>
+
+<script>
+(function () {
+  var STORE = 'https://chromewebstore.google.com/detail/kleffbpannecinoopgebbdhkfpkjhbia?utm_source=jobcatchr.app&utm_medium=website&utm_campaign=get-';
+  var ITEMS = {
+    'resume-docx': {
+      kind: 'file', href: '/downloads/catchr-resume-template.docx',
+      title: 'Your resume template is downloading.',
+      pitch: 'Catchr tailors this resume to each job you apply for, without inventing anything.',
+      back: '/resume-template', backText: 'Back to the resume template'
+    },
+    'tracker-xlsx': {
+      kind: 'file', href: '/downloads/catchr-job-tracker-template.xlsx',
+      title: 'Your job tracker is downloading.',
+      pitch: 'Catchr fills this tracker in for you. One click on any job listing adds the row.',
+      back: '/job-tracker-template', backText: 'Back to the job tracker template'
+    },
+    'resume-google': {
+      kind: 'google', href: 'https://docs.google.com/document/d/13R-uOtyfODuGL9H90xmqbSTAdzyo_LMN4gchAJGgzRY/copy',
+      title: 'Opening your copy in Google Docs.', app: 'Google Docs',
+      back: '/resume-template', backText: 'Back to the resume template'
+    },
+    'tracker-google': {
+      kind: 'google', href: 'https://docs.google.com/spreadsheets/d/1JsZn9HG8tKXdbeWZL8bY-PDPvlstQXafTT114Arq5PU/copy',
+      title: 'Opening your copy in Google Sheets.', app: 'Google Sheets',
+      back: '/job-tracker-template', backText: 'Back to the job tracker template'
+    }
+  };
+
+  var key = location.pathname.replace(/\/+$/, '').split('/').pop();
+  var item = ITEMS[key];
+  if (!item) return; // unknown address: leave the resume .docx defaults in place
+
+  document.documentElement.className = 'js';
+  var $ = function (id) { return document.getElementById(id); };
+  document.querySelector('link[rel="canonical"]').href = 'https://www.jobcatchr.app' + item.back;
+  $('title').textContent = item.title;
+  $('back').textContent = '← ' + item.backText;
+  $('back').href = item.back;
+
+  if (item.kind === 'google') {
+    // Nobody stays long enough to read a pitch here, so it is left out.
+    $('pitch').hidden = true;
+    $('note').innerHTML = '';
+    $('note').append('Google will ask you to make a copy. Didn’t open? ');
+    var a = document.createElement('a');
+    a.href = item.href; a.textContent = 'Open it in ' + item.app;
+    $('note').append(a, '.');
+    // Wait for the page to load and the visit to be counted, then hand over to Google.
+    // replace() keeps this page out of history, so Back doesn't bounce into Google again.
+    window.addEventListener('load', function () {
+      setTimeout(function () { location.replace(item.href); }, 700);
+    });
+    return;
+  }
+
+  $('file-link').href = item.href;
+  $('pitch-text').textContent = item.pitch;
+  $('chrome').href = STORE + key;
+
+  // Start the download once per tab, so a refresh doesn't download it again.
+  var flag = 'catchr-got-' + key, done = false;
+  try { done = sessionStorage.getItem(flag) === '1'; } catch (e) {}
+  if (done) return;
+  try { sessionStorage.setItem(flag, '1'); } catch (e) {}
+  setTimeout(function () { $('file-link').click(); }, 500);
+})();
+</script>
+</body>
+</html>

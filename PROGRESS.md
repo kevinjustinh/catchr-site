@@ -15,6 +15,15 @@ Plain HTML pages at the repo root; no build step.
   `node scripts/guides/build-guides.js` after editing it. Shared nav and footer for every page come from
   `node scripts/site/build-chrome.js`. Comparison facts were checked against each company's own pages in
   November 2026 and will drift; recheck before relying on them.
+- Template use is counted (built 2026-11-09). Every "Open in Google Docs/Sheets" and "Download"
+  button on the two template pages goes through one handoff page, `get/index.html`, served at
+  /get/resume-google, /get/resume-docx, /get/tracker-google and /get/tracker-xlsx (rewrite in
+  `vercel.json`). Each visit shows up in Vercel Web Analytics as a page view for that path, which is
+  the count. The page then starts the download (once per tab, so a refresh doesn't repeat it) or
+  forwards to Google's "make a copy" page. Download pages carry a short Catchr pitch and Add to
+  Chrome button (utm_campaign=get-<item>); Google pages forward after ~0.7s so have no pitch.
+  If a Google template link or download file ever changes, update it in `get/index.html`.
+  It counts clicks, not people who actually filled the template in. Counting starts from deploy.
 - Homepage feature images come from the real 2.0.1 popup, using Catchr / San Francisco example data.
 - `sitemap.xml` dates were last updated for the 2.0 pages (2026-11-04).
 - `faq.html` has FAQPage structured data (JSON-LD in `<head>`) covering the 12 questions in
@@ -31,9 +40,11 @@ Plain HTML pages at the repo root; no build step.
 
 ## Next
 
+- After deploying the /get/ pages: click each of the four template buttons on the live site, then
+  check that Vercel Analytics lists the four /get/ paths.
 - After deploy: confirm the 11 guide URLs load on the live site, then request indexing in Search Console.
 - Open work for Catchr overall (extension release, directory listings) is tracked in the extension
   project's own notes, not here.
 - When page copy changes, update that page's `<lastmod>` in `sitemap.xml`.
 
-HANDOFF-ANCHOR: 2b1edb6
+HANDOFF-ANCHOR: 3c4013d
