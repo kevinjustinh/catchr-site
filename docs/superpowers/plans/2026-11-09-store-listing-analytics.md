@@ -54,6 +54,19 @@ Answer, every week, without Kev digging through dashboards:
 5. **Weekly read-out.** A short summary Kev can ask for: views, installs, install rate, top 5
    sources, uninstalls, changes vs last week, one suggested action.
 
+## Open questions (added 2026-11-09)
+
+- **Installs missing from GA.** The Developer Dashboard shows daily installs (a clear rise from
+  late Oct 2026), but on 2026-11-09 the GA property's Recent events (last 28 days) listed only
+  `first_visit`, `page_view`, `session_start`: no `install`. Investigate first in the next session:
+  compare dashboard installs vs GA `install` day by day after 2026-11-09. Suspects: GA privacy
+  thresholds withholding small counts, installs not passing through the listing page, or GA opt-in
+  newer than those installs. Not yet verified which.
+- **Kev wants dashboard installs and GA together.** Can't import dashboard data into the
+  store-managed property (Marketer role, no data import). Recommended: Looker Studio report that
+  joins the GA property with the dashboard's installs/uninstalls CSV (kept in a Google Sheet in
+  Kev's Drive, not this repo). This replaces 3b as the main report, MCP or not.
+
 ## Off-site link table (fill in at step 2)
 
 | Place | Tagged URL | Added on |
