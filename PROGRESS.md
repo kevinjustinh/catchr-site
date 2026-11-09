@@ -61,4 +61,4 @@ Plain HTML pages at the repo root; no build step.
   project's own notes, not here.
 - When page copy changes, update that page's `<lastmod>` in `sitemap.xml`.
 
-HANDOFF-ANCHOR: 2b2ec19
+HANDOFF-ANCHOR: 399059a
