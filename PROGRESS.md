@@ -48,6 +48,9 @@ Plain HTML pages at the repo root; no build step.
   check that Vercel Analytics lists the four /get/ paths. The two -google paths matter most: they
   forward away fast, so they are the ones that would go missing if the timing were wrong.
 - After deploy: confirm the 11 guide URLs load on the live site, then request indexing in Search Console.
+- Later (Kev, 2026-11-09): set up fuller site analytics for better insights (clicks, downloads,
+  where visitors come from). Prefer a cookieless tool so the privacy page stays simple; the /get/
+  handoff pages keep working alongside it. Plan this in its own session.
 - Open work for Catchr overall (extension release, directory listings) is tracked in the extension
   project's own notes, not here.
 - When page copy changes, update that page's `<lastmod>` in `sitemap.xml`.
