@@ -30,7 +30,8 @@ Answer, every week, without Kev digging through dashboards:
 
 ## Steps
 
-1. **Mark installs as a key event (Kev, 2 min).** In the store's GA property: Admin → Key events
+1. **DONE 2026-11-09:** `install` registered as a key event (Events → Create event → "Create with code", key event on, no monetary value, once per event). Verified in the Key events list. Note: the old "Key events → New key event" page no longer exists; it's under Create event now. Original step:
+   **Mark installs as a key event (Kev, 2 min).** In the store's GA property: Admin → Key events
    (formerly Conversions) → new event named `install`. Makes install rate by source appear in
    standard reports.
 2. **Tag every off-site link (Kev lists them, agent writes the URLs).** Kev lists everywhere the

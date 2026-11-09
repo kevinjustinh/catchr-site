@@ -56,7 +56,7 @@ Plain HTML pages at the repo root; no build step.
   handoff pages keep working alongside it. Plan this in its own session.
   Update 2026-11-09: site analytics (Google Analytics + cookie banner) is shelved by Kev. Store
   listing analytics is planned instead: `docs/superpowers/plans/2026-11-09-store-listing-analytics.md`.
-  Next session starts at step 1 of that plan; step 2 needs Kev's list of off-site links.
+  Step 1 (install as key event) done 2026-11-09. Next session starts at step 2; step 2 needs Kev's list of off-site links.
 - Open work for Catchr overall (extension release, directory listings) is tracked in the extension
   project's own notes, not here.
 - When page copy changes, update that page's `<lastmod>` in `sitemap.xml`.
