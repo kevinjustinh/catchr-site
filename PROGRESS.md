@@ -21,7 +21,9 @@ Plain HTML pages at the repo root; no build step.
   `vercel.json`). Each visit shows up in Vercel Web Analytics as a page view for that path, which is
   the count. The page then starts the download (once per tab, so a refresh doesn't repeat it) or
   forwards to Google's "make a copy" page. The page sits on the homepage hero watercolor (cream card;
-  Google pages use the small mobile image only). Download pages carry a short Catchr pitch and Add to
+  Google pages use the small mobile image only). Google pages wait for Vercel's `beforeSend` hook (the
+  moment the visit is sent) before forwarding, with a 2.5s fallback if analytics is blocked. With
+  JavaScript off, the page shows direct links to all four templates instead. Download pages carry a short Catchr pitch and Add to
   Chrome button (utm_campaign=get-<item>); Google pages forward after ~0.7s so have no pitch.
   If a Google template link or download file ever changes, update it in `get/index.html`.
   It counts clicks, not people who actually filled the template in. Counting starts from deploy.
@@ -42,7 +44,8 @@ Plain HTML pages at the repo root; no build step.
 ## Next
 
 - After deploying the /get/ pages: click each of the four template buttons on the live site, then
-  check that Vercel Analytics lists the four /get/ paths.
+  check that Vercel Analytics lists the four /get/ paths. The two -google paths matter most: they
+  forward away fast, so they are the ones that would go missing if the timing were wrong.
 - After deploy: confirm the 11 guide URLs load on the live site, then request indexing in Search Console.
 - Open work for Catchr overall (extension release, directory listings) is tracked in the extension
   project's own notes, not here.

@@ -68,6 +68,12 @@
   /* Desktop: card lines up under the logo, like the homepage hero copy, so the net in the
      middle of the painting stays in view beside it instead of behind it. */
   @media (min-width:841px){ .col{margin:0;} }
+  /* Laptop widths: a slightly narrower card and the painting nudged right keep the card's edge
+     clear of the net's left post. */
+  @media (min-width:841px) and (max-width:1440px){
+    .col{max-width:480px;}
+    body, .g body{background-position:0 0, 0% 70%, 0 0;}
+  }
   @media (max-width:840px){
     body{
       background:
@@ -79,6 +85,7 @@
     .top{padding:24px 16px 0;}
     main{align-items:flex-start;padding:24px 16px 48px;}
     .col{padding:28px 24px;}
+    .col .pitch{margin-top:32px;}
   }
   .eyebrow{font-weight:600;font-size:0.8125rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);}
   h1{
@@ -90,7 +97,7 @@
   .note a:hover{color:var(--forest-deep);}
 
   .pitch{
-    margin-top:44px;background:var(--mint-wash);border-radius:16px;
+    margin-top:44px;margin-bottom:0;background:var(--mint-wash);border-radius:16px;
     padding:24px 24px 26px;
   }
   .pitch p{font-size:1.0625rem;line-height:1.55;}
@@ -105,7 +112,8 @@
   }
   .btn:hover{background:var(--forest-deep);transform:translateY(-1px);}
 
-  .back{display:inline-block;margin-top:36px;color:var(--forest);font-weight:500;}
+  /* Padding gives the link a ~46px tap area without changing how far it sits from the card. */
+  .back{display:inline-block;margin-top:26px;padding:10px 0;color:var(--forest);font-weight:500;}
   .back:hover{text-decoration:underline;text-underline-offset:3px;}
 
   a:focus-visible{outline:2px solid var(--forest);outline-offset:3px;border-radius:4px;}
@@ -116,7 +124,17 @@
   @keyframes rise{from{opacity:0;}to{opacity:1;}}
   @media (prefers-reduced-motion: reduce){ .js .col{animation:none;} .btn{transition:none;} }
 </style>
-<script>if (/-google\/?$/.test(location.pathname)) document.documentElement.classList.add('g');</script>
+<script>
+  if (/-google\/?$/.test(location.pathname)) document.documentElement.classList.add('g');
+  // Vercel's documented queue for plain-HTML sites. beforeSend runs just before the page view is
+  // sent, which tells the Google variants it is safe to hand over (see the script at the bottom).
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  window.va('beforeSend', function (event) {
+    window.catchrCounted = true;
+    if (window.catchrOnCounted) window.catchrOnCounted();
+    return event;
+  });
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -139,6 +157,12 @@
       </div>
 
       <a class="back" id="back" href="/resume-template">&larr; Back to the resume template</a>
+
+      <noscript>
+        <style>#title,#note,#pitch,#back{display:none;}</style>
+        <h1>Your free template.</h1>
+        <p class="note">Resume: <a href="https://docs.google.com/document/d/13R-uOtyfODuGL9H90xmqbSTAdzyo_LMN4gchAJGgzRY/copy">Google Docs</a> or <a href="/downloads/catchr-resume-template.docx" download>Word</a>. Job tracker: <a href="https://docs.google.com/spreadsheets/d/1JsZn9HG8tKXdbeWZL8bY-PDPvlstQXafTT114Arq5PU/copy">Google Sheets</a> or <a href="/downloads/catchr-job-tracker-template.xlsx" download>Excel</a>.</p>
+      </noscript>
     </div>
   </main>
 
@@ -189,11 +213,14 @@
     var a = document.createElement('a');
     a.href = item.href; a.textContent = 'Open it in ' + item.app;
     $('note').append(a, '.');
-    // Wait for the page to load and the visit to be counted, then hand over to Google.
+    // Hand over to Google shortly after the visit is sent to Vercel Analytics. If the analytics
+    // script never runs (an ad blocker, say), go anyway after 2.5s so nobody is left waiting.
     // replace() keeps this page out of history, so Back doesn't bounce into Google again.
-    window.addEventListener('load', function () {
-      setTimeout(function () { location.replace(item.href); }, 700);
-    });
+    var gone = false;
+    var go = function () { if (!gone) { gone = true; location.replace(item.href); } };
+    window.catchrOnCounted = function () { setTimeout(go, 250); };
+    if (window.catchrCounted) window.catchrOnCounted();
+    setTimeout(go, 2500);
     return;
   }
 
