@@ -21,7 +21,8 @@ Plain HTML pages at the repo root; no build step.
   `vercel.json`). Each visit shows up in Vercel Web Analytics as a page view for that path, which is
   the count. The page then starts the download (once per tab, so a refresh doesn't repeat it) or
   forwards to Google's "make a copy" page. The page sits on the homepage hero watercolor (cream card;
-  Google pages use the small mobile image only). Google pages wait for Vercel's `beforeSend` hook (the
+  Google pages use the small mobile image only). The card is centred at every width; a left-aligned
+  version that kept the net in view was tried and rejected as off-balance (2026-11-09). Google pages wait for Vercel's `beforeSend` hook (the
   moment the visit is sent) before forwarding, with a 2.5s fallback if analytics is blocked. With
   JavaScript off, the page shows direct links to all four templates instead. Download pages carry a short Catchr pitch and Add to
   Chrome button (utm_campaign=get-<item>); Google pages forward after ~0.7s so have no pitch.

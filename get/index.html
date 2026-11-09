@@ -65,15 +65,8 @@
     box-shadow:0 4px 8px rgba(0,0,0,.16), 0 36px 70px -28px rgba(0,0,0,.55);
   }
   .col > *{max-width:34em;}
-  /* Desktop: card lines up under the logo, like the homepage hero copy, so the net in the
-     middle of the painting stays in view beside it instead of behind it. */
-  @media (min-width:841px){ .col{margin:0;} }
-  /* Laptop widths: a slightly narrower card and the painting nudged right keep the card's edge
-     clear of the net's left post. */
-  @media (min-width:841px) and (max-width:1440px){
-    .col{max-width:480px;}
-    body, .g body{background-position:0 0, 0% 70%, 0 0;}
-  }
+  /* Card is centred at every width (owner's call, 2026-11-09). On desktop it covers the net in the
+     middle of the painting; left-aligning it to show the net was tried and looked off-balance. */
   @media (max-width:840px){
     body{
       background:
