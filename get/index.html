@@ -31,10 +31,23 @@
     --pad:clamp(20px,5vw,48px);
   }
   *{box-sizing:border-box;}
+  /* The homepage hero watercolor, same files so they usually come from cache. The top-down scrim
+     keeps the cream logo readable over the pale sky. Google pages forward in under a second, so
+     they only get the small mobile image (class "g" is set in <head> before anything loads). */
   body{
-    margin:0;min-height:100vh;display:flex;flex-direction:column;
-    font-family:var(--body);background:var(--cream);color:var(--ink);
+    margin:0;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
+    font-family:var(--body);color:var(--ink);
     -webkit-font-smoothing:antialiased;line-height:1.6;
+    background:
+      linear-gradient(180deg, rgba(36,80,64,.55) 0%, rgba(36,80,64,.15) 40%, rgba(36,80,64,.10) 100%),
+      url('/assets/hero-bg.webp') center 70%/cover no-repeat,
+      var(--forest);
+  }
+  .g body{
+    background:
+      linear-gradient(180deg, rgba(36,80,64,.55) 0%, rgba(36,80,64,.15) 40%, rgba(36,80,64,.10) 100%),
+      url('/assets/hero-bg-mobile.webp') center 70%/cover no-repeat,
+      var(--forest);
   }
   img{display:block;max-width:100%;}
   a{color:inherit;text-decoration:none;}
@@ -43,10 +56,30 @@
   .top{padding:28px var(--pad) 0;}
   .brand{display:inline-flex;align-items:center;gap:11px;}
   .brand .net{width:28px;height:28px;object-fit:contain;}
-  .brand .word{font-family:var(--display);font-weight:700;font-size:1.4rem;color:var(--forest);letter-spacing:-0.02em;}
+  .brand .word{font-family:var(--display);font-weight:700;font-size:1.4rem;color:var(--cream);letter-spacing:-0.02em;}
 
-  main{flex:1;display:flex;align-items:center;padding:56px var(--pad) 72px;}
-  .col{max-width:520px;margin:0 auto;width:100%;}
+  main{flex:1;display:flex;align-items:center;padding:40px var(--pad) 72px;}
+  .col{
+    max-width:520px;margin:0 auto;width:100%;
+    background:var(--cream);border-radius:20px;padding:36px;
+    box-shadow:0 4px 8px rgba(0,0,0,.16), 0 36px 70px -28px rgba(0,0,0,.55);
+  }
+  .col > *{max-width:34em;}
+  /* Desktop: card lines up under the logo, like the homepage hero copy, so the net in the
+     middle of the painting stays in view beside it instead of behind it. */
+  @media (min-width:841px){ .col{margin:0;} }
+  @media (max-width:840px){
+    body{
+      background:
+        linear-gradient(180deg, rgba(36,80,64,.55) 0%, rgba(36,80,64,.15) 40%, rgba(36,80,64,.10) 100%),
+        url('/assets/hero-bg-mobile.webp') center bottom/cover no-repeat,
+        var(--forest);
+    }
+    .g body{background-position:0 0, center bottom, 0 0;}
+    .top{padding:24px 16px 0;}
+    main{align-items:flex-start;padding:24px 16px 48px;}
+    .col{padding:28px 24px;}
+  }
   .eyebrow{font-weight:600;font-size:0.8125rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);}
   h1{
     margin:14px 0 0;font-family:var(--display);font-weight:700;
@@ -76,18 +109,20 @@
   .back:hover{text-decoration:underline;text-underline-offset:3px;}
 
   a:focus-visible{outline:2px solid var(--forest);outline-offset:3px;border-radius:4px;}
+  .brand:focus-visible{outline-color:var(--cream);}
 
   /* Fade only when the script has run, so the page is never stuck invisible. */
   .js .col{animation:rise .5s ease both;}
   @keyframes rise{from{opacity:0;}to{opacity:1;}}
   @media (prefers-reduced-motion: reduce){ .js .col{animation:none;} .btn{transition:none;} }
 </style>
+<script>if (/-google\/?$/.test(location.pathname)) document.documentElement.classList.add('g');</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <header class="top">
     <a class="brand" href="/" aria-label="Catchr home">
-      <img class="net" src="/assets/net-forest.webp" alt="" />
+      <img class="net" src="/assets/net-cream.webp" alt="" />
       <span class="word">Catchr</span>
     </a>
   </header>
@@ -139,7 +174,7 @@
   var item = ITEMS[key];
   if (!item) return; // unknown address: leave the resume .docx defaults in place
 
-  document.documentElement.className = 'js';
+  document.documentElement.classList.add('js');
   var $ = function (id) { return document.getElementById(id); };
   document.querySelector('link[rel="canonical"]').href = 'https://www.jobcatchr.app' + item.back;
   $('title').textContent = item.title;

@@ -20,7 +20,8 @@ Plain HTML pages at the repo root; no build step.
   /get/resume-google, /get/resume-docx, /get/tracker-google and /get/tracker-xlsx (rewrite in
   `vercel.json`). Each visit shows up in Vercel Web Analytics as a page view for that path, which is
   the count. The page then starts the download (once per tab, so a refresh doesn't repeat it) or
-  forwards to Google's "make a copy" page. Download pages carry a short Catchr pitch and Add to
+  forwards to Google's "make a copy" page. The page sits on the homepage hero watercolor (cream card;
+  Google pages use the small mobile image only). Download pages carry a short Catchr pitch and Add to
   Chrome button (utm_campaign=get-<item>); Google pages forward after ~0.7s so have no pitch.
   If a Google template link or download file ever changes, update it in `get/index.html`.
   It counts clicks, not people who actually filled the template in. Counting starts from deploy.
